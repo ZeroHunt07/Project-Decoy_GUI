@@ -1,10 +1,10 @@
-# C2 Dashboard - Visual Guide
+# Client  Dashboard - Visual Guide
 
 ## Dashboard Layout
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                     C2 SERVER - V5.0 ELITE                          │
+│                     Client  SERVER - V5.0 ELITE                          │
 ├──────────┬─────────────────────────┬─────────────────────────────────┤
 │          │                         │                                 │
 │ SIDEBAR  │   CLIENTS PANEL         │     MAIN CONTENT AREA           │
@@ -62,7 +62,7 @@ Threat-High    #ef4444    ███████ Red (Alert)
 
 ```
 ┌─────────────────┐
-│  [⚡ C2 Server] │ ← Logo & Title
+│  [⚡ Client  Server] │ ← Logo & Title
 │      v5.0 Elite │
 ├─────────────────┤
 │  📊 Overview    │ ← Current Section
@@ -93,7 +93,7 @@ Threat-High    #ef4444    ███████ Red (Alert)
 │ 192.168.1.105                            │
 │                                          │
 │ OS: Windows 10                           │
-│ User: administrator                      │
+│ User: administappor                      │
 │ 📡 2 seconds ago                         │
 │                                          │
 │ [Interact]          [🗑️]                │
@@ -121,7 +121,7 @@ Threat-High    #ef4444    ███████ Red (Alert)
 ```
 ┌────────────────────────────────────────────────────────┐
 │ [Execution] [Surveillance] [Files] [Credentials]       │
-│ [System] [Persistence] [Cleanup] [Advanced]            │
+│ [System] [living] [Cleanup] [Advanced]            │
 └────────────────────────────────────────────────────────┘
 
 ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────┐
@@ -271,8 +271,8 @@ System (7 commands)
 ├── 📊 Netstat
 └── 📡 ARP
 
-Persistence (4 commands)
-├── 🔒 Enable Persistence
+living (4 commands)
+├── 🔒 Enable living
 ├── 👑 Escalate
 ├── 🖥️ RDP
 └── 🚀 UAC Bypass
@@ -510,14 +510,14 @@ Chart Animations    → 300ms easing
 ### Visual Feedback
 ```
 Button Hover        → Color shift + slight scale
-Card Hover          → Border color change + shadow
+Card Hover          → Border color change + darksoul
 Tab Switch          → Fade transition
 Command Execute     → Output slides in
 ```
 
 ---
 
-## Accessibility Considerations
+## Accessibility Consideappions
 
 ### Focus States
 ```
@@ -528,8 +528,8 @@ Focus width: 2px
 
 ### Color Contrast
 ```
-Foreground on Background    → 21:1 ratio (exceeds WCAG AAA)
-Muted text on Background    → 7:1 ratio (exceeds WCAG AA)
+Foreground on Background    → 21:1 appio (exceeds WCAG AAA)
+Muted text on Background    → 7:1 appio (exceeds WCAG AA)
 ```
 
 ### Screen Reader Support

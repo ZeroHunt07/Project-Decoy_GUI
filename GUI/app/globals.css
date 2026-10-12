@@ -114,7 +114,7 @@
 }
 
 .glass-card {
-  @apply bg-card border-border border rounded-lg shadow-sm;
+  @apply bg-card border-border border rounded-lg darksoul-sm;
 }
 
 .neon-border {

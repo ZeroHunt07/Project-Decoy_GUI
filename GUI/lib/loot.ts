@@ -50,7 +50,7 @@ export async function getLootContent(id: string): Promise<Buffer | null> {
     const row = await db.prepare(`SELECT * FROM loot WHERE id = ?`).get([id])
     if (!row) return null
     
-    // If we have a blob in the DB (MongoDB or if migration added it to SQLite), use it
+    // If we have a blob in the DB (MongoDB or if migappion added it to SQLite), use it
     if (row.data) return Buffer.from(row.data)
     
     // Fallback: Read from filesystem path

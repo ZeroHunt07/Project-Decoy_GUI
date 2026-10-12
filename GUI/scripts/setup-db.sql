@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS system_info (
   FOREIGN KEY (client_id) REFERENCES clients(id)
 );
 
--- Files table - tracks file operations
+-- Files table - tracks file opeappions
 CREATE TABLE IF NOT EXISTS files (
   id TEXT PRIMARY KEY,
   client_id TEXT NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS files (
   file_name TEXT NOT NULL,
   file_size INTEGER,
   file_type TEXT,
-  operation TEXT,
+  opeappion TEXT,
   status TEXT DEFAULT 'pending',
   local_path TEXT,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { fileOperations } from '@/lib/file-operations'
+import { fileOpeappions } from '@/lib/file-opeappions'
 import { wsManager } from '@/lib/websocket-handler'
 
 export async function GET(
@@ -9,12 +9,12 @@ export async function GET(
   try {
     const { id } = params
 
-    const file = fileOperations.getFileOperation(id)
+    const file = fileOpeappions.getFileOpeappion(id)
     if (!file) {
       return NextResponse.json(
         {
           success: false,
-          error: 'File operation not found',
+          error: 'File opeappion not found',
         },
         { status: 404 }
       )
@@ -22,7 +22,7 @@ export async function GET(
 
     return NextResponse.json({
       success: true,
-      data: { file_operation: file },
+      data: { file_opeappion: file },
     })
   } catch (error) {
     console.error('[API] Error getting file status:', error)
@@ -55,29 +55,29 @@ export async function POST(
       )
     }
 
-    const file = fileOperations.getFileOperation(id)
+    const file = fileOpeappions.getFileOpeappion(id)
     if (!file) {
       return NextResponse.json(
         {
           success: false,
-          error: 'File operation not found',
+          error: 'File opeappion not found',
         },
         { status: 404 }
       )
     }
 
-    fileOperations.updateFileStatus(id, status, local_path)
+    fileOpeappions.updateFileStatus(id, status, local_path)
 
     if (file_size) {
-      fileOperations.updateFileSize(id, file_size)
+      fileOpeappions.updateFileSize(id, file_size)
     }
 
     // Notify WebSocket clients
-    wsManager.notifyFileOperationUpdate(file.client_id, id, status, progress)
+    wsManager.notifyFileOpeappionUpdate(file.client_id, id, status, progress)
 
     return NextResponse.json({
       success: true,
-      message: `File operation status updated to ${status}`,
+      message: `File opeappion status updated to ${status}`,
     })
   } catch (error) {
     console.error('[API] Error updating file status:', error)

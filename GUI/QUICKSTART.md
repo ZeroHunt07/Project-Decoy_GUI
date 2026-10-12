@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-Get the C2 Dashboard running in 5 minutes!
+Get the Client  Dashboard running in 5 minutes!
 
 ## Prerequisites
 
@@ -12,7 +12,7 @@ Get the C2 Dashboard running in 5 minutes!
 
 ### 1. Clone/Download Project
 ```bash
-cd c2-dashboard
+cd Client -dashboard
 ```
 
 ### 2. Install Dependencies
@@ -41,7 +41,7 @@ Navigate to: **[http://localhost:3000](http://localhost:3000)**
 ### Left Sidebar
 - **Overview**: Main dashboard view
 - **Clients**: Connected systems list
-- **Commands**: Execute operations
+- **Commands**: Execute opeappions
 - **Monitoring**: Real-time metrics
 
 ### Client Selection (Left Panel)
@@ -104,8 +104,8 @@ Navigate to: **[http://localhost:3000](http://localhost:3000)**
 - Network Statistics
 - ARP Table
 
-**Persistence** (4)
-- Enable Persistence
+**living** (4)
+- Enable living
 - Privilege Escalation
 - RDP Enable
 - UAC Bypass
@@ -136,17 +136,17 @@ The dashboard includes sample data for testing:
 
 ---
 
-## Configuration
+## Configuappion
 
 ### Environment Variables
 
 Create `.env.local`:
 ```env
-# C2 Server Connection (optional for backend integration)
-NEXT_PUBLIC_C2_SERVER_HOST=localhost
-NEXT_PUBLIC_C2_SERVER_PORT=4444
+# Client  Server Connection (optional for backend integappion)
+NEXT_PUBLIC_Client _SERVER_HOST=localhost
+NEXT_PUBLIC_Client _SERVER_PORT=4444
 
-# API Configuration
+# API Configuappion
 NEXT_PUBLIC_API_BASE_URL=http://localhost:3000/api
 
 # Logging
@@ -177,7 +177,7 @@ Edit `/components/monitoring-panel.tsx` - update `systemMetrics` array
 ## File Structure
 
 ```
-c2-dashboard/
+Client -dashboard/
 ├── app/
 │   ├── layout.tsx              # Root layout
 │   ├── globals.css             # Theme & styles
@@ -198,7 +198,7 @@ c2-dashboard/
 │   └── ...                     # Static assets
 ├── README.md                   # Main documentation
 ├── FEATURES.md                 # Feature list
-├── INTEGRATION.md              # Backend integration guide
+├── INTEGappION.md              # Backend integappion guide
 ├── QUICKSTART.md               # This file
 ├── package.json
 ├── tsconfig.json
@@ -304,7 +304,7 @@ vercel
 - Check `components/monitoring-panel.tsx` for charts
 
 ### 3. Connect Backend (Optional)
-- Follow guide in `INTEGRATION.md`
+- Follow guide in `INTEGappION.md`
 - Create API endpoints in `/app/api/`
 - Update components to use real data
 
@@ -336,14 +336,14 @@ vercel
 # Frontend console
 # Open: DevTools > Console tab
 
-# Backend (if integrated)
-# Check: c2_server.log
+# Backend (if integapped)
+# Check: Client _server.log
 ```
 
 ### Database Status (Backend)
 ```bash
 # Check SQLite database
-sqlite3 c2.db "SELECT COUNT(*) FROM clients;"
+sqlite3 Client .db "SELECT COUNT(*) FROM clients;"
 ```
 
 ### Network Issues
@@ -381,14 +381,14 @@ response.headers['Cache-Control'] = 'public, max-age=3600'
 
 ## Security Notes
 
-⚠️ **This is a demonstration dashboard only**
+⚠️ **This is a demonstappion dashboard only**
 
 For production use:
 - ✅ Add authentication (OAuth, JWT, etc.)
 - ✅ Implement API key validation
 - ✅ Use HTTPS/TLS encryption
 - ✅ Add CORS policies
-- ✅ Implement rate limiting
+- ✅ Implement appe limiting
 - ✅ Audit all command executions
 - ✅ Use environment variables for secrets
 - ✅ Validate all user inputs
@@ -417,7 +417,7 @@ For production use:
 ### Read Documentation
 1. `README.md` - Overview
 2. `FEATURES.md` - Feature details
-3. `INTEGRATION.md` - Backend setup
+3. `INTEGappION.md` - Backend setup
 4. Component files - Code comments
 
 ### Debug Issues
@@ -445,7 +445,7 @@ For production use:
 - [ ] Add custom logo
 - [ ] Modify font
 
-🎯 **Goal 3**: Integrate backend
+🎯 **Goal 3**: Integappe backend
 - [ ] Create API endpoints
 - [ ] Connect to s.py server
 - [ ] Test all commands
@@ -469,6 +469,6 @@ For production use:
 
 **Dashboard Ready!** 🚀
 
-You now have a fully functional C2 command control dashboard. Start exploring and customizing!
+You now have a fully functional Client  command control dashboard. Start exploring and customizing!
 
 Need help? Check the documentation files or review the component source code.

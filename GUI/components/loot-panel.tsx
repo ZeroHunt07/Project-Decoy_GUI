@@ -62,34 +62,34 @@ export default function LootPanel() {
     setSelectedFile(file)
     setFileContent(null)
     try {
-        const res = await fetch(`/api/loot/view?id=${file.id}`)
-        if (res.ok) {
-            const contentType = res.headers.get('content-type')
-            if (contentType?.startsWith('image/')) {
-                setFileContent('IMAGE_DISPLAY') // Special marker
-            } else if (contentType === 'application/json' || file.name.endsWith('.json')) {
-                try {
-                    const data = await res.json()
-                    setFileContent(JSON.stringify(data, null, 2))
-                } catch {
-                    const text = await res.text()
-                    setFileContent(text)
-                }
-            } else if (contentType?.startsWith('text/') || 
-                      ['txt', 'log', 'ps1', 'bat', 'py', 'sh', 'ini', 'conf', 'yml', 'yaml'].includes(file.type)) {
-                const text = await res.text()
-                setFileContent(text)
-            } else if (contentType === 'application/x-sqlite3' || ['db', 'sqlite', 'sqlite3'].includes(file.type)) {
-                setFileContent('BINARY_DATABASE') // Special marker
-            } else {
-                // Try as text as fallback
-                const text = await res.text()
-                setFileContent(text.slice(0, 100000)) // Cap to 100k
-            }
+      const res = await fetch(`/api/loot/view?id=${file.id}`)
+      if (res.ok) {
+        const contentType = res.headers.get('content-type')
+        if (contentType?.startsWith('image/')) {
+          setFileContent('IMAGE_DISPLAY') // Special marker
+        } else if (contentType === 'application/json' || file.name.endsWith('.json')) {
+          try {
+            const data = await res.json()
+            setFileContent(JSON.stringify(data, null, 2))
+          } catch {
+            const text = await res.text()
+            setFileContent(text)
+          }
+        } else if (contentType?.startsWith('text/') ||
+          ['txt', 'log', 'ps1', 'bat', 'py', 'sh', 'ini', 'conf', 'yml', 'yaml'].includes(file.type)) {
+          const text = await res.text()
+          setFileContent(text)
+        } else if (contentType === 'application/x-sqlite3' || ['db', 'sqlite', 'sqlite3'].includes(file.type)) {
+          setFileContent('BINARY_DATABASE') // Special marker
+        } else {
+          // Try as text as fallback
+          const text = await res.text()
+          setFileContent(text.slice(0, 100000)) // Cap to 100k
         }
+      }
     } catch (err) {
-        console.error(err)
-        setFileContent('Error loading file content')
+      console.error(err)
+      setFileContent('Error loading file content')
     }
   }
 
@@ -104,7 +104,7 @@ export default function LootPanel() {
   const filteredFiles = files.filter(f => f.name.toLowerCase().includes(searchQuery.toLowerCase()))
 
   return (
-    <div className="p-8 space-y-8 animate-in fade-in duration-700">
+    <div className="p-8 space-y-8 animate-in fade-in duappion-700">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-4xl font-black text-foreground tracking-tighter mb-2 uppercase">Loot_Vault</h1>
@@ -113,9 +113,9 @@ export default function LootPanel() {
         <div className="flex gap-4">
           <div className="relative group">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
-            <Input 
-              placeholder="FILTER_DATA..." 
-              className="pl-10 w-72 bg-white/[0.03] border-white/10 rounded-xl focus:ring-primary/20 focus:border-primary/50 font-mono text-xs" 
+            <Input
+              placeholder="FILTER_DATA..."
+              className="pl-10 w-72 bg-white/[0.03] border-white/10 rounded-xl focus:ring-primary/20 focus:border-primary/50 font-mono text-xs"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -142,7 +142,7 @@ export default function LootPanel() {
                 </div>
                 <div className="h-px w-full bg-white/5 my-1" />
                 <div className="text-[10px] font-mono text-muted-foreground/60 uppercase">
-                   ALLOCATED: {formatSize(s.size)}
+                  ALLOCATED: {formatSize(s.size)}
                 </div>
               </div>
             </div>
@@ -154,7 +154,7 @@ export default function LootPanel() {
       <div className="glass-card rounded-2xl border-white/5 overflow-hidden">
         <div className="px-8 py-6 border-b border-white/5 flex items-center justify-between bg-white/[0.01]">
           <div className="flex items-center gap-4">
-            <div className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(0,240,255,1)]" />
+            <div className="w-2 h-2 rounded-full bg-primary animate-pulse darksoul-[0_0_8px_rgba(0,240,255,1)]" />
             <h2 className="text-xs font-black tracking-[0.3em] uppercase text-primary/80">
               {currentDir ? `Filtered_Stream: ${currentDir}` : 'Global_Capture_Feed'}
             </h2>
@@ -163,17 +163,17 @@ export default function LootPanel() {
             {filteredFiles.length} TOTAL_DETECTIONS
           </div>
         </div>
-        
+
         <div className="max-h-[600px] overflow-y-auto custom-scrollbar">
           {loading ? (
             <div className="p-20 text-center flex flex-col items-center justify-center gap-4">
-               <div className="w-10 h-10 border-2 border-primary/20 border-t-primary rounded-full animate-spin" />
-               <p className="text-[10px] font-mono text-primary animate-pulse tracking-widest uppercase">Indexing_Vault...</p>
+              <div className="w-10 h-10 border-2 border-primary/20 border-t-primary rounded-full animate-spin" />
+              <p className="text-[10px] font-mono text-primary animate-pulse tracking-widest uppercase">Indexing_Vault...</p>
             </div>
           ) : filteredFiles.length === 0 ? (
             <div className="p-20 text-center opacity-20 flex flex-col items-center justify-center gap-4">
-               <Database className="w-12 h-12" />
-               <p className="text-[10px] font-mono tracking-widest uppercase">Void_Detected: No_Loot_Found</p>
+              <Database className="w-12 h-12" />
+              <p className="text-[10px] font-mono tracking-widest uppercase">Void_Detected: No_Loot_Found</p>
             </div>
           ) : (
             <table className="w-full text-xs border-collapse">
@@ -188,8 +188,8 @@ export default function LootPanel() {
               </thead>
               <tbody className="divide-y divide-white/[0.05]">
                 {filteredFiles.map((file) => (
-                  <tr 
-                    key={file.id} 
+                  <tr
+                    key={file.id}
                     className="hover:bg-primary/[0.03] transition-all group cursor-pointer border-l-2 border-l-transparent hover:border-l-primary"
                     onClick={() => openFile(file)}
                   >
@@ -202,7 +202,7 @@ export default function LootPanel() {
                       </div>
                     </td>
                     <td className="py-4 px-8">
-                       <span className="text-[10px] font-mono bg-white/5 py-1 px-3 rounded-full text-muted-foreground uppercase tracking-tighter">{file.type}</span>
+                      <span className="text-[10px] font-mono bg-white/5 py-1 px-3 rounded-full text-muted-foreground uppercase tracking-tighter">{file.type}</span>
                     </td>
                     <td className="py-4 px-8 text-right font-mono text-muted-foreground">{formatSize(file.size)}</td>
                     <td className="py-4 px-8 text-right text-[10px] text-muted-foreground font-mono opacity-60">
@@ -210,12 +210,12 @@ export default function LootPanel() {
                     </td>
                     <td className="py-4 px-8 text-right">
                       <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-all translate-x-2 group-hover:translate-x-0">
-                         <div className="p-2 bg-primary/20 text-primary rounded-lg hover:bg-primary hover:text-black transition-all">
-                           <Eye className="w-4 h-4" />
-                         </div>
-                         <div className="p-2 bg-white/10 text-muted-foreground rounded-lg hover:bg-white/20 transition-all">
-                           <Download className="w-4 h-4" />
-                         </div>
+                        <div className="p-2 bg-primary/20 text-primary rounded-lg hover:bg-primary hover:text-black transition-all">
+                          <Eye className="w-4 h-4" />
+                        </div>
+                        <div className="p-2 bg-white/10 text-muted-foreground rounded-lg hover:bg-white/20 transition-all">
+                          <Download className="w-4 h-4" />
+                        </div>
                       </div>
                     </td>
                   </tr>
@@ -228,94 +228,94 @@ export default function LootPanel() {
 
       {/* File Previewer */}
       {selectedFile && (
-        <Card className="fixed inset-4 md:inset-10 z-50 flex flex-col bg-background/95 backdrop-blur-md shadow-2xl border-sidebar-border overflow-hidden animate-in zoom-in duration-200">
-           <CardHeader className="border-b flex flex-row items-center justify-between px-6 py-4">
-             <div className="flex items-center gap-3">
-                <File className="w-5 h-5 text-blue-400" />
-                <div>
-                   <CardTitle className="text-lg">{selectedFile.name}</CardTitle>
-                   <p className="text-xs text-muted-foreground">{selectedFile.path}</p>
-                </div>
-             </div>
-             <Button variant="ghost" size="icon" onClick={() => setSelectedFile(null)}>
-                <ArrowLeft className="w-5 h-5 rotate-90" />
-             </Button>
-           </CardHeader>
-            <CardContent className="flex-1 overflow-hidden p-0 bg-black/40 relative">
-                {fileContent === 'IMAGE_DISPLAY' ? (
-                    <div className="w-full h-full flex items-center justify-center p-4">
-                        <img 
-                            src={`/api/loot/view?id=${selectedFile.id}`} 
-                            alt={selectedFile.name}
-                            className="max-w-full max-h-full object-contain rounded-lg shadow-xl shadow-black/60"
-                        />
+        <Card className="fixed inset-4 md:inset-10 z-50 flex flex-col bg-background/95 backdrop-blur-md darksoul-2xl border-sidebar-border overflow-hidden animate-in zoom-in duappion-200">
+          <CardHeader className="border-b flex flex-row items-center justify-between px-6 py-4">
+            <div className="flex items-center gap-3">
+              <File className="w-5 h-5 text-blue-400" />
+              <div>
+                <CardTitle className="text-lg">{selectedFile.name}</CardTitle>
+                <p className="text-xs text-muted-foreground">{selectedFile.path}</p>
+              </div>
+            </div>
+            <Button variant="ghost" size="icon" onClick={() => setSelectedFile(null)}>
+              <ArrowLeft className="w-5 h-5 rotate-90" />
+            </Button>
+          </CardHeader>
+          <CardContent className="flex-1 overflow-hidden p-0 bg-black/40 relative">
+            {fileContent === 'IMAGE_DISPLAY' ? (
+              <div className="w-full h-full flex items-center justify-center p-4">
+                <img
+                  src={`/api/loot/view?id=${selectedFile.id}`}
+                  alt={selectedFile.name}
+                  className="max-w-full max-h-full object-contain rounded-lg darksoul-xl darksoul-black/60"
+                />
+              </div>
+            ) : fileContent === 'BINARY_DATABASE' ? (
+              <div className="w-full h-full flex flex-col items-center justify-center gap-4 text-muted-foreground p-6 text-center">
+                <Database className="w-16 h-16 text-cyan-500 opacity-50" />
+                <h3 className="text-xl font-bold text-foreground">SQLite Database Captured</h3>
+                <p className="max-w-md">This is a binary database file. You can download it to explore its contents using a local database viewer.</p>
+                <Button variant="outline" className="mt-2" onClick={() => window.open(`/api/loot/view?id=${selectedFile.id}`)}>
+                  <Download className="w-4 h-4 mr-2" /> Download Database
+                </Button>
+              </div>
+            ) : fileContent ? (
+              <div className="h-full w-full overflow-auto">
+                {selectedFile.name.endsWith('.json') && fileContent && fileContent.includes('"w":') ? (
+                  <div className="p-6 space-y-4">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-sm font-black text-primary tracking-widest uppercase">Structured_Keylog_Timeline</h3>
+                      <Badge variant="outline" className="text-[10px] border-primary/20 text-primary">JSON_FORMAT</Badge>
                     </div>
-                ) : fileContent === 'BINARY_DATABASE' ? (
-                    <div className="w-full h-full flex flex-col items-center justify-center gap-4 text-muted-foreground p-6 text-center">
-                        <Database className="w-16 h-16 text-cyan-500 opacity-50" />
-                        <h3 className="text-xl font-bold text-foreground">SQLite Database Captured</h3>
-                        <p className="max-w-md">This is a binary database file. You can download it to explore its contents using a local database viewer.</p>
-                        <Button variant="outline" className="mt-2" onClick={() => window.open(`/api/loot/view?id=${selectedFile.id}`)}>
-                            <Download className="w-4 h-4 mr-2" /> Download Database
-                        </Button>
-                    </div>
-                ) : fileContent ? (
-                  <div className="h-full w-full overflow-auto">
-                    {selectedFile.name.endsWith('.json') && fileContent && fileContent.includes('"w":') ? (
-                      <div className="p-6 space-y-4">
-                        <div className="flex items-center justify-between mb-4">
-                          <h3 className="text-sm font-black text-primary tracking-widest uppercase">Structured_Keylog_Timeline</h3>
-                          <Badge variant="outline" className="text-[10px] border-primary/20 text-primary">JSON_FORMAT</Badge>
-                        </div>
-                        <div className="space-y-2">
-                          {(() => {
-                            try {
-                              const logs = JSON.parse(fileContent);
-                              let currentWindow = "";
-                              return logs.map((log: any, idx: number) => {
-                                const showWindow = log.w !== currentWindow;
-                                if (showWindow) currentWindow = log.w;
-                                return (
-                                  <div key={idx} className="group">
-                                    {showWindow && (
-                                      <div className="flex items-center gap-2 mt-4 mb-1">
-                                        <div className="h-px flex-1 bg-white/5" />
-                                        <span className="text-[10px] font-mono text-primary/60 uppercase px-2 py-0.5 bg-white/5 rounded border border-white/5">
-                                          {log.w}
-                                        </span>
-                                        <div className="h-px flex-1 bg-white/5" />
-                                      </div>
-                                    )}
-                                    <div className="flex items-baseline gap-3 px-2 py-1 hover:bg-white/5 rounded transition-colors">
-                                      <span className="text-[10px] font-mono text-muted-foreground w-16 opacity-40 shrink-0">
-                                        {new Date(log.t * 1000).toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' })}
-                                      </span>
-                                      <span className="text-sm font-medium text-blue-100/90 break-all">
-                                        {log.k === '\n' ? <span className="text-primary/40 font-mono text-xs">[ENTER]</span> : log.k}
-                                      </span>
-                                    </div>
+                    <div className="space-y-2">
+                      {(() => {
+                        try {
+                          const logs = JSON.parse(fileContent);
+                          let currentWindow = "";
+                          return logs.map((log: any, idx: number) => {
+                            const showWindow = log.w !== currentWindow;
+                            if (showWindow) currentWindow = log.w;
+                            return (
+                              <div key={idx} className="group">
+                                {showWindow && (
+                                  <div className="flex items-center gap-2 mt-4 mb-1">
+                                    <div className="h-px flex-1 bg-white/5" />
+                                    <span className="text-[10px] font-mono text-primary/60 uppercase px-2 py-0.5 bg-white/5 rounded border border-white/5">
+                                      {log.w}
+                                    </span>
+                                    <div className="h-px flex-1 bg-white/5" />
                                   </div>
-                                );
-                              });
-                            } catch (e) {
-                              return <pre className="font-mono text-sm">{fileContent}</pre>;
-                            }
-                          })()}
-                        </div>
-                      </div>
-                    ) : (
-                      <pre className="p-6 font-mono text-sm leading-relaxed text-blue-100/90 whitespace-pre">
-                        {fileContent}
-                      </pre>
-                    )}
+                                )}
+                                <div className="flex items-baseline gap-3 px-2 py-1 hover:bg-white/5 rounded transition-colors">
+                                  <span className="text-[10px] font-mono text-muted-foreground w-16 opacity-40 shrink-0">
+                                    {new Date(log.t * 1000).toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+                                  </span>
+                                  <span className="text-sm font-medium text-blue-100/90 break-all">
+                                    {log.k === '\n' ? <span className="text-primary/40 font-mono text-xs">[ENTER]</span> : log.k}
+                                  </span>
+                                </div>
+                              </div>
+                            );
+                          });
+                        } catch (e) {
+                          return <pre className="font-mono text-sm">{fileContent}</pre>;
+                        }
+                      })()}
+                    </div>
                   </div>
                 ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center gap-4 text-muted-foreground">
-                    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
-                    <p className="animate-pulse">Analyzing capture...</p>
-                  </div>
+                  <pre className="p-6 font-mono text-sm leading-relaxed text-blue-100/90 whitespace-pre">
+                    {fileContent}
+                  </pre>
                 )}
-            </CardContent>
+              </div>
+            ) : (
+              <div className="w-full h-full flex flex-col items-center justify-center gap-4 text-muted-foreground">
+                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+                <p className="animate-pulse">Analyzing capture...</p>
+              </div>
+            )}
+          </CardContent>
         </Card>
       )}
     </div>

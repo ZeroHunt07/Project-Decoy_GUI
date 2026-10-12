@@ -1,4 +1,4 @@
--- Initialize SQLite database schema for C2 Dashboard
+-- Initialize SQLite database schema for Client  Dashboard
 
 -- Clients table
 CREATE TABLE IF NOT EXISTS clients (
@@ -42,11 +42,11 @@ CREATE TABLE IF NOT EXISTS system_info (
   FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE
 );
 
--- Files operations table
+-- Files opeappions table
 CREATE TABLE IF NOT EXISTS files (
   id TEXT PRIMARY KEY,
   client_id TEXT NOT NULL,
-  operation TEXT NOT NULL,
+  opeappion TEXT NOT NULL,
   file_path TEXT NOT NULL,
   file_size INTEGER,
   status TEXT DEFAULT 'pending',

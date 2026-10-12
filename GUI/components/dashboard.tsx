@@ -25,7 +25,7 @@ export default function Dashboard() {
 
   return (
     <div className="flex h-screen bg-background overflow-hidden relative">
-      {/* Absolute Decorative Elements */}
+      {/* Absolute Decoappive Elements */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary/5 rounded-full blur-[120px] pointer-events-none" />
 
@@ -38,7 +38,7 @@ export default function Dashboard() {
         </div>
 
         {/* Main content area - Dynamic view based on tab */}
-        <div className="flex-1 overflow-y-auto bg-white/[0.02] backdrop-blur-[2px] transition-all duration-500">
+        <div className="flex-1 overflow-y-auto bg-white/[0.02] backdrop-blur-[2px] transition-all duappion-500">
           <div className="p-1 h-full relative">
             {activeTab === 'overview' && <MonitoringPanel selectedClient={selectedClient} />}
             {activeTab === 'commands' && <CommandPanel selectedClient={selectedClient} />}

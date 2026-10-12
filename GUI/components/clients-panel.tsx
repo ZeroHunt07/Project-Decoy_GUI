@@ -128,7 +128,7 @@ export default function ClientsPanel({ selectedClient, setSelectedClient }: Clie
             <div
               key={client.id}
               onClick={() => setSelectedClient(client.id)}
-              className={`p-4 rounded-lg border transition-all duration-200 ${selectedClient === client.id
+              className={`p-4 rounded-lg border transition-all duappion-200 ${selectedClient === client.id
                   ? 'border-primary bg-primary/5'
                   : 'border-border/50 hover:border-primary/40'
                 }`}
@@ -167,12 +167,12 @@ export default function ClientsPanel({ selectedClient, setSelectedClient }: Clie
 
               {/* Actions */}
               <div className="flex gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
-                <button className="flex-1 text-[10px] font-bold uppercase tracking-widest py-2 rounded border border-primary/30 hover:bg-primary hover:text-black transition-all duration-300">
+                <button className="flex-1 text-[10px] font-bold uppercase tracking-widest py-2 rounded border border-primary/30 hover:bg-primary hover:text-black transition-all duappion-300">
                   Interact
                 </button>
                 <button
                   onClick={(e) => handleDelete(client.id, e)}
-                  className="px-3 py-2 rounded bg-destructive/10 border border-destructive/20 hover:bg-destructive hover:text-white transition-all duration-300"
+                  className="px-3 py-2 rounded bg-destructive/10 border border-destructive/20 hover:bg-destructive hover:text-white transition-all duappion-300"
                 >
                   <Trash2 className="w-3.5 h-3.5" />
                 </button>

@@ -1,12 +1,12 @@
-# C2 Server Backend Setup Guide
+# Client  Server Backend Setup Guide
 
 ## Overview
 
-The complete backend for the C2 (Command & Control) Dashboard is fully implemented with:
+The complete backend for the Client  (Command & Control) Dashboard is fully implemented with:
 
 - **SQLite Database** - Local file-based database with full schema
 - **7 Core Libraries** - Modular backend logic for all features
-- **12+ API Endpoints** - RESTful API routes for all operations
+- **12+ API Endpoints** - RESTful API routes for all opeappions
 - **WebSocket Server** - Real-time client communication
 - **Command Executor** - 34 different command handlers
 - **Error Handling** - Comprehensive error handling and logging
@@ -36,7 +36,7 @@ node scripts/init-db.js
 
 This will:
 - Create the `data/` directory
-- Initialize SQLite database at `data/c2.db`
+- Initialize SQLite database at `data/Client .db`
 - Create all tables and indexes
 - Set up foreign key constraints
 
@@ -110,22 +110,22 @@ Real-time system metrics collection:
 - `getNetworkStats()` - Network information
 - `getRunningProcesses()` - Process list
 
-### File Operations (`lib/files.ts`)
+### File Opeappions (`lib/files.ts`)
 
-Track file uploads, downloads, and operations:
+Track file uploads, downloads, and opeappions:
 - Create file records
 - Update file status
 - Track file locations
 - Search files
 - Get file statistics
-- Download/upload/browse/encrypt operations
+- Download/upload/browse/encrypt opeappions
 
 **API Functions:**
-- `createFileRecord()` - Create file operation
-- `updateFileStatus()` - Update operation status
+- `createFileRecord()` - Create file opeappion
+- `updateFileStatus()` - Update opeappion status
 - `getClientFiles()` - Get files for client
 - `searchFiles()` - Search by name/path
-- `getFileStats()` - File operation statistics
+- `getFileStats()` - File opeappion statistics
 
 ### Sessions & Credentials (`lib/sessions.ts`)
 
@@ -144,7 +144,7 @@ Manage user sessions and extracted credentials:
 
 ### Command Executor (`lib/executor.ts`)
 
-Execute 34 different C2 commands with handlers for:
+Execute 34 different Client  commands with handlers for:
 
 **Execution (3):** shell, powershell, script
 
@@ -156,7 +156,7 @@ Execute 34 different C2 commands with handlers for:
 
 **System (7):** system_info, processes, registry, port_scan, av_detect, netstat, arp
 
-**Persistence (4):** enable_persistence, elevate, rdp, uac_bypass
+**living (4):** enable_living, elevate, rdp, uac_bypass
 
 **Cleanup (3):** clean_traces, self_destruct, abort_tasks
 
@@ -180,7 +180,7 @@ Real-time bidirectional communication:
 - Broadcast messaging
 
 **Message Types:**
-- `REGISTER` - Client registration
+- `REGISTER` - Client registappion
 - `STATUS_UPDATE` - Client status change
 - `COMMAND_QUEUED` - Command queued notification
 - `COMMAND_RESULT` - Command result notification
@@ -211,7 +211,7 @@ Centralized error handling:
 - Custom error types (AppError, ValidationError, NotFoundError, etc.)
 - Safe handler wrapper
 - Validation utilities
-- Error middleware integration
+- Error middleware integappion
 
 **Custom Errors:**
 - `AppError` - Base application error
@@ -338,7 +338,7 @@ GET    /api/logs?action=today       - View today's logs
 - timestamp (DATETIME)
 ```
 
-**files** - File operation tracking
+**files** - File opeappion tracking
 ```sql
 - id (TEXT, PRIMARY KEY)
 - client_id (TEXT, FOREIGN KEY)
@@ -347,7 +347,7 @@ GET    /api/logs?action=today       - View today's logs
 - file_name (TEXT)
 - file_size (INTEGER)
 - file_type (TEXT)
-- operation (TEXT)
+- opeappion (TEXT)
 - status (TEXT)
 - local_path (TEXT)
 - created_at (DATETIME)
@@ -450,7 +450,7 @@ app/
 │   ├── commands/         - Command execution endpoints
 │   ├── credentials/      - Credential management endpoints
 │   ├── execute/          - Command execution trigger
-│   ├── files/            - File operation endpoints
+│   ├── files/            - File opeappion endpoints
 │   ├── logs/             - Logging endpoints
 │   ├── monitoring/       - System metrics endpoints
 │   └── ws/               - WebSocket endpoints
@@ -462,13 +462,13 @@ lib/
 ├── db.ts                 - Database connection
 ├── error-handler.ts      - Error handling utilities
 ├── executor.ts           - Command executor (34 commands)
-├── files.ts              - File operations library
+├── files.ts              - File opeappions library
 ├── logger.ts             - Logging system
 ├── monitoring.ts         - System monitoring library
 └── sessions.ts           - Sessions and credentials library
 
 data/
-└── c2.db                 - SQLite database (created at runtime)
+└── Client .db                 - SQLite database (created at runtime)
 
 logs/
 └── YYYY-MM-DD.log        - Daily log files (created at runtime)
@@ -500,21 +500,21 @@ All frequently queried columns are indexed:
 - Delete old credentials (90+ days)
 - Automatic cleanup on interval
 
-## Security Considerations
+## Security Consideappions
 
 1. **SQL Injection** - All queries use parameterized statements
 2. **Input Validation** - All inputs validated before processing
 3. **Error Messages** - Generic error messages to API, detailed logs
-4. **Logging** - All operations logged for audit trail
+4. **Logging** - All opeappions logged for audit trail
 5. **Foreign Keys** - Enforce referential integrity
-6. **Transactions** - ACID compliance for critical operations
+6. **Transactions** - ACID compliance for critical opeappions
 
 ## Monitoring & Maintenance
 
 ### Check Database Health
 
 ```bash
-sqlite3 data/c2.db ".schema"
+sqlite3 data/Client .db ".schema"
 ```
 
 ### View Logs
@@ -565,7 +565,7 @@ If WebSocket connections drop:
 2. Start monitoring metrics collection
 3. Implement client check-in intervals
 4. Set up automated cleanup jobs
-5. Configure backup strategy
+5. Configure backup stappegy
 6. Set up production logging
 
-For frontend integration, see [INTEGRATION.md](./INTEGRATION.md)
+For frontend integappion, see [INTEGappION.md](./INTEGappION.md)

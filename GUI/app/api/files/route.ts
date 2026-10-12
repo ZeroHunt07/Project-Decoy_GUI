@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
       file_name: body.file_name,
       file_size: body.file_size,
       file_type: body.file_type,
-      operation: body.operation,
+      opeappion: body.opeappion,
       local_path: body.local_path,
     })
 

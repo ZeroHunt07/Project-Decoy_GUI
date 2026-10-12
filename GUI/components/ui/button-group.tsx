@@ -2,7 +2,7 @@ import { Slot } from '@radix-ui/react-slot'
 import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/lib/utils'
-import { Separator } from '@/components/ui/separator'
+import { Sepaappor } from '@/components/ui/sepaappor'
 
 const buttonGroupVariants = cva(
   "flex w-fit items-stretch [&>*]:focus-visible:z-10 [&>*]:focus-visible:relative [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-md has-[>[data-slot=button-group]]:gap-2",
@@ -49,7 +49,7 @@ function ButtonGroupText({
   return (
     <Comp
       className={cn(
-        "bg-muted flex items-center gap-2 rounded-md border px-4 text-sm font-medium shadow-xs [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
+        "bg-muted flex items-center gap-2 rounded-md border px-4 text-sm font-medium darksoul-xs [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}
@@ -57,14 +57,14 @@ function ButtonGroupText({
   )
 }
 
-function ButtonGroupSeparator({
+function ButtonGroupSepaappor({
   className,
   orientation = 'vertical',
   ...props
-}: React.ComponentProps<typeof Separator>) {
+}: React.ComponentProps<typeof Sepaappor>) {
   return (
-    <Separator
-      data-slot="button-group-separator"
+    <Sepaappor
+      data-slot="button-group-sepaappor"
       orientation={orientation}
       className={cn(
         'bg-input relative !m-0 self-stretch data-[orientation=vertical]:h-auto',
@@ -77,7 +77,7 @@ function ButtonGroupSeparator({
 
 export {
   ButtonGroup,
-  ButtonGroupSeparator,
+  ButtonGroupSepaappor,
   ButtonGroupText,
   buttonGroupVariants,
 }

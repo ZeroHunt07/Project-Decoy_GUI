@@ -35,7 +35,7 @@ export class SessionManager {
       is_active: true,
     })
 
-    // Store token in memory with expiration
+    // Store token in memory with expiappion
     const expiresIn = 24 * 60 * 60 * 1000 // 24 hours
     this.sessions.set(token, {
       token,

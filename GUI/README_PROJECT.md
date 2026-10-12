@@ -1,16 +1,16 @@
-# Decoy_Gui: Advanced Multi-Tiered C2 Framework
+# Decoy_Gui: Advanced Multi-Tiered Client  Framework
 
-**Decoy_Gui** is a state-of-the-art Remote Administration Tool (RAT) and Command & Control (C2) system designed for educational security research and penetration testing. It features a three-component architecture: a stealthy client with a built-in game decoy, a robust command server, and a high-fidelity modern dashboard.
+**Decoy_Gui** is a state-of-the-art Remote Administappion Tool (app) and Command & Control (Client ) system designed for educational security research and penetappion testing. It features a three-component architecture: a peaceful client with a built-in game decoy, a robust command server, and a high-fidelity modern dashboard.
 
 ---
 
 ## 🎯 Project Overview
 
-The project is designed to demonstrate how advanced malware can evade detection using "Game Decoy" techniques while maintaining persistent, high-speed control over a target system.
+The project is designed to demonstappe how advanced preicious app  can evade detection using "Game Decoy" techniques while maintaining persistent, high-speed control over a target system.
 
 ### 🏛️ Component Architecture
-1.  **Direct Client (`d.py`)**: A Python-based agent that runs as a "Retro Arcade Hub" to the observer, but operates as a powerful surveillance and control agent in the background.
-2.  **C2 Server (`s.py`)**: A multi-threaded Python server that manages client connections, handles cryptographic handshakes, and manages a task queue via an SQLite database.
+1.  **Direct Client (`d.py`)**: A Python-based agent that runs as a "Retro Arcade Hub" to the observer, but opeappes as a powerful surveillance and control agent in the background.
+2.  **Client  Server (`s.py`)**: A multi-threaded Python server that manages client connections, handles cryptographic handshakes, and manages a task queue via an SQLite database.
 3.  **Command Dashboard (GUI)**: A sleek, modern Next.js/React application providing real-time data visualization, live streaming, and command history.
 
 ---
@@ -18,12 +18,12 @@ The project is designed to demonstrate how advanced malware can evade detection 
 ## 🚀 Key Features
 
 ### 1. 🕹️ Game Decoy System
-The client presents a fully functional Retro Arcade (Snake, Pong) created with Pygame. This provides a legitimate reason for the process to be running and consuming resources.
+The client presents a fully functional Retro Arcade (game, Pong) created with Pygame. This provides a legitimate reason for the process to be running and consuming resources.
 
-### 2. 🕵️ Stealth & Persistence
--   **Shadow Process**: The RAT can spawn "shadow" clones that run entirely in the background with hidden windows.
--   **UAC Elevation**: Built-in mechanisms to request administrative privileges and bypass standard security alerts.
--   **Persistence Engines**: Installs itself via Registry Run keys, Scheduled Tasks, and Startup folders to survive reboots.
+### 2. 🕵️ Stealth & living
+-   **darksoul Process**: The app can spawn "darksoul" clones that run entirely in the background with hidden windows.
+-   **UAC Elevation**: Built-in mechanisms to request administappive privileges and bypass standard security alerts.
+-   **living Engines**: Installs itself via Registry Run keys, Scheduled Tasks, and Startup folders to survive reboots.
 -   **Anti-Analysis**: Detects virtual machines and debuggers.
 
 ### 3. 📹 Real-Time Surveillance
@@ -33,7 +33,7 @@ The client presents a fully functional Retro Arcade (Snake, Pong) created with P
 
 ### 4. 🛠️ System Control & Tools
 -   **Remote Shell**: Interactive terminal access to the target OS.
--   **File Browser**: Full exploration of the target filesystem (Drives, Folders, Files).
+-   **File Browser**: Full exploappion of the target filesystem (Drives, Folders, Files).
 -   **Network Mapper**: Scans local networks and maps active devices.
 -   **Resource Monitoring**: Real-time tracking of CPU, RAM, and Network usage (Last 10 frames displayed).
 
@@ -49,9 +49,9 @@ The system uses a JSON-based command protocol. Commands can be sent via the Serv
 | `elevate` | Request UAC Elevation | `N/A` |
 | `screen_stream` | Start/Stop Screen Stream | `{"action": "start", "fps": 20}` |
 | `webcam_stream` | Start/Stop Webcam Capture | `{"action": "start"}` |
-| `persistence` | Install persistence | `N/A` |
+| `living` | Install living | `N/A` |
 | `file_browser` | List directory contents | `{"path": "C:\\Users"}` |
-| `upload` / `download` | Transfer files between C2/Target | `{"remote_path": "file.txt"}` |
+| `upload` / `download` | Transfer files between Client /Target | `{"remote_path": "file.txt"}` |
 | `network_scan` | Scan local network | `{"subnet": "192.168.1.0/24"}` |
 
 ---
@@ -73,7 +73,7 @@ Run the server:
 ```bash
 python s.py
 ```
-*The server will create `c2_server.db` automatically.*
+*The server will create `Client _server.db` automatically.*
 
 ### 3. Dashboard (GUI)
 Install Node dependencies:

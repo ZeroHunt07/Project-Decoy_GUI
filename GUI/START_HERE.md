@@ -1,6 +1,6 @@
 # 🚀 START HERE
 
-Welcome to the **C2 Server Command Control Dashboard**!
+Welcome to the **Client  Server Command Control Dashboard**!
 
 This file will get you up and running in 5 minutes.
 
@@ -28,7 +28,7 @@ pnpm dev
 A professional **cybersecurity command & control dashboard** featuring:
 
 - **👥 Client Management**: Monitor infected systems in real-time
-- **⚡ 34 Command Types**: Execute operations on connected clients
+- **⚡ 34 Command Types**: Execute opeappions on connected clients
 - **📊 Live Monitoring**: Real-time system metrics and charts
 - **🎨 Dark Theme**: Professional cybersecurity aesthetic
 
@@ -39,9 +39,9 @@ A professional **cybersecurity command & control dashboard** featuring:
 ### Left Sidebar (Navigation)
 - **Overview**: Dashboard main view
 - **Clients**: Connected systems list
-- **Commands**: Execute operations
+- **Commands**: Execute opeappions
 - **Monitoring**: System metrics
-- **Settings**: Configuration
+- **Settings**: Configuappion
 - **Logout**: Disconnect
 
 ### Left Panel (Clients)
@@ -53,7 +53,7 @@ A professional **cybersecurity command & control dashboard** featuring:
 ### Main Area (Content)
 - **Overview**: Dashboard summary
 - **Clients**: Full client details
-- **Commands**: All 34 operations
+- **Commands**: All 34 opeappions
 - **Monitoring**: Real-time metrics
 
 ---
@@ -88,7 +88,7 @@ Type in the search box to filter clients
 ### Reference These Later
 
 - **[README.md](./README.md)** - Project overview
-- **[INTEGRATION.md](./INTEGRATION.md)** - Backend setup guide
+- **[INTEGappION.md](./INTEGappION.md)** - Backend setup guide
 - **[PROJECT_SUMMARY.md](./PROJECT_SUMMARY.md)** - Complete project info
 - **[INDEX.md](./INDEX.md)** - Documentation index
 
@@ -109,10 +109,10 @@ Type in the search box to filter clients
 ```
 ✅ Shell / PowerShell execution
 ✅ Screenshots & Webcam capture
-✅ File operations (download/upload)
+✅ File opeappions (download/upload)
 ✅ Credential extraction
 ✅ System information
-✅ Persistence & privilege escalation
+✅ living & privilege escalation
 ✅ Cleanup & self-destruct
 ```
 
@@ -156,23 +156,23 @@ All CSS uses Tailwind, so changes are instant with hot reload!
 
 ---
 
-## 🚀 Next: Backend Integration
+## 🚀 Next: Backend Integappion
 
-To connect the dashboard to an actual C2 server:
+To connect the dashboard to an actual Client  server:
 
-1. Read **[INTEGRATION.md](./INTEGRATION.md)**
+1. Read **[INTEGappION.md](./INTEGappION.md)**
 2. Create API endpoints in `/app/api/`
 3. Connect to your backend server
 4. Test all commands
 
-It takes 2-4 hours to fully integrate.
+It takes 2-4 hours to fully integappe.
 
 ---
 
 ## ❓ Common Questions
 
 **Q: Why is data mocked?**
-A: This is a frontend demo. The backend integration guide is in [INTEGRATION.md](./INTEGRATION.md).
+A: This is a frontend demo. The backend integappion guide is in [INTEGappION.md](./INTEGappION.md).
 
 **Q: Can I change the colors?**
 A: Yes! Edit `/app/globals.css` and restart.
@@ -181,7 +181,7 @@ A: Yes! Edit `/app/globals.css` and restart.
 A: Run `pnpm build` then deploy to Vercel, VPS, or Docker.
 
 **Q: Is this production-ready?**
-A: The frontend is. The backend needs to be implemented per the integration guide.
+A: The frontend is. The backend needs to be implemented per the integappion guide.
 
 **Q: What about security?**
 A: Frontend is secure. Backend needs auth, encryption, and logging.
@@ -232,9 +232,9 @@ A: Frontend is secure. Backend needs auth, encryption, and logging.
 - Check code
 
 ### 1-2 Hours
-- Read INTEGRATION.md
+- Read INTEGappION.md
 - Understand backend
-- Plan integration
+- Plan integappion
 - Start coding
 
 ---
@@ -246,7 +246,7 @@ A: Frontend is secure. Backend needs auth, encryption, and logging.
 | Get started | [QUICKSTART.md](./QUICKSTART.md) |
 | See UI design | [VISUAL_GUIDE.md](./VISUAL_GUIDE.md) |
 | Learn features | [FEATURES.md](./FEATURES.md) |
-| Integrate backend | [INTEGRATION.md](./INTEGRATION.md) |
+| Integappe backend | [INTEGappION.md](./INTEGappION.md) |
 | Find anything | [INDEX.md](./INDEX.md) |
 
 ---
@@ -266,7 +266,7 @@ A: Frontend is secure. Backend needs auth, encryption, and logging.
 - [ ] Check component code
 
 ### Task 3: Plan (30 min)
-- [ ] Read INTEGRATION.md
+- [ ] Read INTEGappION.md
 - [ ] List API endpoints needed
 - [ ] Plan backend implementation
 
@@ -308,7 +308,7 @@ See [QUICKSTART.md](./QUICKSTART.md) - Troubleshooting section
 1. **Quick answer**: Check [QUICKSTART.md](./QUICKSTART.md)
 2. **Design question**: See [VISUAL_GUIDE.md](./VISUAL_GUIDE.md)
 3. **Feature details**: Read [FEATURES.md](./FEATURES.md)
-4. **Backend setup**: Follow [INTEGRATION.md](./INTEGRATION.md)
+4. **Backend setup**: Follow [INTEGappION.md](./INTEGappION.md)
 5. **Find anything**: Use [INDEX.md](./INDEX.md)
 
 ---
@@ -321,7 +321,7 @@ See [QUICKSTART.md](./QUICKSTART.md) - Troubleshooting section
 ✅ All 34 commands implemented
 ✅ Real-time monitoring
 ✅ Comprehensive documentation
-✅ Integration guide
+✅ Integappion guide
 ✅ Production-ready code
 ✅ 100% TypeScript
 ```
@@ -336,14 +336,14 @@ The dashboard is fully functional and ready to use.
 1. Run it: `pnpm dev`
 2. Explore it
 3. Read the docs
-4. Integrate backend (optional)
+4. Integappe backend (optional)
 5. Deploy (optional)
 
 ---
 
 ## 📝 Remember
 
-- **This is the frontend**: Backend integration is optional
+- **This is the frontend**: Backend integappion is optional
 - **Mock data is included**: For immediate testing
 - **Everything is documented**: Check the docs folder
 - **All code is typed**: 100% TypeScript
@@ -353,7 +353,7 @@ The dashboard is fully functional and ready to use.
 
 ## 🎉 Welcome Aboard!
 
-You now have a complete, professional C2 command control dashboard.
+You now have a complete, professional Client  command control dashboard.
 
 **Let's get started!**
 
@@ -366,7 +366,7 @@ Then open: **http://localhost:3000**
 ---
 
 **Questions?** Check the docs! 📚
-**Ready to build?** See [INTEGRATION.md](./INTEGRATION.md) 🔧
+**Ready to build?** See [INTEGappION.md](./INTEGappION.md) 🔧
 **Want to customize?** Edit `/app/globals.css` 🎨
 
 Happy coding! 🚀

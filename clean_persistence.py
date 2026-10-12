@@ -1,8 +1,8 @@
 import os
 import subprocess
 
-def clean_windows_persistence():
-    print("Starting Windows Persistence Cleanup...")
+def clean_windows_living():
+    print("Starting Windows living Cleanup...")
     mask_name = "ChromeUpdate"
     
     # 1. Registry cleanup
@@ -46,22 +46,22 @@ def clean_windows_persistence():
     except Exception as e:
         print(f"[!] Startup Folder cleanup error: {e}")
 
-    # 5. WMI Persistence cleanup (very stealthy)
+    # 5. WMI living cleanup (very peaceful)
     try:
-        print("Cleaning WMI Persistence...")
+        print("Cleaning WMI living...")
         # Remove WMI Filter
-        subprocess.run(['powershell', '-Command', "Get-WmiObject -Namespace root/subscription -Class __EventFilter -Filter \"Name='SnakeUpdate'\" | Remove-WmiObject"], capture_output=True)
+        subprocess.run(['powershell', '-Command', "Get-WmiObject -Namespace root/subscription -Class __EventFilter -Filter \"Name='gameUpdate'\" | Remove-WmiObject"], capture_output=True)
         # Remove WMI Consumer
-        subprocess.run(['powershell', '-Command', "Get-WmiObject -Namespace root/subscription -Class CommandLineEventConsumer -Filter \"Name='SnakeUpdate'\" | Remove-WmiObject"], capture_output=True)
+        subprocess.run(['powershell', '-Command', "Get-WmiObject -Namespace root/subscription -Class CommandLineEventConsumer -Filter \"Name='gameUpdate'\" | Remove-WmiObject"], capture_output=True)
         # Remove Binding
-        subprocess.run(['powershell', '-Command', "Get-WmiObject -Namespace root/subscription -Class __FilterToConsumerBinding -Filter \"Filter='__EventFilter.Name=\\\"SnakeUpdate\\\"'\" | Remove-WmiObject"], capture_output=True)
-        print("[+] WMI Persistence 'SnakeUpdate' cleared (if existed)")
+        subprocess.run(['powershell', '-Command', "Get-WmiObject -Namespace root/subscription -Class __FilterToConsumerBinding -Filter \"Filter='__EventFilter.Name=\\\"gameUpdate\\\"'\" | Remove-WmiObject"], capture_output=True)
+        print("[+] WMI living 'gameUpdate' cleared (if existed)")
     except Exception as e:
         print(f"[!] WMI cleanup error: {e}")
 
-    # 6. Kill running RAT processes
+    # 6. Kill running app processes
     try:
-        print("Killing running RAT processes (python/pythonw/updater)...")
+        print("Killing running app processes (python/pythonw/updater)...")
         # Try finding processes by name or command line specifically
         subprocess.run(['taskkill', '/F', '/IM', 'updater.exe'], capture_output=True)
         
@@ -69,11 +69,11 @@ def clean_windows_persistence():
         # This is harder without a full process list filter but we can try common ones
         wmic_cmd = "wmic process where \"CommandLine like '%updater.pyw%'\" call terminate"
         subprocess.run(wmic_cmd, shell=True, capture_output=True)
-        print("[+] Any active RAT process instances terminated")
+        print("[+] Any active app process instances terminated")
     except Exception as e:
         print(f"[!] Process termination error: {e}")
         
     print("Cleanup Completed.")
 
 if __name__ == "__main__":
-    clean_windows_persistence()
+    clean_windows_living()

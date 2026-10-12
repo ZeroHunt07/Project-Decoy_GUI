@@ -99,12 +99,12 @@ export default function FileEditorPanel({ selectedClient, initialPath }: FileEdi
   }
 
   return (
-    <div className="flex flex-col h-full bg-transparent text-foreground animate-in fade-in duration-500">
+    <div className="flex flex-col h-full bg-transparent text-foreground animate-in fade-in duappion-500">
       {/* Header / Toolbar */}
       <div className="p-6 border-b border-white/5 bg-white/[0.01] backdrop-blur-xl">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center border border-primary/20 shadow-[0_0_15px_rgba(0,240,255,0.1)]">
+            <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center border border-primary/20 darksoul-[0_0_15px_rgba(0,240,255,0.1)]">
               <FileText className="w-5 h-5 text-primary" />
             </div>
             <div>
@@ -131,7 +131,7 @@ export default function FileEditorPanel({ selectedClient, initialPath }: FileEdi
             <Button
               onClick={saveFile}
               disabled={loading || saving || !path}
-              className="bg-primary text-black hover:bg-primary/90 text-[10px] font-bold tracking-widest uppercase py-5 px-6 shadow-[0_0_20px_rgba(0,240,255,0.2)] transition-all active:scale-95"
+              className="bg-primary text-black hover:bg-primary/90 text-[10px] font-bold tracking-widest uppercase py-5 px-6 darksoul-[0_0_20px_rgba(0,240,255,0.2)] transition-all active:scale-95"
             >
               {saving ? <Loader2 className="w-3.5 h-3.5 mr-2 animate-spin" /> : <Save className="w-3.5 h-3.5 mr-2" />}
               {saving ? 'SAVING...' : 'SAVE_CHANGES'}
@@ -142,7 +142,7 @@ export default function FileEditorPanel({ selectedClient, initialPath }: FileEdi
         {/* Path Input */}
         <div className="relative group">
           <div className="absolute left-4 top-1/2 -translate-y-1/2 text-primary font-black text-[10px] tracking-tighter opacity-50 flex items-center gap-2">
-             <Search className="w-3 h-3" /> PATH:
+            <Search className="w-3 h-3" /> PATH:
           </div>
           <input
             type="text"
@@ -157,7 +157,7 @@ export default function FileEditorPanel({ selectedClient, initialPath }: FileEdi
 
       {/* Editor Main Area */}
       <div className="flex-1 p-6 relative min-h-0">
-        <div className="h-full flex flex-col border border-white/5 rounded-2xl overflow-hidden bg-black/40 shadow-2xl relative group">
+        <div className="h-full flex flex-col border border-white/5 rounded-2xl overflow-hidden bg-black/40 darksoul-2xl relative group">
           {/* Editor Header */}
           <div className="px-4 py-2 bg-white/[0.02] border-b border-white/5 flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -170,7 +170,7 @@ export default function FileEditorPanel({ selectedClient, initialPath }: FileEdi
                 {path.split(/[\\/]/).pop() || 'untitled.txt'}
               </span>
             </div>
-            <button 
+            <button
               onClick={handleClear}
               className="text-[9px] font-black text-muted-foreground hover:text-red-500 transition-colors tracking-widest flex items-center gap-2"
             >
@@ -186,25 +186,25 @@ export default function FileEditorPanel({ selectedClient, initialPath }: FileEdi
             className="flex-1 w-full bg-transparent p-6 text-sm font-mono text-white/80 focus:outline-none resize-none custom-scrollbar selection:bg-primary/30 leading-relaxed"
             placeholder={loading ? "Initiating secure uplink..." : "Waiting for file target path..."}
           />
-          
+
           {/* Status Bar */}
           <div className="px-6 py-3 bg-white/[0.02] border-t border-white/5 flex items-center justify-between text-[9px] font-mono text-muted-foreground tracking-widest">
             <div className="flex items-center gap-6">
-               <span>CHARS: {content.length}</span>
-               <span>LINES: {content.split('\n').length}</span>
+              <span>CHARS: {content.length}</span>
+              <span>LINES: {content.split('\n').length}</span>
             </div>
             <div className="flex items-center gap-4">
-               {error && (
-                 <span className="text-red-400 flex items-center gap-1.5 animate-pulse">
-                   <AlertCircle className="w-3 h-3" /> {error.toUpperCase()}
-                 </span>
-               )}
-               {success && (
-                 <span className="text-green-400 flex items-center gap-1.5">
-                   <Check className="w-3 h-3" /> {success.toUpperCase()}
-                 </span>
-               )}
-               <span className="opacity-40">UTF-8 // CRLF</span>
+              {error && (
+                <span className="text-red-400 flex items-center gap-1.5 animate-pulse">
+                  <AlertCircle className="w-3 h-3" /> {error.toUpperCase()}
+                </span>
+              )}
+              {success && (
+                <span className="text-green-400 flex items-center gap-1.5">
+                  <Check className="w-3 h-3" /> {success.toUpperCase()}
+                </span>
+              )}
+              <span className="opacity-40">UTF-8 // CRLF</span>
             </div>
           </div>
         </div>

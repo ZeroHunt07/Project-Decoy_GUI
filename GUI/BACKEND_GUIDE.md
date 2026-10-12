@@ -1,4 +1,4 @@
-# C2 Dashboard Backend Complete Guide
+# Client  Dashboard Backend Complete Guide
 
 ## Overview
 The backend is a complete Next.js 16 server-side system with SQLite database, comprehensive API routes, WebSocket support, and mock client simulator for testing.
@@ -10,7 +10,7 @@ The backend is a complete Next.js 16 server-side system with SQLite database, co
 #### 1. Database Layer (`lib/db.ts`)
 - **SQLite3** with better-sqlite3 driver
 - Automatic schema initialization
-- Located in `data/c2-dashboard.db`
+- Located in `data/Client -dashboard.db`
 - All tables with proper foreign keys and indices
 - Transaction support
 
@@ -33,16 +33,16 @@ The backend is a complete Next.js 16 server-side system with SQLite database, co
 - Calculate aggregate metrics (avg, max)
 - Support for 24+ hours historical data
 
-**FileOperations** (`lib/file-operations.ts`)
-- Create file operation records
-- Track upload/download/delete/execute operations
+**FileOpeappions** (`lib/file-opeappions.ts`)
+- Create file opeappion records
+- Track upload/download/delete/execute opeappions
 - Update file status and size
 - Get file statistics
 
 **SessionManager** (`lib/session-manager.ts`)
 - Create and manage user sessions
 - Token-based authentication
-- Session expiration handling
+- Session expiappion handling
 - Track active sessions
 
 **WebSocketManager** (`lib/websocket-handler.ts`)
@@ -67,9 +67,9 @@ The backend is a complete Next.js 16 server-side system with SQLite database, co
    - client_id, cpu_usage, memory_usage, disk_usage
    - network_in/out, processes_count, timestamp
 
-4. **files** - File operations
+4. **files** - File opeappions
    - client_id, file_path, file_name, file_size
-   - operation (download/upload/delete), status
+   - opeappion (download/upload/delete), status
 
 5. **sessions** - User sessions
    - username, login_time, last_activity, ip_address
@@ -109,12 +109,12 @@ Query Parameters:
 - `hours`: Data range in hours (default: 24)
 - `limit`: Result limit
 
-### File Operations
+### File Opeappions
 ```
-POST   /api/files/operations              - Create file operation
-GET    /api/files/list                    - List file operations
-GET    /api/files/[id]/status             - Get file operation status
-POST   /api/files/[id]/status             - Update file operation status
+POST   /api/files/opeappions              - Create file opeappion
+GET    /api/files/list                    - List file opeappions
+GET    /api/files/[id]/status             - Get file opeappion status
+POST   /api/files/[id]/status             - Update file opeappion status
 ```
 
 ### Dashboard
@@ -126,7 +126,7 @@ GET    /api/dashboard/health              - Health check
 ### Testing
 ```
 GET    /api/test/mock-client              - Mock client info
-POST   /api/test/mock-client              - Run mock client operations
+POST   /api/test/mock-client              - Run mock client opeappions
 ```
 
 ## API Request/Response Format
@@ -224,7 +224,7 @@ curl -X POST http://localhost:3000/api/test/mock-client \
   -d '{"action": "cleanup"}'
 ```
 
-## Frontend Integration
+## Frontend Integappion
 
 ### API Hooks
 The `hooks/use-api.ts` file provides custom React hooks for API calls:
@@ -257,12 +257,12 @@ const command = await queueCommand({ client_id, command_type, command_name })
 - Old metrics cleaned after 30 days
 - Sessions expire after 7 days of inactivity
 
-## Security Considerations
+## Security Consideappions
 
 1. **Input Validation**: All API inputs are validated
-2. **Database Transactions**: Critical operations use transactions
+2. **Database Transactions**: Critical opeappions use transactions
 3. **SQL Injection Prevention**: Parameterized queries everywhere
-4. **Session Management**: Token-based with expiration
+4. **Session Management**: Token-based with expiappion
 5. **Error Handling**: Safe error messages (no SQL leaks)
 
 ## Environment Setup
@@ -276,10 +276,10 @@ const command = await queueCommand({ client_id, command_type, command_name })
 ```
 
 ### Database Location
-- Development: `./data/c2-dashboard.db`
+- Development: `./data/Client -dashboard.db`
 - Created automatically on first run
 
-### Port Configuration
+### Port Configuappion
 - Default: 3000
 - API accessible at: `http://localhost:3000/api/...`
 
@@ -289,7 +289,7 @@ const command = await queueCommand({ client_id, command_type, command_name })
 Solution: Ensure only one instance of the app is running
 
 ### Schema Not Initialized
-Solution: Delete `data/c2-dashboard.db` and restart
+Solution: Delete `data/Client -dashboard.db` and restart
 
 ### API Returns 500 Error
 Check server logs for error details
@@ -302,7 +302,7 @@ Ensure WebSocket is supported and no firewall blocks it
 1. PostgreSQL support for production
 2. Redis caching layer
 3. Event logging and audit trails
-4. Rate limiting
+4. appe limiting
 5. Role-based access control
 6. API key authentication
 7. Data encryption at rest
@@ -318,7 +318,7 @@ console.log('[API] Event details:', data)
 
 Check database directly:
 ```bash
-sqlite3 data/c2-dashboard.db "SELECT * FROM clients;"
+sqlite3 data/Client -dashboard.db "SELECT * FROM clients;"
 ```
 
 Monitor WebSocket connections:

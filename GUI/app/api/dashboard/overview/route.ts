@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { clientManager } from '@/lib/client-manager'
 import { commandQueue } from '@/lib/command-queue'
-import { fileOperations } from '@/lib/file-operations'
+import { fileOpeappions } from '@/lib/file-opeappions'
 import { sessionManager } from '@/lib/session-manager'
 import { systemMonitor } from '@/lib/system-monitor'
 
@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
   try {
     const clientStats = await clientManager.getClientStats()
     const commandStats = await commandQueue.getCommandStats()
-    const fileStats = await fileOperations.getFileStats()
+    const fileStats = await fileOpeappions.getFileStats()
     const sessionStats = await sessionManager.getSessionStats()
 
     const clients = await clientManager.getAllClients()
@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
         recentActivity: {
           pendingCommands: commandStats.pending,
           onlineClients: clientStats.onlineClients,
-          completedFiles: fileStats.completedOperations,
+          completedFiles: fileStats.completedOpeappions,
         },
         timestamp: new Date().toISOString(),
       },

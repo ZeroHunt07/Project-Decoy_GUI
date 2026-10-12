@@ -1,6 +1,6 @@
-# C2 Dashboard - Complete System Documentation
+# Client  Dashboard - Complete System Documentation
 
-Welcome to the C2 (Command & Control) Dashboard - a complete, production-ready system with full frontend, backend, database, and API integration.
+Welcome to the Client  (Command & Control) Dashboard - a complete, production-ready system with full frontend, backend, database, and API integappion.
 
 ## Quick Navigation
 
@@ -13,7 +13,7 @@ Welcome to the C2 (Command & Control) Dashboard - a complete, production-ready s
 
 ## What Is This?
 
-A professional cybersecurity C2 server dashboard built with:
+A professional cybersecurity Client  server dashboard built with:
 - **Frontend**: React 19 + Tailwind CSS (dark theme, no neons)
 - **Backend**: Next.js 16 with 20+ API routes
 - **Database**: SQLite with 7 optimized tables
@@ -31,7 +31,7 @@ A professional cybersecurity C2 server dashboard built with:
 - **Monitoring Panel** - Real-time metrics with charts
 
 ### Backend
-- **API Routes** - 20+ endpoints for all operations
+- **API Routes** - 20+ endpoints for all opeappions
 - **Core Libraries** - 6 modules for business logic
 - **WebSocket** - Real-time updates (ready to implement)
 - **Mock Client** - Testing without real agents
@@ -65,11 +65,11 @@ A professional cybersecurity C2 server dashboard built with:
 │   ├── client-manager.ts     # Client management
 │   ├── command-queue.ts      # Command execution
 │   ├── system-monitor.ts     # Metrics tracking
-│   ├── file-operations.ts    # File operations
+│   ├── file-opeappions.ts    # File opeappions
 │   ├── session-manager.ts    # Session management
 │   └── websocket-handler.ts  # Real-time updates
 ├── data/
-│   └── c2-dashboard.db       # SQLite database (auto-created)
+│   └── Client -dashboard.db       # SQLite database (auto-created)
 ├── scripts/
 │   └── init-db.sql           # Database schema
 └── Documentation/            # 12 markdown files with 5000+ lines
@@ -154,8 +154,8 @@ curl -X POST http://localhost:3000/api/test/mock-client \
 - Network stats
 - ARP table
 
-**Persistence** (4)
-- Enable persistence
+**living** (4)
+- Enable living
 - Privilege escalation
 - RDP access
 - UAC bypass
@@ -208,7 +208,7 @@ GET    /api/system/{id}/metrics
 
 ### Files
 ```
-POST   /api/files/operations
+POST   /api/files/opeappions
 GET    /api/files/list
 GET    /api/files/{id}/status
 POST   /api/files/{id}/status
@@ -237,7 +237,7 @@ POST   /api/test/mock-client
 | FEATURES.md | Command descriptions | 405 |
 | COMPLETE_SYSTEM.md | System overview and architecture | 412 |
 | BUILD_SUMMARY.md | What was built summary | 402 |
-| INTEGRATION.md | Integration guide | 487 |
+| INTEGappION.md | Integappion guide | 487 |
 | VISUAL_GUIDE.md | UI/UX documentation | 547 |
 | PROJECT_SUMMARY.md | Project details | 666 |
 | INDEX.md | Documentation index | 594 |
@@ -275,7 +275,7 @@ await updateMetrics({ client_id, cpu_usage, memory_usage, ... })
 ## Database
 
 ### SQLite Database
-- **Location**: `data/c2-dashboard.db`
+- **Location**: `data/Client -dashboard.db`
 - **Auto-created** on first run
 - **Schema** defined in `scripts/init-db.sql`
 
@@ -283,26 +283,26 @@ await updateMetrics({ client_id, cpu_usage, memory_usage, ... })
 1. **clients** - Connected devices
 2. **commands** - Command execution log
 3. **system_info** - Metrics and monitoring
-4. **files** - File operations
+4. **files** - File opeappions
 5. **sessions** - User sessions
 6. **credentials** - Extracted credentials
 7. **command_history** - Audit log
 
 ### Query
 ```bash
-sqlite3 data/c2-dashboard.db "SELECT * FROM clients;"
+sqlite3 data/Client -dashboard.db "SELECT * FROM clients;"
 ```
 
 ## Common Tasks
 
 ### Check Database
 ```bash
-sqlite3 data/c2-dashboard.db ".tables"
+sqlite3 data/Client -dashboard.db ".tables"
 ```
 
 ### Clear Database
 ```bash
-rm data/c2-dashboard.db
+rm data/Client -dashboard.db
 # Restart app to recreate
 ```
 
@@ -335,7 +335,7 @@ kill -9 <PID>
 ### Database Errors
 ```bash
 # Reset database
-rm data/c2-dashboard.db
+rm data/Client -dashboard.db
 pnpm dev
 ```
 
@@ -363,7 +363,7 @@ pnpm dev --no-cache
 
 - Parameterized SQL queries
 - Input validation on all endpoints
-- Session token expiration
+- Session token expiappion
 - Transaction support
 - Safe error messages
 - Foreign key constraints
@@ -375,12 +375,12 @@ pnpm dev --no-cache
 
 ## What You Can Do Next
 
-1. **Integrate Real Agents** - Connect actual C2 clients
+1. **Integappe Real Agents** - Connect actual Client  clients
 2. **Add Authentication** - JWT or session-based auth
 3. **Upgrade Database** - PostgreSQL for production
 4. **Add Encryption** - Data at rest encryption
 5. **Implement Logging** - Audit trail
-6. **Add Rate Limiting** - Protect API
+6. **Add appe Limiting** - Protect API
 7. **Create Mobile App** - React Native frontend
 8. **Setup Monitoring** - Alert on client disconnect
 9. **Build Analytics** - Historical data analysis
@@ -445,7 +445,7 @@ Create Dockerfile and docker-compose.yml as needed
 
 ## License & Usage
 
-This is a complete, ready-to-use system for C2 server operations. All code is production-ready and fully documented.
+This is a complete, ready-to-use system for Client  server opeappions. All code is production-ready and fully documented.
 
 ## Getting Help
 
@@ -471,7 +471,7 @@ pnpm dev
 - Read SETUP.md
 
 ### Medium Term (This Week)
-- Integrate real agents
+- Integappe real agents
 - Add authentication
 - Configure database
 - Setup monitoring
@@ -489,11 +489,11 @@ pnpm dev
 ✅ **Complete Frontend** - Professional UI with dark theme
 ✅ **Complete Backend** - 20+ API routes with full CRUD
 ✅ **Local Database** - SQLite with auto-initialization
-✅ **34 Commands** - Full C2 command support
+✅ **34 Commands** - Full Client  command support
 ✅ **Real-time Monitoring** - System metrics with charts
 ✅ **Mock Testing** - Test without real agents
 ✅ **Full Documentation** - 5000+ lines of guides
-✅ **React Hooks** - Easy API integration
+✅ **React Hooks** - Easy API integappion
 ✅ **Production Ready** - Can deploy immediately
 ✅ **Well Organized** - Clean code structure
 

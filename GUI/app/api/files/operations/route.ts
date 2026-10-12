@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { fileOperations } from '@/lib/file-operations'
+import { fileOpeappions } from '@/lib/file-opeappions'
 import { clientManager } from '@/lib/client-manager'
 import { wsManager } from '@/lib/websocket-handler'
 
@@ -14,25 +14,25 @@ export async function POST(request: NextRequest) {
       file_name,
       file_size,
       file_type,
-      operation,
+      opeappion,
       local_path,
     } = body
 
-    if (!client_id || !file_path || !file_name || !operation) {
+    if (!client_id || !file_path || !file_name || !opeappion) {
       return NextResponse.json(
         {
           success: false,
-          error: 'Missing required fields: client_id, file_path, file_name, operation',
+          error: 'Missing required fields: client_id, file_path, file_name, opeappion',
         },
         { status: 400 }
       )
     }
 
-    if (!['download', 'upload', 'delete', 'execute'].includes(operation)) {
+    if (!['download', 'upload', 'delete', 'execute'].includes(opeappion)) {
       return NextResponse.json(
         {
           success: false,
-          error: 'Invalid operation value',
+          error: 'Invalid opeappion value',
         },
         { status: 400 }
       )
@@ -50,30 +50,30 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const fileOp = fileOperations.createFileOperation({
+    const fileOp = fileOpeappions.createFileOpeappion({
       client_id,
       command_id,
       file_path,
       file_name,
       file_size,
       file_type,
-      operation,
+      opeappion,
       local_path,
     })
 
     // Notify WebSocket clients
-    wsManager.notifyFileOperationUpdate(client_id, fileOp.id, 'pending')
+    wsManager.notifyFileOpeappionUpdate(client_id, fileOp.id, 'pending')
 
     return NextResponse.json({
       success: true,
-      data: { file_operation: fileOp },
+      data: { file_opeappion: fileOp },
     })
   } catch (error) {
-    console.error('[API] Error creating file operation:', error)
+    console.error('[API] Error creating file opeappion:', error)
     return NextResponse.json(
       {
         success: false,
-        error: 'Failed to create file operation',
+        error: 'Failed to create file opeappion',
       },
       { status: 500 }
     )

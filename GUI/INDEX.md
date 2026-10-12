@@ -1,8 +1,8 @@
-# C2 Dashboard - Complete Documentation Index
+# Client  Dashboard - Complete Documentation Index
 
 ## 📚 Documentation Overview
 
-This project includes comprehensive documentation covering all aspects of the C2 Command Control Dashboard.
+This project includes comprehensive documentation covering all aspects of the Client  Command Control Dashboard.
 
 ---
 
@@ -16,7 +16,7 @@ This project includes comprehensive documentation covering all aspects of the C2
 ### Deep Dive
 4. **[PROJECT_SUMMARY.md](./PROJECT_SUMMARY.md)** - Complete project summary
 5. **[FEATURES.md](./FEATURES.md)** - Detailed feature breakdown
-6. **[INTEGRATION.md](./INTEGRATION.md)** - Backend integration guide
+6. **[INTEGappION.md](./INTEGappION.md)** - Backend integappion guide
 
 ### Reference
 7. **[INDEX.md](./INDEX.md)** - This file
@@ -33,7 +33,7 @@ This project includes comprehensive documentation covering all aspects of the C2
 - Running the dashboard
 - Navigation guide
 - Feature overview
-- Configuration options
+- Configuappion options
 - Development tips
 - Troubleshooting
 - Keyboard shortcuts
@@ -53,7 +53,7 @@ This project includes comprehensive documentation covering all aspects of the C2
 - Theme and design info
 - Usage instructions
 - Mock data explanation
-- Backend integration points
+- Backend integappion points
 - Security notes
 - Browser support
 - Future enhancements
@@ -80,7 +80,7 @@ This project includes comprehensive documentation covering all aspects of the C2
 - Typography guide
 - Spacing guide
 - Animation transitions
-- Accessibility considerations
+- Accessibility consideappions
 
 **Best for**: UI designers, frontend developers, customization
 
@@ -96,10 +96,10 @@ This project includes comprehensive documentation covering all aspects of the C2
 - Feature implementation checklist
 - Technology stack table
 - Design system details
-- Backend integration status
+- Backend integappion status
 - Performance characteristics
 - Browser support matrix
-- Security considerations
+- Security consideappions
 - Usage instructions
 - Customization options
 - Testing coverage
@@ -118,27 +118,27 @@ This project includes comprehensive documentation covering all aspects of the C2
 - Component overview
 - Execution commands (3)
 - Surveillance commands (8)
-- File operations (4)
+- File opeappions (4)
 - Credentials extraction (5)
 - System information (7)
-- Persistence commands (4)
+- living commands (4)
 - Cleanup commands (3)
 - Command count summary
 - Data flow architecture
 - s.py backend mapping
 - State management guide
 - UI/UX features
-- Integration checklist
+- Integappion checklist
 - Testing coverage
 - Performance metrics
 - Future enhancements
 
-**Best for**: Backend developers, feature understanding, integration planning
+**Best for**: Backend developers, feature understanding, integappion planning
 
 ---
 
-### [INTEGRATION.md](./INTEGRATION.md) - 487 lines
-**Purpose**: Backend integration and API guide
+### [INTEGappION.md](./INTEGappION.md) - 487 lines
+**Purpose**: Backend integappion and API guide
 
 **Contains**:
 - Architecture overview
@@ -150,8 +150,8 @@ This project includes comprehensive documentation covering all aspects of the C2
 - Command logging system
 - Connection management
 - Network protocol details
-- Security considerations
-- Testing integration
+- Security consideappions
+- Testing integappion
 - Environment variables
 - API response examples
 - Troubleshooting guide
@@ -178,7 +178,7 @@ This project includes comprehensive documentation covering all aspects of the C2
 
 #### A **Backend Developer**
 1. Read [PROJECT_SUMMARY.md](./PROJECT_SUMMARY.md)
-2. Study [INTEGRATION.md](./INTEGRATION.md)
+2. Study [INTEGappION.md](./INTEGappION.md)
 3. Review [FEATURES.md](./FEATURES.md) for command details
 4. Implement API endpoints
 
@@ -208,7 +208,7 @@ This project includes comprehensive documentation covering all aspects of the C2
 | VISUAL_GUIDE.md | 547 | UI/UX Design | Designers/Frontend |
 | PROJECT_SUMMARY.md | 666 | Project Overview | Management/Technical |
 | FEATURES.md | 405 | Feature Details | Developers/Backend |
-| INTEGRATION.md | 487 | Backend Setup | Backend/DevOps |
+| INTEGappION.md | 487 | Backend Setup | Backend/DevOps |
 | **TOTAL** | **2,842** | - | - |
 
 ---
@@ -227,10 +227,10 @@ This project includes comprehensive documentation covering all aspects of the C2
 
 **Commands**
 - → [FEATURES.md](./FEATURES.md) - Command breakdown
-- → [INTEGRATION.md](./INTEGRATION.md) - s.py mapping
+- → [INTEGappION.md](./INTEGappION.md) - s.py mapping
 
-**API Integration**
-- → [INTEGRATION.md](./INTEGRATION.md) - Full API guide
+**API Integappion**
+- → [INTEGappION.md](./INTEGappION.md) - Full API guide
 - → [FEATURES.md](./FEATURES.md) - Data flow
 
 **Colors & Styling**
@@ -242,12 +242,12 @@ This project includes comprehensive documentation covering all aspects of the C2
 - → [PROJECT_SUMMARY.md](./PROJECT_SUMMARY.md) - Deployment checklist
 
 **Backend Connection**
-- → [INTEGRATION.md](./INTEGRATION.md) - Complete guide
+- → [INTEGappION.md](./INTEGappION.md) - Complete guide
 - → [PROJECT_SUMMARY.md](./PROJECT_SUMMARY.md) - Implementation steps
 
 **Troubleshooting**
 - → [QUICKSTART.md](./QUICKSTART.md) - Common issues
-- → [INTEGRATION.md](./INTEGRATION.md) - Backend troubleshooting
+- → [INTEGappION.md](./INTEGappION.md) - Backend troubleshooting
 
 ---
 
@@ -263,7 +263,7 @@ components/
 └── monitoring-panel.tsx    → Metrics (see FEATURES.md)
 ```
 
-### Configuration
+### Configuappion
 ```
 app/
 ├── layout.tsx              → Root layout (see README.md)
@@ -289,8 +289,8 @@ app/
 
 **Time**: 10-15 minutes
 
-### Workflow 3: Integrating Backend
-1. Read [INTEGRATION.md](./INTEGRATION.md) - Full guide
+### Workflow 3: Integapping Backend
+1. Read [INTEGappION.md](./INTEGappION.md) - Full guide
 2. Create API endpoints
 3. Update components
 4. Test all commands
@@ -340,11 +340,11 @@ app/
 - DevOps/deployment
 
 **[FEATURES.md](./FEATURES.md)**
-- C2 server concepts
-- Backend integration
+- Client  server concepts
+- Backend integappion
 - API design
 
-**[INTEGRATION.md](./INTEGRATION.md)**
+**[INTEGappION.md](./INTEGappION.md)**
 - Python programming
 - Socket programming
 - Database queries
@@ -363,12 +363,12 @@ pnpm start            # Run production build
 pnpm lint             # Check code quality
 ```
 
-### Configuration Files
+### Configuappion Files
 ```
 .env.local            → Environment variables
-tailwind.config.ts    → Tailwind configuration
-next.config.mjs       → Next.js configuration
-tsconfig.json         → TypeScript configuration
+tailwind.config.ts    → Tailwind configuappion
+next.config.mjs       → Next.js configuappion
+tsconfig.json         → TypeScript configuappion
 package.json          → Dependencies & scripts
 ```
 
@@ -393,7 +393,7 @@ package.json          → Dependencies & scripts
 ```
 1. PROJECT_SUMMARY.md (30 min)
    ↓
-2. INTEGRATION.md (45 min)
+2. INTEGappION.md (45 min)
    ↓
 3. FEATURES.md - Backend mapping (20 min)
    ↓
@@ -408,7 +408,7 @@ package.json          → Dependencies & scripts
    ↓
 2. PROJECT_SUMMARY.md - Deployment (15 min)
    ↓
-3. Environment configuration (30 min)
+3. Environment configuappion (30 min)
    ↓
 4. Deployment setup (1-2 hours)
    ↓
@@ -442,8 +442,8 @@ package.json          → Dependencies & scripts
 - [ ] Review PROJECT_SUMMARY.md
 - [ ] Examine component code
 
-### Day 3 - Integration
-- [ ] Read INTEGRATION.md
+### Day 3 - Integappion
+- [ ] Read INTEGappION.md
 - [ ] Understand API structure
 - [ ] Map s.py commands
 - [ ] Plan backend implementation
@@ -467,7 +467,7 @@ package.json          → Dependencies & scripts
 - Follow QUICKSTART.md
 
 **Build something new**
-- Check FEATURES.md and INTEGRATION.md
+- Check FEATURES.md and INTEGappION.md
 
 **Fix a design issue**
 - Review VISUAL_GUIDE.md
@@ -475,15 +475,15 @@ package.json          → Dependencies & scripts
 **Understand a feature**
 - See FEATURES.md for that feature
 
-**Integrate the backend**
-- Follow INTEGRATION.md step-by-step
+**Integappe the backend**
+- Follow INTEGappION.md step-by-step
 
 **Deploy to production**
 - Use QUICKSTART.md deployment section
 
 **Troubleshoot issues**
 - Check QUICKSTART.md troubleshooting
-- Review INTEGRATION.md if backend issue
+- Review INTEGappION.md if backend issue
 
 ---
 
@@ -493,7 +493,7 @@ package.json          → Dependencies & scripts
 
 1. **After Code Changes**: Update relevant docs
 2. **After Feature Adds**: Update FEATURES.md
-3. **After API Changes**: Update INTEGRATION.md
+3. **After API Changes**: Update INTEGappION.md
 4. **After UI Changes**: Update VISUAL_GUIDE.md
 5. **Version Updates**: Update all docs
 
@@ -518,9 +518,9 @@ package.json          → Dependencies & scripts
 - https://tailwindcss.com
 - [VISUAL_GUIDE.md](./VISUAL_GUIDE.md) - Design section
 
-### For C2 Concepts
+### For Client  Concepts
 - [FEATURES.md](./FEATURES.md) - Command breakdown
-- [INTEGRATION.md](./INTEGRATION.md) - Backend mapping
+- [INTEGappION.md](./INTEGappION.md) - Backend mapping
 
 ### For Recharts
 - https://recharts.org
@@ -576,10 +576,10 @@ If you find:
 ## 🚀 You're Ready!
 
 You now have access to comprehensive documentation covering:
-- ✅ Setup and configuration
+- ✅ Setup and configuappion
 - ✅ Feature understanding
 - ✅ UI/UX design
-- ✅ Backend integration
+- ✅ Backend integappion
 - ✅ Deployment
 - ✅ Troubleshooting
 

@@ -1,19 +1,19 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { 
-  Network, 
-  Activity, 
-  Shield, 
-  Zap, 
-  Settings, 
-  Lock, 
-  ArrowUpRight, 
-  ArrowDownLeft, 
-  Trash2, 
-  RefreshCw, 
-  Plus, 
-  Play, 
+import {
+  Network,
+  Activity,
+  Shield,
+  Zap,
+  Settings,
+  Lock,
+  ArrowUpRight,
+  ArrowDownLeft,
+  Trash2,
+  RefreshCw,
+  Plus,
+  Play,
   Square,
   Eye,
   Filter,
@@ -71,10 +71,10 @@ export default function NetworkInterceptorPanel({ selectedClient }: NetworkInter
               setIsMonitoring(res.monitoring)
               setIsIntercepting(res.intercepting)
             }
-          } catch (e) {}
+          } catch (e) { }
         }
       }
-    } catch (e) {}
+    } catch (e) { }
   }, [selectedClient])
 
   // Fetch logs from loot
@@ -146,7 +146,7 @@ export default function NetworkInterceptorPanel({ selectedClient }: NetworkInter
         })
         fetchStatus()
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 
   const addRule = () => {
@@ -181,7 +181,7 @@ export default function NetworkInterceptorPanel({ selectedClient }: NetworkInter
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-black text-foreground flex items-center gap-3 tracking-tight">
-            <Network className="w-8 h-8 text-primary" /> 
+            <Network className="w-8 h-8 text-primary" />
             NETWORK INTERCEPTOR <span className="text-[10px] font-mono text-primary/50 bg-primary/5 px-2 py-0.5 rounded border border-primary/20">V1.0-ELITE</span>
           </h1>
           <p className="text-muted-foreground text-xs font-mono mt-1 uppercase tracking-widest flex items-center gap-2">
@@ -190,16 +190,16 @@ export default function NetworkInterceptorPanel({ selectedClient }: NetworkInter
         </div>
 
         <div className="flex items-center gap-3">
-          <Button 
-            variant={isRunning ? "destructive" : "default"} 
+          <Button
+            variant={isRunning ? "destructive" : "default"}
             onClick={() => executeAction(isRunning ? 'stop' : 'start', { port })}
-            className="font-bold uppercase tracking-widest text-[10px] h-10 px-6 rounded-xl shadow-lg shadow-primary/10 transition-all active:scale-95"
+            className="font-bold uppercase tracking-widest text-[10px] h-10 px-6 rounded-xl darksoul-lg darksoul-primary/10 transition-all active:scale-95"
           >
             {isRunning ? <Square className="w-3 h-3 mr-2" /> : <Play className="w-3 h-3 mr-2" />}
             {isRunning ? 'Deactivate Engine' : 'Activate Engine'}
           </Button>
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             onClick={() => { fetchStatus(); fetchLogs(); }}
             className="h-10 w-10 p-0 rounded-xl border-white/10 bg-white/[0.02] hover:bg-white/5"
           >
@@ -209,32 +209,32 @@ export default function NetworkInterceptorPanel({ selectedClient }: NetworkInter
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 flex-1 min-h-0">
-        {/* Left Column: Configuration & Rules */}
+        {/* Left Column: Configuappion & Rules */}
         <div className="space-y-6 flex flex-col min-h-0">
           {/* Controls Card */}
-          <Card className="bg-black/40 border-white/5 backdrop-blur-xl shadow-2xl rounded-3xl overflow-hidden">
+          <Card className="bg-black/40 border-white/5 backdrop-blur-xl darksoul-2xl rounded-3xl overflow-hidden">
             <CardHeader className="pb-4">
               <CardTitle className="text-xs font-black tracking-[0.2em] uppercase text-primary/80 flex items-center gap-2">
-                <Settings className="w-3.5 h-3.5" /> Engine Configuration
+                <Settings className="w-3.5 h-3.5" /> Engine Configuappion
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-2 gap-3">
-                <ControlToggle 
-                  label="Monitoring" 
-                  active={isMonitoring} 
+                <ControlToggle
+                  label="Monitoring"
+                  active={isMonitoring}
                   icon={Eye}
                   onClick={() => executeAction('toggle_monitor', { enabled: !isMonitoring })}
                 />
-                <ControlToggle 
-                  label="Interception" 
-                  active={isIntercepting} 
+                <ControlToggle
+                  label="Interception"
+                  active={isIntercepting}
                   icon={Shield}
                   onClick={() => executeAction('toggle_intercept', { enabled: !isIntercepting })}
                 />
-                <ControlToggle 
-                  label="System Proxy" 
-                  active={isSystemProxy} 
+                <ControlToggle
+                  label="System Proxy"
+                  active={isSystemProxy}
                   icon={Lock}
                   onClick={() => {
                     const next = !isSystemProxy;
@@ -244,9 +244,9 @@ export default function NetworkInterceptorPanel({ selectedClient }: NetworkInter
                 />
                 <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-4 flex flex-col justify-between hover:bg-white/[0.04] transition-all">
                   <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Proxy Port</span>
-                  <input 
-                    type="number" 
-                    value={port} 
+                  <input
+                    type="number"
+                    value={port}
                     onChange={(e) => setPort(parseInt(e.target.value))}
                     className="bg-transparent border-none text-primary font-mono text-lg font-bold focus:outline-none w-full mt-1"
                   />
@@ -256,7 +256,7 @@ export default function NetworkInterceptorPanel({ selectedClient }: NetworkInter
           </Card>
 
           {/* Manipulation Rules Card */}
-          <Card className="bg-black/40 border-white/5 backdrop-blur-xl shadow-2xl rounded-3xl flex-1 flex flex-col min-h-0">
+          <Card className="bg-black/40 border-white/5 backdrop-blur-xl darksoul-2xl rounded-3xl flex-1 flex flex-col min-h-0">
             <CardHeader className="pb-4">
               <CardTitle className="text-xs font-black tracking-[0.2em] uppercase text-primary/80 flex items-center gap-2">
                 <Zap className="w-3.5 h-3.5" /> Manipulation Rules
@@ -267,23 +267,23 @@ export default function NetworkInterceptorPanel({ selectedClient }: NetworkInter
               {/* New Rule Form */}
               <div className="space-y-3 p-4 bg-white/[0.02] rounded-2xl border border-white/5">
                 <div className="grid grid-cols-2 gap-3">
-                  <Input 
-                    placeholder="PATTERN (TEXT/HEX)" 
+                  <Input
+                    placeholder="PATTERN (TEXT/HEX)"
                     value={newRule.pattern}
-                    onChange={(e) => setNewRule({...newRule, pattern: e.target.value})}
+                    onChange={(e) => setNewRule({ ...newRule, pattern: e.target.value })}
                     className="bg-black/40 border-white/10 text-[11px] font-mono rounded-xl h-10"
                   />
-                  <Input 
-                    placeholder="REPLACEMENT" 
+                  <Input
+                    placeholder="REPLACEMENT"
                     value={newRule.replacement}
-                    onChange={(e) => setNewRule({...newRule, replacement: e.target.value})}
+                    onChange={(e) => setNewRule({ ...newRule, replacement: e.target.value })}
                     className="bg-black/40 border-white/10 text-[11px] font-mono rounded-xl h-10"
                   />
                 </div>
                 <div className="flex gap-3">
-                  <select 
+                  <select
                     value={newRule.action}
-                    onChange={(e) => setNewRule({...newRule, action: e.target.value as any})}
+                    onChange={(e) => setNewRule({ ...newRule, action: e.target.value as any })}
                     className="flex-1 bg-black/40 border border-white/10 rounded-xl px-3 text-[10px] font-bold uppercase text-white focus:outline-none"
                   >
                     <option value="replace">REPLACE</option>
@@ -308,10 +308,9 @@ export default function NetworkInterceptorPanel({ selectedClient }: NetworkInter
                     <div key={idx} className="group p-3 bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 rounded-xl flex items-center justify-between transition-all">
                       <div className="flex-1 min-w-0 mr-3">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded ${
-                            rule.action === 'drop' ? 'bg-red-500/20 text-red-500' : 
-                            rule.action === 'replace' ? 'bg-blue-500/20 text-blue-500' : 'bg-green-500/20 text-green-500'
-                          }`}>
+                          <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded ${rule.action === 'drop' ? 'bg-red-500/20 text-red-500' :
+                              rule.action === 'replace' ? 'bg-blue-500/20 text-blue-500' : 'bg-green-500/20 text-green-500'
+                            }`}>
                             {rule.action.toUpperCase()}
                           </span>
                           {rule.port && <span className="text-[9px] font-mono text-muted-foreground">PORT:{rule.port}</span>}
@@ -333,7 +332,7 @@ export default function NetworkInterceptorPanel({ selectedClient }: NetworkInter
 
         {/* Right Column: Traffic Logs */}
         <div className="xl:col-span-2 flex flex-col min-h-0">
-          <Card className="bg-black/40 border-white/5 backdrop-blur-xl shadow-2xl rounded-3xl flex-1 flex flex-col min-h-0 overflow-hidden">
+          <Card className="bg-black/40 border-white/5 backdrop-blur-xl darksoul-2xl rounded-3xl flex-1 flex flex-col min-h-0 overflow-hidden">
             <CardHeader className="pb-4 border-b border-white/5 bg-white/[0.01]">
               <div className="flex items-center justify-between">
                 <div>
@@ -343,16 +342,16 @@ export default function NetworkInterceptorPanel({ selectedClient }: NetworkInter
                   <CardDescription className="text-[10px] uppercase font-mono text-muted-foreground/50">Real-time Encrypted Data Stream</CardDescription>
                 </div>
                 <div className="flex items-center gap-4">
-                   <div className="flex items-center gap-2 text-[9px] font-bold text-muted-foreground/50 uppercase">
-                      <span className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_5px_rgba(59,130,246,0.5)]" /> OUT
-                      <span className="w-2 h-2 rounded-full bg-purple-500 shadow-[0_0_5px_rgba(168,85,247,0.5)] ml-2" /> IN
-                   </div>
-                   <button 
+                  <div className="flex items-center gap-2 text-[9px] font-bold text-muted-foreground/50 uppercase">
+                    <span className="w-2 h-2 rounded-full bg-blue-500 darksoul-[0_0_5px_rgba(59,130,246,0.5)]" /> OUT
+                    <span className="w-2 h-2 rounded-full bg-purple-500 darksoul-[0_0_5px_rgba(168,85,247,0.5)] ml-2" /> IN
+                  </div>
+                  <button
                     onClick={() => setLogs([])}
                     className="text-[9px] font-bold text-muted-foreground/50 hover:text-red-500 transition-colors uppercase tracking-widest flex items-center gap-1.5"
-                   >
-                     <Trash2 className="w-3 h-3" /> CLEAR
-                   </button>
+                  >
+                    <Trash2 className="w-3 h-3" /> CLEAR
+                  </button>
                 </div>
               </div>
             </CardHeader>
@@ -405,7 +404,7 @@ export default function NetworkInterceptorPanel({ selectedClient }: NetworkInter
                   </tbody>
                 </table>
               </div>
-              
+
               {/* Stats Footer */}
               <div className="p-4 bg-white/[0.01] border-t border-white/5 flex items-center justify-between text-[9px] font-black text-muted-foreground/30 uppercase tracking-[0.2em]">
                 <div className="flex gap-6">
@@ -426,13 +425,12 @@ export default function NetworkInterceptorPanel({ selectedClient }: NetworkInter
 
 function ControlToggle({ label, active, onClick, icon: Icon }: any) {
   return (
-    <button 
+    <button
       onClick={onClick}
-      className={`relative overflow-hidden p-4 rounded-2xl border transition-all flex flex-col justify-between group ${
-        active 
-        ? 'bg-primary/10 border-primary/40 text-primary shadow-[0_0_20px_rgba(0,240,255,0.1)]' 
-        : 'bg-white/[0.02] border-white/5 text-muted-foreground hover:bg-white/[0.04] hover:border-white/10'
-      }`}
+      className={`relative overflow-hidden p-4 rounded-2xl border transition-all flex flex-col justify-between group ${active
+          ? 'bg-primary/10 border-primary/40 text-primary darksoul-[0_0_20px_rgba(0,240,255,0.1)]'
+          : 'bg-white/[0.02] border-white/5 text-muted-foreground hover:bg-white/[0.04] hover:border-white/10'
+        }`}
     >
       <div className="flex items-center justify-between w-full mb-4">
         <div className={`p-2 rounded-xl ${active ? 'bg-primary/20' : 'bg-white/5'}`}>
@@ -444,7 +442,7 @@ function ControlToggle({ label, active, onClick, icon: Icon }: any) {
         <p className="text-[9px] font-black uppercase tracking-widest opacity-50 mb-0.5">{label}</p>
         <p className="text-[11px] font-bold uppercase">{active ? 'ENABLED' : 'DISABLED'}</p>
       </div>
-      {/* Decorative gradient overlay */}
+      {/* Decoappive gradient overlay */}
       {active && <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent pointer-events-none" />}
     </button>
   )

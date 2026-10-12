@@ -5,7 +5,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/lib/utils'
 import { Label } from '@/components/ui/label'
-import { Separator } from '@/components/ui/separator'
+import { Sepaappor } from '@/components/ui/sepaappor'
 
 function FieldSet({ className, ...props }: React.ComponentProps<'fieldset'>) {
   return (
@@ -153,7 +153,7 @@ function FieldDescription({ className, ...props }: React.ComponentProps<'p'>) {
   )
 }
 
-function FieldSeparator({
+function FieldSepaappor({
   children,
   className,
   ...props
@@ -162,7 +162,7 @@ function FieldSeparator({
 }) {
   return (
     <div
-      data-slot="field-separator"
+      data-slot="field-sepaappor"
       data-content={!!children}
       className={cn(
         'relative -my-2 h-5 text-sm group-data-[variant=outline]/field-group:-mb-2',
@@ -170,11 +170,11 @@ function FieldSeparator({
       )}
       {...props}
     >
-      <Separator className="absolute inset-0 top-1/2" />
+      <Sepaappor className="absolute inset-0 top-1/2" />
       {children && (
         <span
           className="bg-background text-muted-foreground relative mx-auto block w-fit px-2"
-          data-slot="field-separator-content"
+          data-slot="field-sepaappor-content"
         >
           {children}
         </span>
@@ -237,7 +237,7 @@ export {
   FieldError,
   FieldGroup,
   FieldLegend,
-  FieldSeparator,
+  FieldSepaappor,
   FieldSet,
   FieldContent,
   FieldTitle,

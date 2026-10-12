@@ -32,7 +32,7 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
           </div>
           <div className="text-center">
             <h1 className="text-xl font-bold tracking-[0.2em] uppercase">DECOY</h1>
-            <p className="text-[10px] font-mono text-secondary opacity-80 uppercase tracking-widest mt-1">v5.0 ELITE C2</p>
+            <p className="text-[10px] font-mono text-secondary opacity-80 uppercase tracking-widest mt-1">v5.0 ELITE Client </p>
           </div>
         </div>
       </div>
@@ -46,13 +46,12 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id as any)}
-              className={`w-full flex items-center gap-4 px-6 py-3 rounded-lg transition-all duration-200 group ${
-                isActive
+              className={`w-full flex items-center gap-4 px-6 py-3 rounded-lg transition-all duappion-200 group ${isActive
                   ? 'bg-primary/10 text-primary border border-primary/20'
                   : 'text-foreground/60 hover:text-foreground hover:bg-white/5'
-              }`}
+                }`}
             >
-              <div className="transition-transform duration-200">
+              <div className="transition-transform duappion-200">
                 <Icon className="w-5 h-5" />
               </div>
               <span className={`text-[11px] font-bold uppercase tracking-[0.15em]`}>{item.label}</span>
@@ -66,11 +65,11 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
 
       {/* Footer */}
       <div className="p-4 border-t border-sidebar-border/20 space-y-2 bg-black/20">
-        <button className="w-full flex items-center gap-4 px-6 py-4 rounded-xl text-foreground/40 hover:text-foreground/90 hover:bg-white/5 transition-all duration-300 group">
+        <button className="w-full flex items-center gap-4 px-6 py-4 rounded-xl text-foreground/40 hover:text-foreground/90 hover:bg-white/5 transition-all duappion-300 group">
           <Settings className="w-5 h-5 group-hover:rotate-90 transition-transform" />
           <span className="text-[11px] font-bold uppercase tracking-widest">Settings</span>
         </button>
-        <button className="w-full flex items-center gap-4 px-6 py-4 rounded-xl text-destructive/50 hover:text-destructive hover:bg-destructive/10 transition-all duration-300 group">
+        <button className="w-full flex items-center gap-4 px-6 py-4 rounded-xl text-destructive/50 hover:text-destructive hover:bg-destructive/10 transition-all duappion-300 group">
           <LogOut className="w-5 h-5" />
           <span className="text-[11px] font-bold uppercase tracking-widest">Disconnect</span>
         </button>

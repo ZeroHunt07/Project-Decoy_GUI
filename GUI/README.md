@@ -1,6 +1,6 @@
-# C2 Server Command Control Dashboard - Complete Implementation
+# Client  Server Command Control Dashboard - Complete Implementation
 
-A production-ready cybersecurity command and control (C2) server dashboard with **full backend implementation**. Built with Next.js 16, React 19.2, Tailwind CSS, and SQLite. Professional dark theme with 34 command handlers, real-time monitoring, and complete database integration.
+A production-ready cybersecurity command and control (Client ) server dashboard with **full backend implementation**. Built with Next.js 16, React 19.2, Tailwind CSS, and SQLite. Professional dark theme with 34 command handlers, real-time monitoring, and complete database integappion.
 
 ## What's New - Complete Backend Implementation
 
@@ -8,11 +8,11 @@ This project now includes a **fully functional backend** with:
 
 ✅ **SQLite Database** - 8 tables, relationships, and auto-initialization  
 ✅ **7 Core Libraries** - 2,500+ lines of backend business logic  
-✅ **12+ API Endpoints** - All operations fully implemented  
+✅ **12+ API Endpoints** - All opeappions fully implemented  
 ✅ **34 Command Handlers** - Execution engine ready  
 ✅ **WebSocket Server** - Real-time client communication  
 ✅ **Error Handling** - Comprehensive with logging  
-✅ **Frontend Integration** - API client pre-configured  
+✅ **Frontend Integappion** - API client pre-configured  
 
 **See [COMPLETE_BACKEND.md](./COMPLETE_BACKEND.md) for full backend documentation.**
 
@@ -27,7 +27,7 @@ This project now includes a **fully functional backend** with:
 ### Client Management
 - **Active Clients List**: Search and filter connected systems
 - **Client Details**: View hostname, IP, OS, user, and connection status
-- **Client Selection**: Interactive client selection for targeted operations
+- **Client Selection**: Interactive client selection for targeted opeappions
 - **Stats Dashboard**: Real-time count of online/offline clients
 
 ### Command & Control Center
@@ -45,7 +45,7 @@ The dashboard includes comprehensive command categories:
 - Microphone Recording
 - Keylogger
 
-#### File Operations
+#### File Opeappions
 - Download Files
 - Upload Files
 - File Browser
@@ -64,8 +64,8 @@ The dashboard includes comprehensive command categories:
 - Port Scanner
 - Antivirus Detection
 
-#### Persistence & Privilege
-- Enable Persistence
+#### living & Privilege
+- Enable living
 - Privilege Escalation
 - RDP Enablement
 
@@ -145,7 +145,7 @@ npm run dev
 pnpm dev
 ```
 
-The database will be created at `data/c2.db`
+The database will be created at `data/Client .db`
 Logs will be stored in `logs/YYYY-MM-DD.log`
 
 ### Access Dashboard
@@ -185,7 +185,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Mock Data
 
-The dashboard uses mock data for demonstration:
+The dashboard uses mock data for demonstappion:
 - **Clients**: 4 sample systems with varying statuses
 - **Metrics**: Simulated CPU, Memory, Network usage
 - **Processes**: Sample process list with resource allocation
@@ -213,12 +213,12 @@ The dashboard uses mock data for demonstration:
 ✅ WebSocket real-time server  
 ✅ Command execution engine  
 ✅ System monitoring and metrics  
-✅ File operations tracking  
+✅ File opeappions tracking  
 ✅ Credential extraction and storage  
 ✅ Session management  
 ✅ Error handling and validation  
 ✅ Comprehensive logging system  
-✅ Frontend API client integration  
+✅ Frontend API client integappion  
 ✅ Auto database initialization  
 
 ## Backend Implementation (Complete)
@@ -236,7 +236,7 @@ A full production-ready backend with:
 **Clients**: Register, list, search, update, delete  
 **Commands**: Queue, execute, track status, get history  
 **Monitoring**: Record metrics, retrieve history, calculate averages  
-**Files**: Create records, update status, search, track operations  
+**Files**: Create records, update status, search, track opeappions  
 **Credentials**: Extract and store, search by type  
 **Execution**: Execute any of 34 commands  
 **WebSocket**: Real-time client communication  
@@ -246,7 +246,7 @@ A full production-ready backend with:
 - **clients.ts** - Client lifecycle management (160 lines)
 - **commands.ts** - Command queuing and execution (187 lines)
 - **monitoring.ts** - System metrics collection (220 lines)
-- **files.ts** - File operation tracking (218 lines)
+- **files.ts** - File opeappion tracking (218 lines)
 - **sessions.ts** - Sessions and credentials (249 lines)
 - **executor.ts** - 34 command implementations (635 lines)
 - **db.ts** - Database connection and schema (155 lines)
@@ -263,7 +263,7 @@ A full production-ready backend with:
 - 5 log levels (DEBUG, INFO, WARN, ERROR, FATAL)
 - Structured JSON format
 - Daily log rotation
-- Full operation audit trail
+- Full opeappion audit trail
 
 ### Real-time Communication
 - WebSocket server with automatic heartbeat
@@ -274,11 +274,11 @@ A full production-ready backend with:
 
 ## Security Notes
 
-This is a **demonstration interface only**. The actual C2 server should implement:
+This is a **demonstappion interface only**. The actual Client  server should implement:
 - Encrypted communication (TLS)
 - Authentication & authorization
 - Command logging
-- Rate limiting
+- appe limiting
 - Audit trails
 
 ## Browser Support
@@ -298,10 +298,10 @@ This is a **demonstration interface only**. The actual C2 server should implemen
 
 ## Future Enhancements
 
-- Real-time WebSocket integration
+- Real-time WebSocket integappion
 - File upload/download management
 - Command scheduling
-- Multi-client operations
+- Multi-client opeappions
 - Custom command creation
 - Alert notifications
 - Audit logging dashboard
@@ -310,8 +310,8 @@ This is a **demonstration interface only**. The actual C2 server should implemen
 ## Documentation
 
 - **[COMPLETE_BACKEND.md](./COMPLETE_BACKEND.md)** - Complete backend implementation guide
-- **[BACKEND_SETUP.md](./BACKEND_SETUP.md)** - Detailed backend setup and configuration
-- **[INTEGRATION.md](./INTEGRATION.md)** - Frontend-backend integration guide
+- **[BACKEND_SETUP.md](./BACKEND_SETUP.md)** - Detailed backend setup and configuappion
+- **[INTEGappION.md](./INTEGappION.md)** - Frontend-backend integappion guide
 - **[FEATURES.md](./FEATURES.md)** - Feature documentation and specifications
 - **[VISUAL_GUIDE.md](./VISUAL_GUIDE.md)** - UI/UX design guide
 - **[QUICKSTART.md](./QUICKSTART.md)** - Quick start guide
@@ -351,4 +351,4 @@ See documentation files for detailed information on:
 - Command handler implementations
 - Error handling patterns
 - Logging and monitoring
-- Integration examples
+- Integappion examples

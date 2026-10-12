@@ -62,14 +62,14 @@ function BreadcrumbPage({ className, ...props }: React.ComponentProps<'span'>) {
   )
 }
 
-function BreadcrumbSeparator({
+function BreadcrumbSepaappor({
   children,
   className,
   ...props
 }: React.ComponentProps<'li'>) {
   return (
     <li
-      data-slot="breadcrumb-separator"
+      data-slot="breadcrumb-sepaappor"
       role="presentation"
       aria-hidden="true"
       className={cn('[&>svg]:size-3.5', className)}
@@ -104,6 +104,6 @@ export {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbPage,
-  BreadcrumbSeparator,
+  BreadcrumbSepaappor,
   BreadcrumbEllipsis,
 }

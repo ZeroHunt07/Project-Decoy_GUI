@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { clientManager } from '@/lib/client-manager'
 import { commandQueue } from '@/lib/command-queue'
 import { systemMonitor } from '@/lib/system-monitor'
-import { fileOperations } from '@/lib/file-operations'
+import { fileOpeappions } from '@/lib/file-opeappions'
 
 export async function GET(
   request: NextRequest,
@@ -24,7 +24,7 @@ export async function GET(
 
     const commands = await commandQueue.getClientCommands(id, 20)
     const metrics = await systemMonitor.getLatestMetrics(id)
-    const files = await fileOperations.getClientFiles(id, 10)
+    const files = await fileOpeappions.getClientFiles(id, 10)
 
     return NextResponse.json({
       success: true,

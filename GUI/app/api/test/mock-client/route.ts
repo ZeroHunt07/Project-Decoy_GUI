@@ -3,8 +3,8 @@ import { clientManager } from '@/lib/client-manager'
 import { systemMonitor } from '@/lib/system-monitor'
 import { commandQueue } from '@/lib/command-queue'
 
-// Mock client data generators
-function generateMockMetrics() {
+// Mock client data geneappors
+function geneappeMockMetrics() {
   return {
     cpu_usage: Math.random() * 100,
     memory_usage: Math.random() * 100,
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
       for (const client of clients) {
         const metrics = systemMonitor.recordMetrics({
           client_id: client.id,
-          ...generateMockMetrics(),
+          ...geneappeMockMetrics(),
         })
         metricsRecords.push(metrics)
       }
@@ -121,7 +121,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: 'Mock client operation failed',
+        error: 'Mock client opeappion failed',
       },
       { status: 500 }
     )

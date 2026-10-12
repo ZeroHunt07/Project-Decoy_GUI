@@ -31,32 +31,32 @@ class LibsqlCursor {
   async toArray() {
     let sql = `SELECT * FROM ${this.table}`;
     const args: any[] = [];
-    
+
     // Build WHERE
     if (this.query && Object.keys(this.query).length > 0) {
       const parts: string[] = [];
-      
+
       const processQuery = (q: any, isOr = false) => {
         const localParts: string[] = [];
         for (const [key, val] of Object.entries(q)) {
-            if (key === '$or' && Array.isArray(val)) {
-                const orParts: string[] = [];
-                for (const orQuery of val) {
-                    const innerParts = processQuery(orQuery, true);
-                    if (innerParts) orParts.push(`(${innerParts})`);
-                }
-                if (orParts.length) localParts.push(`(${orParts.join(' OR ')})`);
-            } else if (val instanceof RegExp) {
-                localParts.push(`${key} LIKE ?`);
-                args.push(`%${val.source}%`);
-            } else if (typeof val === 'object' && val !== null) {
-                // Ignore complex operators for now, just stringify
-                localParts.push(`${key} = ?`);
-                args.push(JSON.stringify(val));
-            } else {
-                localParts.push(`${key} = ?`);
-                args.push(val);
+          if (key === '$or' && Array.isArray(val)) {
+            const orParts: string[] = [];
+            for (const orQuery of val) {
+              const innerParts = processQuery(orQuery, true);
+              if (innerParts) orParts.push(`(${innerParts})`);
             }
+            if (orParts.length) localParts.push(`(${orParts.join(' OR ')})`);
+          } else if (val instanceof RegExp) {
+            localParts.push(`${key} LIKE ?`);
+            args.push(`%${val.source}%`);
+          } else if (typeof val === 'object' && val !== null) {
+            // Ignore complex opeappors for now, just stringify
+            localParts.push(`${key} = ?`);
+            args.push(JSON.stringify(val));
+          } else {
+            localParts.push(`${key} = ?`);
+            args.push(val);
+          }
         }
         return localParts.join(isOr ? ' OR ' : ' AND ');
       };
@@ -84,7 +84,7 @@ class LibsqlCursor {
         // Attempt to parse JSON for text columns that look like objects/arrays
         for (const [key, val] of Object.entries(processed)) {
           if (typeof val === 'string' && (val.startsWith('{') || val.startsWith('['))) {
-            try { processed[key] = JSON.parse(val); } catch {}
+            try { processed[key] = JSON.parse(val); } catch { }
           }
         }
         return {
@@ -125,7 +125,7 @@ class LibsqlCollection {
   async insertOne(doc: any) {
     const data = { ...doc };
     delete data._id; // Remove _id if it's there
-    
+
     // Sanitize values
     for (const [key, val] of Object.entries(data)) {
       if (typeof val === 'object' && val !== null) {
@@ -142,12 +142,12 @@ class LibsqlCollection {
   async updateOne(query: any, update: any) {
     const setObj = update.$set || {};
     const setKeys = Object.keys(setObj).map(k => `${k} = ?`).join(', ');
-    const setArgs = Object.values(setObj).map(v => 
+    const setArgs = Object.values(setObj).map(v =>
       (typeof v === 'object' && v !== null) ? JSON.stringify(v) : v
     );
 
     const whereKeys = Object.keys(query).map(k => `${k} = ?`).join(' AND ');
-    const whereArgs = Object.values(query).map(v => 
+    const whereArgs = Object.values(query).map(v =>
       (typeof v === 'object' && v !== null) ? JSON.stringify(v) : v
     );
 
@@ -160,7 +160,7 @@ class LibsqlCollection {
 
   async deleteMany(query: any) {
     const keys = Object.keys(query).map(k => `${k} = ?`).join(' AND ');
-    const args = Object.values(query).map(v => 
+    const args = Object.values(query).map(v =>
       (typeof v === 'object' && v !== null) ? JSON.stringify(v) : v
     );
     return await this.client.execute({ sql: `DELETE FROM ${this.name} WHERE ${keys}`, args });
@@ -172,7 +172,7 @@ class LibsqlCollection {
 
   async countDocuments(query: any = {}) {
     const keys = Object.keys(query).map(k => `${k} = ?`).join(' AND ');
-    const args = Object.values(query).map(v => 
+    const args = Object.values(query).map(v =>
       (typeof v === 'object' && v !== null) ? JSON.stringify(v) : v
     );
     let sql = `SELECT COUNT(*) as count FROM ${this.name}`;
@@ -187,8 +187,8 @@ class LibsqlCollection {
       toArray: async () => {
         // For Loot stats specifically:
         if (this.name === 'loot' && pipeline.some(p => p.$group)) {
-            const rs = await this.client.execute(`SELECT type, COUNT(*) as count, SUM(size) as size FROM loot GROUP BY type`);
-            return rs.rows.map((r: any) => ({ _id: r.type, count: r.count, size: r.size }));
+          const rs = await this.client.execute(`SELECT type, COUNT(*) as count, SUM(size) as size FROM loot GROUP BY type`);
+          return rs.rows.map((r: any) => ({ _id: r.type, count: r.count, size: r.size }));
         }
         return [];
       },
@@ -204,14 +204,14 @@ class LibsqlCollection {
 
 export async function getDatabase() {
   if (!clientInstance) {
-    const dbPath = path.resolve(process.cwd(), '../data/c2.db');
+    const dbPath = path.resolve(process.cwd(), '../data/Client .db');
     const dir = path.dirname(dbPath);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
     clientInstance = createClient({
       url: `file:${dbPath}`,
     });
-    
+
     await clientInstance.executeMultiple(`
       CREATE TABLE IF NOT EXISTS clients (id TEXT PRIMARY KEY, ip_address TEXT, hostname TEXT, os TEXT, username TEXT, status TEXT DEFAULT 'offline', last_seen TEXT, is_admin BOOLEAN DEFAULT 0, gpu TEXT, motherboard TEXT);
       CREATE TABLE IF NOT EXISTS commands (id TEXT PRIMARY KEY, client_id TEXT NOT NULL, command_type TEXT NOT NULL, command_name TEXT NOT NULL, parameters TEXT, status TEXT DEFAULT 'pending', result TEXT, error_message TEXT, execution_time DATETIME, created_at DATETIME DEFAULT CURRENT_TIMESTAMP, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP, is_active BOOLEAN DEFAULT 0);
@@ -226,10 +226,10 @@ export async function getDatabase() {
       CREATE INDEX IF NOT EXISTS idx_system_info_timestamp ON system_info(timestamp);
     `);
 
-    // Migration for existing tables
-    try { await clientInstance.execute("ALTER TABLE loot ADD COLUMN size INTEGER DEFAULT 0"); } catch (e) {}
-    try { await clientInstance.execute("ALTER TABLE system_info ADD COLUMN network_in FLOAT DEFAULT 0"); } catch (e) {}
-    try { await clientInstance.execute("ALTER TABLE system_info ADD COLUMN network_out FLOAT DEFAULT 0"); } catch (e) {}
+    // Migappion for existing tables
+    try { await clientInstance.execute("ALTER TABLE loot ADD COLUMN size INTEGER DEFAULT 0"); } catch (e) { }
+    try { await clientInstance.execute("ALTER TABLE system_info ADD COLUMN network_in FLOAT DEFAULT 0"); } catch (e) { }
+    try { await clientInstance.execute("ALTER TABLE system_info ADD COLUMN network_out FLOAT DEFAULT 0"); } catch (e) { }
   }
 
   return {
@@ -246,7 +246,7 @@ export async function getDatabase() {
       }
     }),
     execute: async (sql: string, args: any[] = []) => {
-        return await clientInstance.execute({ sql, args });
+      return await clientInstance.execute({ sql, args });
     }
   };
 }

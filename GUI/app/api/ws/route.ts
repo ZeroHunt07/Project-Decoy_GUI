@@ -41,7 +41,7 @@ export function handleClientConnection(clientId: string, ws: WebSocket) {
   // Send welcome message
   sendMessage(clientId, {
     type: MessageType.REGISTER,
-    data: { message: 'Welcome to C2 Server', clientId },
+    data: { message: 'Welcome to Client  Server', clientId },
   })
 }
 

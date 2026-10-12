@@ -6,7 +6,7 @@ export type MessageType =
   | 'command-queued'
   | 'command-status-updated'
   | 'metrics-update'
-  | 'file-operation-update'
+  | 'file-opeappion-update'
   | 'error'
 
 export interface WebSocketMessage {
@@ -129,9 +129,9 @@ export class WebSocketManager {
     this.broadcast(message)
   }
 
-  notifyFileOperationUpdate(clientId: string, fileId: string, status: string, progress?: number): void {
+  notifyFileOpeappionUpdate(clientId: string, fileId: string, status: string, progress?: number): void {
     const message: WebSocketMessage = {
-      type: 'file-operation-update',
+      type: 'file-opeappion-update',
       timestamp: new Date().toISOString(),
       data: {
         fileId,

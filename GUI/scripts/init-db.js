@@ -13,7 +13,7 @@ if (!fs.existsSync(dataDir)) {
 }
 
 // Initialize database
-const dbPath = path.join(dataDir, 'c2.db')
+const dbPath = path.join(dataDir, 'Client .db')
 const db = new Database(dbPath)
 
 console.log('[Database] Connecting to:', dbPath)
@@ -25,22 +25,22 @@ const schema = fs.readFileSync(schemaPath, 'utf-8')
 try {
   // Split by semicolon and execute each statement
   const statements = schema.split(';').filter(s => s.trim())
-  
+
   for (const statement of statements) {
     if (statement.trim()) {
       db.exec(statement)
     }
   }
-  
+
   console.log('[Database] Schema initialized successfully')
-  
+
   // Verify tables were created
   const tables = db
     .prepare("SELECT name FROM sqlite_master WHERE type='table'")
     .all()
-  
+
   console.log('[Database] Tables created:', tables.map(t => t.name).join(', '))
-  
+
 } catch (error) {
   console.error('[Database] Error initializing schema:', error.message)
   process.exit(1)

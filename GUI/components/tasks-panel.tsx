@@ -2,15 +2,15 @@
 
 import { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { 
-  Play, 
-  Square, 
-  Loader2, 
-  Terminal, 
-  Monitor, 
-  Cpu, 
-  Clock, 
-  User, 
+import {
+  Play,
+  Square,
+  Loader2,
+  Terminal,
+  Monitor,
+  Cpu,
+  Clock,
+  User,
   XCircle,
   AlertCircle,
   RefreshCcw,
@@ -96,7 +96,7 @@ export default function TasksPanel() {
     }
   }
 
-  const filteredTasks = tasks.filter(task => 
+  const filteredTasks = tasks.filter(task =>
     task.hostname?.toLowerCase().includes(searchQuery.toLowerCase()) ||
     task.command_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
     task.id.toLowerCase().includes(searchQuery.toLowerCase())
@@ -129,9 +129,9 @@ export default function TasksPanel() {
         <div className="flex items-center gap-2 w-full md:w-auto">
           <div className="relative w-full md:w-64">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <Input 
-              placeholder="Search tasks..." 
-              className="pl-9 bg-card border-border" 
+            <Input
+              placeholder="Search tasks..."
+              className="pl-9 bg-card border-border"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -160,9 +160,9 @@ export default function TasksPanel() {
           {filteredTasks.map((task) => (
             <Card key={task.id} className="bg-card border-border hover:border-blue-500/30 transition-all group relative overflow-hidden">
               <div className="absolute top-0 right-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                 <Badge variant="outline" className="text-[10px] font-mono">ID: {task.id.slice(0, 8)}</Badge>
+                <Badge variant="outline" className="text-[10px] font-mono">ID: {task.id.slice(0, 8)}</Badge>
               </div>
-              
+
               <CardHeader className="pb-3">
                 <div className="flex justify-between items-start mb-2">
                   {getStatusBadge(task.status)}
@@ -173,18 +173,18 @@ export default function TasksPanel() {
                   {task.command_name.toUpperCase()}
                 </CardTitle>
                 <CardDescription className="flex items-center gap-2 mt-1">
-                   <Monitor className="w-3 h-3" />
-                   {task.hostname}
-                   <span className="mx-1">•</span>
-                   <User className="w-3 h-3" />
-                   {task.client_user}
+                  <Monitor className="w-3 h-3" />
+                  {task.hostname}
+                  <span className="mx-1">•</span>
+                  <User className="w-3 h-3" />
+                  {task.client_user}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="p-3 bg-black/40 rounded-lg border border-white/5 font-mono text-xs text-blue-200/70 overflow-hidden text-ellipsis whitespace-nowrap">
-                   {task.parameters || 'No parameters'}
+                  {task.parameters || 'No parameters'}
                 </div>
-                
+
                 <div className="flex items-center justify-between text-xs text-muted-foreground">
                   <span className="flex items-center gap-1">
                     Started: {new Date(task.created_at).toLocaleTimeString()}
@@ -194,7 +194,7 @@ export default function TasksPanel() {
                   </span>
                 </div>
 
-                <Button 
+                <Button
                   className="w-full bg-red-500/10 hover:bg-red-500 text-red-400 hover:text-white border border-red-500/20 transition-all gap-2"
                   disabled={cancelling === task.id || task.status === 'cancelled'}
                   onClick={() => handleCancel(task.id, task.client_id)}
@@ -207,8 +207,8 @@ export default function TasksPanel() {
                   Terminate Task
                 </Button>
               </CardContent>
-              
-              {/* Progress bar decoration for 'executing' tasks */}
+
+              {/* Progress bar decoappion for 'executing' tasks */}
               {task.status === 'executing' && (
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-blue-500/20">
                   <div className="h-full bg-blue-500 animate-progress origin-left" style={{ width: '100%' }}></div>
@@ -219,14 +219,14 @@ export default function TasksPanel() {
         </div>
       )}
 
-      {/* Warning Alert for persistence */}
+      {/* Warning Alert for living */}
       <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 flex gap-4 items-start">
         <AlertCircle className="w-6 h-6 text-amber-500 shrink-0" />
         <div>
           <h4 className="text-amber-500 font-medium font-bold">Background Tasks Note</h4>
           <p className="text-sm text-amber-200/70">
-            Some tasks (like stream or webcam) are persistent background threads. 
-            Terminating them here sends a signal to the victim script to stop the specific thread. 
+            Some tasks (like stream or webcam) are persistent background threads.
+            Terminating them here sends a signal to the victim script to stop the specific thread.
             If the client is offline, the signal will be delivered next time it connects.
           </p>
         </div>

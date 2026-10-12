@@ -111,12 +111,12 @@ export function useFiles() {
   const { request, loading, error } = useApi()
 
   const methods = useMemo(() => ({
-    createFileOperation: (data: any) =>
-      request('/api/files/operations', { method: 'POST', body: data }),
-    listFiles: (clientId?: string, operation?: string, status?: string) => {
+    createFileOpeappion: (data: any) =>
+      request('/api/files/opeappions', { method: 'POST', body: data }),
+    listFiles: (clientId?: string, opeappion?: string, status?: string) => {
       const params = new URLSearchParams()
       if (clientId) params.append('client_id', clientId)
-      if (operation) params.append('operation', operation)
+      if (opeappion) params.append('opeappion', opeappion)
       if (status) params.append('status', status)
       return request(`/api/files/list?${params.toString()}`)
     },
